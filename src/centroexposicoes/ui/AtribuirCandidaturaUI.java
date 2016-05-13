@@ -1,3 +1,6 @@
+/*
+ * Fornece as classe que controlam a interface gráfica.
+ */
 package centroexposicoes.ui;
 
 /**
