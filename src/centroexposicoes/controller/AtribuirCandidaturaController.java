@@ -1,3 +1,6 @@
+/**
+ * Fornece as classes que comunicam com o modelo e a interface gráfica.
+ */
 package centroexposicoes.controller;
 
 /**
