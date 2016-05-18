@@ -20,54 +20,111 @@ import java.util.List;
  */
 public class RegistarCandidaturaController
 {
+    /**
+     * Registo de exposições. Contém a lista de exposições.
+     */
     private final RegistoExposicoes registoExposicoes;
+    /**
+     * Lista de demonstrações.
+     */
     private List<Demonstracao> listaDemonstracoes;
+    /**
+     * Exposição.
+     */
     private Exposicao exposicao;
+    /**
+     * Candidatura.
+     */
     private Candidatura candidatura;
+    /**
+     * Produto.
+     */
     private Produto produto;
     
+    /**
+     * Cria uma instância do controller para o registo de candidaturas, recebendo o centro de exposições.
+     * 
+     * @param centroExposicoes Centro de exposições.
+     */
     public RegistarCandidaturaController(CentroExposicoes centroExposicoes)
     {
         registoExposicoes = centroExposicoes.getRegistoExposicoes();
     }
     
+    /**
+     * Devolve as exposições.
+     * 
+     * @return Exposições
+     */
     public List<Exposicao> getExposições()
     {
         return registoExposicoes.getExposicoes();
     }
     
+    /**
+     * Cria a candidatura recebendo a exposição.
+     * 
+     * @param exposicao Exposição
+     */
     public void novaCandidatura(Exposicao exposicao)
     {
         this.exposicao = exposicao;
         candidatura = exposicao.novaCandidatura();
     }
     
-    public void setDados(String nomeEmpresa, String morada, String telemovel, float areaExpositor, int qtConvites)
+    /**
+     * Define os dados da candidatura.
+     * 
+     * @param nomeEmpresa Nome da Empresa
+     * @param morada Morada
+     * @param telemovel Telemóvel
+     * @param areaExpositor Area pretendida do expositor
+     * @param numeroConvites Número de convites
+     */
+    public void setDados(String nomeEmpresa, String morada, String telemovel, float areaExpositor, int numeroConvites)
     {
         candidatura.setNomeEmpresa(nomeEmpresa);
         candidatura.setMorada(morada);
         candidatura.setTelemovel(telemovel);
         candidatura.setAreaExpositor(areaExpositor);
-        candidatura.setNumeroConvites(qtConvites);
+        candidatura.setNumeroConvites(numeroConvites);
     }
     
+    /**
+     * Adiciona um produto.
+     * 
+     * @param designacao Designação do produto
+     */
     public void addProduto(String designacao)
     {
         produto = candidatura.novoProduto(designacao);
         candidatura.adicionarProduto(produto);
     }
     
+    /**
+     * Devolve a lista de demonstrações.
+     * 
+     * @return Lista de demonstrações
+     */
     public List<Demonstracao> getListaDemonstracoes()
     {
         listaDemonstracoes = candidatura.getListaDemonstracoes();
         return listaDemonstracoes;
     }
     
+    /**
+     * Define a lista de demonstrações da candidatura.
+     * 
+     * @param listaDemonstracoes Lista de demonstrações
+     */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes)
     {
         candidatura.setListaDemonstracoes(listaDemonstracoes);
     }
     
+    /**
+     * Regista a candidatura.
+     */
     public void registaCandidaturas()
     {
         exposicao.adicionarCandidatura(candidatura);
