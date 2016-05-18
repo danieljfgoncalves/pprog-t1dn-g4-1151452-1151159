@@ -26,4 +26,9 @@ public class RegistoExposicoes
     {
         listaExposicoes = new ArrayList<>();
     }
+    
+    public List<Exposicao> getExposicoes()
+    {
+        return listaExposicoes;
+    }
 }

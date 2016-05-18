@@ -12,12 +12,26 @@ package centroexposicoes.model;
 public class CentroExposicoes
 {
     /**
+     * Exposições do centro de exposições.
+     */
+    private RegistoExposicoes registoExposicoes;
+    
+    /**
      * Constrói uma instância de centro de exposições com os valores por oimissão.
      */
     public CentroExposicoes()
     {
+        registoExposicoes = new RegistoExposicoes();
+    }
     
-        
+    /**
+     * Devolve o registo de exposições.
+     * 
+     * @return Registo de exposições.
+     */
+    public RegistoExposicoes getRegistoExposicoes()
+    {
+        return registoExposicoes;
     }
     
 }

@@ -26,4 +26,19 @@ public class ListaCandidaturas
     {
         listaCandidaturas = new ArrayList<>();
     }
+    
+    public boolean adicionarCandidatura(Candidatura candidatura)
+    {
+        return validarCandidatura(candidatura) ? addCandidatura(candidatura) : false;
+    }
+    
+    private boolean validarCandidatura(Candidatura candidatura)
+    {
+        return !listaCandidaturas.contains(candidatura);
+    }
+    
+    private boolean addCandidatura(Candidatura candidatura)
+    {
+        return listaCandidaturas.add(candidatura);
+    }
 }

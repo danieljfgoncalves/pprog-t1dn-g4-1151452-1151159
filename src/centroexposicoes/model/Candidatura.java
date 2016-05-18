@@ -239,7 +239,7 @@ public class Candidatura {
      * 
      * @return true se adicionar o produto a lista ou false se não adicionar.
      */
-    public boolean adicionaProduto(Produto produto) {
+    public boolean adicionarProduto(Produto produto) {
 
         return produto.valida() && validaProduto(produto) ? addProduto(produto) : false;
     }

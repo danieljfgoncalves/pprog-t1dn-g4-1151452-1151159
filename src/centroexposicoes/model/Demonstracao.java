@@ -44,6 +44,9 @@ public class Demonstracao
         designacao = DESIGNACAO_POR_OMISSÃO;
     }
     
+    /**
+     * Constrói uma instância de demonstração recebendo a designação.
+     */
     public Demonstracao(String designacao)
     {
         codigoUnico = TEXTO_CODIGO_UNICO + ++contagemDemonstracao;
