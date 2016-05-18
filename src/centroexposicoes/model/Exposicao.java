@@ -14,7 +14,14 @@ import java.util.List;
  */
 public class Exposicao 
 {
+    /**
+     * Lista das candidaturas da exposição.
+     */
     private ListaCandidaturas listaCandidaturas;
+    
+    /**
+     * Lista das demonstrações da exposição.
+     */
     private List<Demonstracao> listaDemonstracoes;
     
     /**
@@ -27,8 +34,9 @@ public class Exposicao
     }
     
     /**
+     * Cria uma nova candidatura com os valores por omissão.
      * 
-     * @return 
+     * @return Candidatura criada.
      */
     public Candidatura novaCandidatura()
     {
@@ -36,14 +44,21 @@ public class Exposicao
     }
     
     /**
+     * Devolve a lista de demonstrações.
      * 
-     * @return 
+     * @return Lista de demonstrações.
      */
     public List<Demonstracao> getListaDemonstracoes()
     {
         return listaDemonstracoes;
     }
     
+    /**
+     * Adiciona uma candidatura.
+     * 
+     * @param candidatura Candidatura a ser adicionada
+     * @return True se for adicionada com sucesso
+     */
     public boolean adicionarCandidatura(Candidatura candidatura)
     {
         return listaCandidaturas.adicionarCandidatura(candidatura);

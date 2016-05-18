@@ -27,16 +27,34 @@ public class ListaCandidaturas
         listaCandidaturas = new ArrayList<>();
     }
     
+    /**
+     * Adiciona uma candidatura à lista de candidaturas, validando ao detalhe.
+     * 
+     * @param candidatura Candidatura a ser adicionada
+     * @return True se for adicionada com sucesso
+     */
     public boolean adicionarCandidatura(Candidatura candidatura)
     {
         return validarCandidatura(candidatura) ? addCandidatura(candidatura) : false;
     }
     
+    /**
+     * Valida uma candidatura.
+     * 
+     * @param candidatura Candidatura a ser validada
+     * @return True se for válida
+     */
     private boolean validarCandidatura(Candidatura candidatura)
     {
         return !listaCandidaturas.contains(candidatura);
     }
     
+    /**
+     * Adiciona uma candidatura à lista de candidaturas.
+     * 
+     * @param candidatura Candidatura a ser adicionada
+     * @return True se for adicionada com sucesso
+     */
     private boolean addCandidatura(Candidatura candidatura)
     {
         return listaCandidaturas.add(candidatura);

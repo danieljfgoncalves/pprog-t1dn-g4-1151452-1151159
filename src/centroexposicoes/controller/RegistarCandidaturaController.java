@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Comunicador acerca do registo de candidaturas entre o UI e Model .
+ * Comunicador entre o UI e Model acerca do registo de candidaturas.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159

@@ -21,19 +21,19 @@ public class Demonstracao
     private String designacao;
     
     /**
-     * Número de instrâncias de demonstração criadas;
+     * Número de instâncias de demonstrações criadas;
      */
     private static int contagemDemonstracao = 0;
-    
-    /**
-     * Designação da demonstração por omissão.
-     */
-    private static final String DESIGNACAO_POR_OMISSÃO = "Sem designação";
     
     /**
      * Texto da demonstração por omissão.
      */
     private static final String TEXTO_CODIGO_UNICO = "DEMO-";
+    
+    /**
+     * Designação da demonstração por omissão.
+     */
+    private static final String DESIGNACAO_POR_OMISSÃO = "Sem designação";
     
     /**
      * Constrói uma instância de demonstração com os valores por omissão.

@@ -27,6 +27,11 @@ public class RegistoExposicoes
         listaExposicoes = new ArrayList<>();
     }
     
+    /**
+     * Devolve as exposições.
+     * 
+     * @return Exposições.
+     */
     public List<Exposicao> getExposicoes()
     {
         return listaExposicoes;
