@@ -3,7 +3,8 @@
  */
 package centroexposicoes.model;
 
-import centroexposicoes.auxiliar.Validar;
+import centroexposicoes.utils.Validar;
+import java.util.Objects;
 
 /**
  * Representa um produto.
@@ -19,10 +20,16 @@ public class Produto {
     private String designacao;
 
     /**
+     * Designação do produto que pretende expor por omissão.
+     */
+    private static final String DESIGNACAO = "Sem designação";
+
+    /**
      * Constrói uma instância do Produto com os valores por omissão.
      */
     public Produto() {
 
+        this.designacao = DESIGNACAO;
     }
 
     /**
@@ -63,14 +70,14 @@ public class Produto {
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
     }
-    
+
     /**
-     * Verifica se o produto é válido. 
-     * 
+     * Verifica se o produto é válido.
+     *
      * @return true se for válido ou false se for inválido.
      */
     public boolean valida() {
-        
+
         return Validar.validaString(this.designacao);
     }
 
@@ -84,4 +91,17 @@ public class Produto {
         return "Produto{" + "designacao=" + designacao + '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || !(obj instanceof Produto)) {
+            return false;
+        }
+
+        final Produto outroProduto = (Produto) obj;
+
+        return this.designacao.equals(outroProduto.designacao);
+    }
 }

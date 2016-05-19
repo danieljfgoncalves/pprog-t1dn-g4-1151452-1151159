@@ -3,7 +3,7 @@
  */
 package centroexposicoes.model;
 
-import centroexposicoes.auxiliar.Validar;
+import centroexposicoes.utils.Validar;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class Candidatura {
     private int numeroConvites;
 
     /**
-     * Lista de produtos que expositor pretende expor.
+     * Lista de produtos que o expositor pretende expor.
      */
     private List<Produto> listaProdutos;
 
@@ -47,10 +47,36 @@ public class Candidatura {
     private List<Demonstracao> listaDemonstracoes;
 
     /**
+     * Nome comercial da empresa por omissão.
+     */
+    private static final String NOME_EMPRESA = "Sem designação";
+    /**
+     * Morada por omissão.
+     */
+    private static final String MORADA = "Sem morada";
+    /**
+     * Número do telemóvel por omissão.
+     */
+    private static final String TELEMOVEL = "Número indefinido";
+    /**
+     * Área da exposição pretendida por omissão.
+     */
+    private static final float AREA_EXPOSITOR = 1.0f;
+    /**
+     * Quantidade de convites a adquirir.
+     */
+    private static final int NUMERO_CONVITES = 0;
+
+    /**
      * Constrói uma instância da candidatura com os valores por omissão.
      */
     public Candidatura() {
 
+        this.nomeEmpresa = NOME_EMPRESA;
+        this.morada = MORADA;
+        this.telemovel = TELEMOVEL;
+        this.areaExpositor = AREA_EXPOSITOR;
+        this.numeroConvites = NUMERO_CONVITES;
         this.listaProdutos = new ArrayList<>();
         this.listaDemonstracoes = new ArrayList<>();
     }
@@ -289,6 +315,13 @@ public class Candidatura {
      */
     @Override
     public String toString() {
-        return "Candidatura{" + "nomeEmpresa=" + nomeEmpresa + ", morada=" + morada + ", telemovel=" + telemovel + ", areaExpositor=" + areaExpositor + ", numeroConvites=" + numeroConvites + '}';
+
+        return "Candidatura{"
+                + "nomeEmpresa=" + nomeEmpresa
+                + ", morada=" + morada
+                + ", telemovel=" + telemovel
+                + ", areaExpositor=" + areaExpositor
+                + ", numeroConvites=" + numeroConvites
+                + '}';
     }
 }
