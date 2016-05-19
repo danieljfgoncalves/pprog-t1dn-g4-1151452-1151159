@@ -3,6 +3,8 @@
  */
 package centroexposicoes.model;
 
+import centroexposicoes.auxiliar.Validar;
+
 /**
  * Representa um produto.
  *
@@ -69,7 +71,7 @@ public class Produto {
      */
     public boolean valida() {
         
-        return (!this.designacao.trim().isEmpty() && this.designacao != null);
+        return Validar.validaString(this.designacao);
     }
 
     /**

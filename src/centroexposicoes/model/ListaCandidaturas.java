@@ -35,7 +35,7 @@ public class ListaCandidaturas
      */
     public boolean adicionarCandidatura(Candidatura candidatura)
     {
-        return validarCandidatura(candidatura) ? addCandidatura(candidatura) : false;
+        return candidatura.valida() && validarCandidatura(candidatura) ? addCandidatura(candidatura) : false;
     }
     
     /**

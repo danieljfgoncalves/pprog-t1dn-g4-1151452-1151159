@@ -3,6 +3,7 @@
  */
 package centroexposicoes.model;
 
+import centroexposicoes.auxiliar.Validar;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,7 +200,7 @@ public class Candidatura {
      * @param listaProdutos a lista de produtos da candidatura.
      */
     public void setListaProdutos(List<Produto> listaProdutos) {
-        this.listaProdutos = listaProdutos;
+        this.listaProdutos = new ArrayList<>(listaProdutos);
     }
 
     /**
@@ -218,7 +219,7 @@ public class Candidatura {
      * participar.
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
-        this.listaDemonstracoes = listaDemonstracoes;
+        this.listaDemonstracoes = new ArrayList<>(listaDemonstracoes);
     }
 
     /**
@@ -234,14 +235,14 @@ public class Candidatura {
 
     /**
      * Valida e adiciona o produto a lista de produtos da candidatura.
-     * 
+     *
      * @param produto produto a expor.
-     * 
+     *
      * @return true se adicionar o produto a lista ou false se não adicionar.
      */
     public boolean adicionarProduto(Produto produto) {
 
-        return produto.valida() && validaProduto(produto) ? addProduto(produto) : false;
+        return produto.valida() && validarProduto(produto) ? addProduto(produto) : false;
     }
 
     /**
@@ -250,19 +251,35 @@ public class Candidatura {
      * @param produto produto a expor.
      * @return true se não existe na lista de produtos e false se já existir.
      */
-    private boolean validaProduto(Produto produto) {
+    private boolean validarProduto(Produto produto) {
 
         return !this.listaProdutos.contains(produto);
     }
 
     /**
      * Adiciona um produto a lista de produtos.
-     * 
+     *
      * @param produto produto a expor.
      */
     private boolean addProduto(Produto produto) {
 
         return this.listaProdutos.add(produto);
+    }
+
+    /**
+     * Verifica se a candidatura é válida.
+     *
+     * @return true se for válida ou false se for inválida.
+     */
+    public boolean valida() {
+
+        return Validar.validaString(this.nomeEmpresa)
+                && Validar.validaString(this.morada)
+                && Validar.validaString(this.telemovel)
+                && (this.areaExpositor > 0.0)
+                && (this.numeroConvites > 0)
+                && this.listaProdutos != null
+                && this.listaDemonstracoes != null;
     }
 
     /**
