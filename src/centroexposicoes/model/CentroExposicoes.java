@@ -34,4 +34,10 @@ public class CentroExposicoes
         return registoExposicoes;
     }
     
+    @Override
+    public String toString()
+    {
+        return String.format("Registo Exposições:%n%s", registoExposicoes); 
+    }
+    
 }
