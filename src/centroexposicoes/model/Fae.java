@@ -14,13 +14,82 @@ public class Fae
     /**
      * Os dados do fae.
      */
-    private Utilizador fae;
+    private Utilizador utilizadorFae;
     
     /**
      * Constrói uma instância de funcionário de apoio à exposição com os valores por omissão.
      */
     public Fae()
     {
+        utilizadorFae = new Utilizador();
+    }
+    
+    /**
+     * Constrói uma instância de funcionário de apoio à exposição recebendo o utilizador.
+     * 
+     * @param utilizador utilizador a ser definido
+     */
+    public Fae(Utilizador utilizador)
+    {
+        utilizadorFae = utilizador;
+    }
+    
+    /**
+     * Constrói uma instância de funcionário de apoio à exposição copiando outro FAE.
+     * 
+     * @param fae outro Fae a ser copiado
+     */
+    public Fae(Fae fae)
+    {
+        utilizadorFae = new Utilizador(fae.utilizadorFae);
+    }
+
+    /**
+     * Devolve o utilizador fae.
+     * 
+     * @return utilizador fae
+     */
+    public Utilizador getUtilizadorFae() {
+        return utilizadorFae;
+    }
+
+    /**
+     * Modifica o utilizador fae.
+     * 
+     * @param utilizadorFae utilizador fae
+     */
+    public void setUtilizadorFae(Utilizador utilizadorFae) {
+        this.utilizadorFae = utilizadorFae;
+    }
+    
+    /**
+     * Gera uma representação textual do utilizador.
+     * 
+     * @return representação textual do utilizador.
+     */
+    @Override
+    public String toString()
+    {
+        return String.format("Utilizador FAE:%n%s", utilizadorFae);
+    }
+    
+    /**
+     * Compara se outro objeto é igual a este utilizador.
+     * 
+     * @param outroObjeto objeto a comparar
+     * @return true se forem iguais. False caso contrário.
+     */
+    @Override
+    public boolean equals(Object outroObjeto)
+    {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Fae outroFae = (Fae) outroObjeto;
         
+        return outroFae.utilizadorFae.equals(outroFae.utilizadorFae);
     }
 }

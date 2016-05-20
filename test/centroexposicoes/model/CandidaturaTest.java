@@ -1,10 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Fornece as classes que contém o modelo logístico de um centro de exposições.
  */
 package centroexposicoes.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -171,12 +170,14 @@ public class CandidaturaTest {
     @Test
     public void testGetListaProdutos() {
         System.out.println("getListaProdutos");
-        Candidatura instance = new Candidatura();
-        List<Produto> expResult = null;
+        List<Produto> listaProdutos = new ArrayList();
+        listaProdutos.add(new Produto("honda"));
+        List<Demonstracao> listaDemonstracoes = new ArrayList();
+        listaDemonstracoes.add(new Demonstracao("miniatura"));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        List<Produto> expResult = new ArrayList<>(listaProdutos);
         List<Produto> result = instance.getListaProdutos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -185,11 +186,12 @@ public class CandidaturaTest {
     @Test
     public void testSetListaProdutos() {
         System.out.println("setListaProdutos");
-        List<Produto> listaProdutos = null;
-        Candidatura instance = new Candidatura();
+        List<Produto> listaProdutos = new ArrayList();
+        List<Demonstracao> listaDemonstracoes = new ArrayList();
+        listaDemonstracoes.add(new Demonstracao("miniatura"));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, new ArrayList(), listaDemonstracoes);
         instance.setListaProdutos(listaProdutos);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(instance.getListaProdutos(), listaProdutos);
     }
 
     /**
@@ -198,12 +200,14 @@ public class CandidaturaTest {
     @Test
     public void testGetListaDemonstracoes() {
         System.out.println("getListaDemonstracoes");
-        Candidatura instance = new Candidatura();
-        List<Demonstracao> expResult = null;
+        List<Produto> listaProdutos = new ArrayList();
+        listaProdutos.add(new Produto("honda"));
+        List<Demonstracao> listaDemonstracoes = new ArrayList();
+        listaDemonstracoes.add(new Demonstracao("miniatura"));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        List<Demonstracao> expResult = new ArrayList<>(listaDemonstracoes);
         List<Demonstracao> result = instance.getListaDemonstracoes();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -212,11 +216,13 @@ public class CandidaturaTest {
     @Test
     public void testSetListaDemonstracoes() {
         System.out.println("setListaDemonstracoes");
-        List<Demonstracao> listaDemonstracoes = null;
-        Candidatura instance = new Candidatura();
+        List<Produto> listaProdutos = new ArrayList();
+        listaProdutos.add(new Produto("honda"));
+        List<Demonstracao> listaDemonstracoes = new ArrayList();
+        listaDemonstracoes.add(new Demonstracao("miniatura"));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, new ArrayList());
         instance.setListaDemonstracoes(listaDemonstracoes);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(instance.getListaDemonstracoes(), listaDemonstracoes);
     }
 
     /**
@@ -238,13 +244,12 @@ public class CandidaturaTest {
     @Test
     public void testAdicionarProduto() {
         System.out.println("adicionarProduto");
-        Produto produto = null;
-        Candidatura instance = new Candidatura();
-        boolean expResult = false;
-        boolean result = instance.adicionarProduto(produto);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Produto> listaProdutos = new ArrayList();
+        Produto produto = new Produto("honda");
+        List<Demonstracao> listaDemonstracoes = new ArrayList();
+        listaDemonstracoes.add(new Demonstracao("miniatura"));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        assertTrue(instance.adicionarProduto(produto));
     }
 
     /**
@@ -257,6 +262,35 @@ public class CandidaturaTest {
         String expResult = "Candidatura{nomeEmpresa=Sem designação, morada=Sem morada, telemovel=Número indefinido, areaExpositor=1.0, numeroConvites=0}";
         String result = instance.toString();
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of valida method, of class Candidatura.
+     */
+    @Test
+    public void testValida() {
+        System.out.println("valida");
+        List<Produto> listaProdutos = new ArrayList();
+        listaProdutos.add(new Produto("honda"));
+        List<Demonstracao> listaDemonstracoes = new ArrayList();
+        listaDemonstracoes.add(new Demonstracao("miniatura"));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        assertTrue(instance.valida());
+    }
+
+    /**
+     * Test of equals method, of class Candidatura.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        List<Produto> listaProdutos = new ArrayList();
+        listaProdutos.add(new Produto("honda"));
+        List<Demonstracao> listaDemonstracoes = new ArrayList();
+        listaDemonstracoes.add(new Demonstracao("miniatura"));
+        Object outroObjeto = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        assertTrue(instance.equals(outroObjeto));
     }
 
 }

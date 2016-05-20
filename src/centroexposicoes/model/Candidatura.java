@@ -324,4 +324,25 @@ public class Candidatura {
                 + ", numeroConvites=" + numeroConvites
                 + '}';
     }
+    /**
+     * Compara se outro objeto é igual a este utilizador.
+     * 
+     * @param outroObjeto objeto a comparar
+     * @return true se forem iguais. False caso contrário.
+     */
+    @Override
+    public boolean equals(Object outroObjeto)
+    {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Candidatura outraCandidatura = (Candidatura) outroObjeto;
+        
+        return nomeEmpresa.equals(outraCandidatura.nomeEmpresa) && morada.equals(outraCandidatura.morada) 
+                && telemovel.equals(outraCandidatura.telemovel) && areaExpositor == outraCandidatura.areaExpositor 
+                && numeroConvites == outraCandidatura.numeroConvites;
+    }
 }

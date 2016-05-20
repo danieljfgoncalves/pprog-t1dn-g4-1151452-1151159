@@ -18,20 +18,18 @@ public class Produto {
      * Designação do produto que pretende expor.
      */
     private String designacao;
-
     /**
      * Designação do produto que pretende expor por omissão.
      */
-    private static final String DESIGNACAO = "Sem designação";
-
+    private static final String DESIGNACAO_POR_OMISSAO = "Sem designação";
+    
     /**
      * Constrói uma instância do Produto com os valores por omissão.
      */
     public Produto() {
 
-        this.designacao = DESIGNACAO;
+        this.designacao = DESIGNACAO_POR_OMISSAO;
     }
-
     /**
      * Constrói uma instância do Produto com os valores recebidos por
      * paramêtros.
@@ -42,7 +40,6 @@ public class Produto {
 
         this.designacao = designacao;
     }
-
     /**
      * Constrói uma instância do Produto a partir de outro produto.
      *
@@ -61,7 +58,6 @@ public class Produto {
     public String getDesignacao() {
         return designacao;
     }
-
     /**
      * Modifica a designação do produto.
      *
@@ -70,7 +66,6 @@ public class Produto {
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
     }
-
     /**
      * Verifica se o produto é válido.
      *
@@ -90,7 +85,6 @@ public class Produto {
     public String toString() {
         return "Produto{" + "designacao=" + designacao + '}';
     }
-
     @Override
     public boolean equals(Object obj) {
         
