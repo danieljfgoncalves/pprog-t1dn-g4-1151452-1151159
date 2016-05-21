@@ -90,6 +90,6 @@ public class Fae
         }
         Fae outroFae = (Fae) outroObjeto;
         
-        return outroFae.utilizadorFae.equals(outroFae.utilizadorFae);
+        return utilizadorFae.equals(outroFae.utilizadorFae);
     }
 }

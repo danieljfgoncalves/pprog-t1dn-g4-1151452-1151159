@@ -1,10 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Fornece as classes que contém o modelo logístico de um centro de exposições.
  */
 package centroexposicoes.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,17 +40,30 @@ public class RegistoExposicoesTest {
     }
 
     /**
-     * Test of getExposicoes method, of class RegistoExposicoes.
+     * Test of getListaExposicoes method, of class RegistoExposicoes.
      */
     @Test
-    public void testGetExposicoes() {
-        System.out.println("getExposicoes");
-        RegistoExposicoes instance = new RegistoExposicoes();
-        List<Exposicao> expResult = null;
-        List<Exposicao> result = instance.getExposicoes();
+    public void testGetListaExposicoes() {
+        System.out.println("getListaExposicoes");
+        List<Exposicao> listaExposicoes = new ArrayList<>();
+        listaExposicoes.add(new Exposicao());
+        RegistoExposicoes instance = new RegistoExposicoes(listaExposicoes);
+        List<Exposicao> expResult = listaExposicoes;
+        List<Exposicao> result = instance.getListaExposicoes();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setListaExposicoes method, of class RegistoExposicoes.
+     */
+    @Test
+    public void testSetListaExposicoes() {
+        System.out.println("setListaExposicoes");
+        List<Exposicao> listaExposicoes = new ArrayList<>();
+        listaExposicoes.add(new Exposicao());
+        RegistoExposicoes instance = new RegistoExposicoes();
+        instance.setListaExposicoes(listaExposicoes);
+        assertEquals(instance.getListaExposicoes(), listaExposicoes);
     }
 
     /**
@@ -60,12 +72,17 @@ public class RegistoExposicoesTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        RegistoExposicoes instance = new RegistoExposicoes();
-        String expResult = "";
+        List<Exposicao> listaExposicoes = new ArrayList<>();
+        listaExposicoes.add(new Exposicao());
+        RegistoExposicoes instance = new RegistoExposicoes(listaExposicoes);
+        StringBuilder expResult = new StringBuilder();
+        expResult.append("RegistoExposicoes{");
+        for (Exposicao exposicao : instance.getListaExposicoes()) {
+            expResult.append(String.format("%s%n", exposicao));
+        }
+        expResult.append("}");
         String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult.toString(), result);
     }
 
     /**
@@ -74,13 +91,9 @@ public class RegistoExposicoesTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object outroObjecto = null;
+        Object outroObjecto = new RegistoExposicoes();
         RegistoExposicoes instance = new RegistoExposicoes();
-        boolean expResult = false;
-        boolean result = instance.equals(outroObjecto);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.equals(outroObjecto));
     }
 
 }

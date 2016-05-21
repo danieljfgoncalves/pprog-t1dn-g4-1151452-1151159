@@ -34,7 +34,7 @@ public class Produto {
      * Constrói uma instância do Produto com os valores recebidos por
      * paramêtros.
      *
-     * @param designacao designação do produto a expor.
+     * @param designacao designação do produto a expor
      */
     public Produto(String designacao) {
 
@@ -43,7 +43,7 @@ public class Produto {
     /**
      * Constrói uma instância do Produto a partir de outro produto.
      *
-     * @param outroProduto produto que pretende copiar.
+     * @param outroProduto produto que pretende copiar
      */
     public Produto(Produto outroProduto) {
 
@@ -53,7 +53,7 @@ public class Produto {
     /**
      * Devolve a designação do produto.
      *
-     * @return a designação do produto.
+     * @return a designação do produto
      */
     public String getDesignacao() {
         return designacao;
@@ -61,7 +61,7 @@ public class Produto {
     /**
      * Modifica a designação do produto.
      *
-     * @param designacao a designação do produto.
+     * @param designacao a designação do produto
      */
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
@@ -69,7 +69,7 @@ public class Produto {
     /**
      * Verifica se o produto é válido.
      *
-     * @return true se for válido ou false se for inválido.
+     * @return true se for válido ou false se for inválido
      */
     public boolean valida() {
 
@@ -79,18 +79,18 @@ public class Produto {
     /**
      * Devolve a descrição textual de todos os atributos de um produto.
      *
-     * @return caraterísticas de um produto.
+     * @return caraterísticas de um produto
      */
     @Override
     public String toString() {
-        return "Produto{" + "designacao=" + designacao + '}';
+        return String.format("Produto{designacao=%s}", designacao);
     }
     
     /**
      * Compara se outro objeto é igual a este Produto.
      * 
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário.
+     * @return true se forem iguais. False caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {

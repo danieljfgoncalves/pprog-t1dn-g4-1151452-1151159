@@ -17,7 +17,7 @@ public class RegistoExposicoes
     /**
      * Lista das exposições.
      */
-    private final List<Exposicao> listaExposicoes;
+    private List<Exposicao> listaExposicoes;
     
     /**
      * Constrói uma instância de registo de exposições.
@@ -26,28 +26,64 @@ public class RegistoExposicoes
     {
         listaExposicoes = new ArrayList<>();
     }
-    
     /**
-     * Devolve as exposições.
+     * Constrói uma instância de registo de exposições recebendo a lista de exposições.
      * 
-     * @return Exposições.
+     * @param listaExposicoes lista de exposições
      */
-    public List<Exposicao> getExposicoes()
+    public RegistoExposicoes(List<Exposicao> listaExposicoes)
     {
+        this.listaExposicoes = new ArrayList<>(listaExposicoes);
+    }
+    /**
+     * Constrói uma instância de registo de exposições copiando outro registo de exposições.
+     * 
+     * @param registoExposicoes registo de exposições a ser copiado
+     */
+    public RegistoExposicoes(RegistoExposicoes registoExposicoes)
+    {
+        this.listaExposicoes = new ArrayList<>(registoExposicoes.listaExposicoes);
+    }
+
+    /**
+     * Devolve a lista de exposições.
+     * 
+     * @return lista de exposições
+     */
+    public List<Exposicao> getListaExposicoes() {
         return listaExposicoes;
     }
+    /**
+     * Modifica a lista de exposições
+     * 
+     * @param listaExposicoes lista de exposições
+     */
+    public void setListaExposicoes(List<Exposicao> listaExposicoes) {
+        this.listaExposicoes = listaExposicoes;
+    }
     
+    /**
+     * Devolve a representação textual de todos os atributos do registo de exposições.
+     * 
+     * @return representação textual de todos os atributos do registo de exposições
+     */
     @Override
     public String toString()
     {
         StringBuilder s = new StringBuilder();
+        s.append("RegistoExposicoes{");
         for (Exposicao exposicao : listaExposicoes) {
-            s.append(exposicao);
-            s.append("\n");
+            s.append(String.format("%s%n", exposicao));
         }
+        s.append("}");
         return s.toString();
     }
-    
+    /**
+     * Compara se outro objeto é igual a este RegistoExposicoes.
+     * 
+     * @param outroObjeto objeto a comparar
+     * @return true se forem iguais. False caso contrário
+     */
     @Override
     public boolean equals(Object outroObjeto)
     {
