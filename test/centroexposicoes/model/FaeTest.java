@@ -44,7 +44,7 @@ public class FaeTest {
     public void testGetUtilizadorFae() {
         System.out.println("getUtilizadorFae");
         Fae instance = new Fae(new Utilizador("Ivo Ferro", "ivoferro@sapo.pt", "ivoferro", "123+qwe"));
-        Utilizador expResult = new Utilizador();
+        Utilizador expResult = new Utilizador("Ivo Ferro", "ivoferro@sapo.pt", "ivoferro", "123+qwe");
         Utilizador result = instance.getUtilizadorFae();
         assertEquals(expResult, result);
     }
@@ -79,7 +79,7 @@ public class FaeTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object outroObjeto = new Utilizador("Ivo Ferro", "ivoferro@sapo.pt", "ivoferro", "123+qwe");
+        Object outroObjeto = new Fae(new Utilizador("Ivo Ferro", "ivoferro@sapo.pt", "ivoferro", "123+qwe"));
         Fae instance = new Fae(new Utilizador("Ivo Ferro", "ivoferro@sapo.pt", "ivoferro", "123+qwe"));
         assertTrue(instance.equals(outroObjeto));
     }

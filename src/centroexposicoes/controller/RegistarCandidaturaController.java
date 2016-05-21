@@ -58,7 +58,7 @@ public class RegistarCandidaturaController
      */
     public List<Exposicao> getExposições()
     {
-        return registoExposicoes.getExposicoes();
+        return registoExposicoes.getListaExposicoes();
     }
     
     /**

@@ -61,11 +61,11 @@ public class Candidatura {
     /**
      * Área da exposição pretendida por omissão.
      */
-    private static final float AREA_EXPOSITOR = 1.0f;
+    private static final float AREA_EXPOSITOR = 100.0f;
     /**
      * Quantidade de convites a adquirir.
      */
-    private static final int NUMERO_CONVITES = 0;
+    private static final int NUMERO_CONVITES = 10;
 
     /**
      * Constrói uma instância da candidatura com os valores por omissão.
