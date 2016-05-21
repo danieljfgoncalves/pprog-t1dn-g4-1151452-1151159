@@ -85,17 +85,24 @@ public class Produto {
     public String toString() {
         return "Produto{" + "designacao=" + designacao + '}';
     }
+    
+    /**
+     * Compara se outro objeto é igual a este Produto.
+     * 
+     * @param outroObjeto objeto a comparar
+     * @return true se forem iguais. False caso contrário.
+     */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object outroObjeto) {
         
-        if (this == obj) {
+        if (this == outroObjeto) {
             return true;
         }
-        if (obj == null || !(obj instanceof Produto)) {
+        if (outroObjeto == null || !(outroObjeto instanceof Produto)) {
             return false;
         }
 
-        final Produto outroProduto = (Produto) obj;
+        final Produto outroProduto = (Produto) outroObjeto;
 
         return this.designacao.equals(outroProduto.designacao);
     }

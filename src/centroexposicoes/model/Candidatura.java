@@ -324,8 +324,9 @@ public class Candidatura {
                 + ", numeroConvites=" + numeroConvites
                 + '}';
     }
+    
     /**
-     * Compara se outro objeto é igual a este utilizador.
+     * Compara se outro objeto é igual a esta Candidatura.
      * 
      * @param outroObjeto objeto a comparar
      * @return true se forem iguais. False caso contrário.
