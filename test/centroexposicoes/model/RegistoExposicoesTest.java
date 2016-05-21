@@ -19,22 +19,22 @@ import static org.junit.Assert.*;
  * @author Ivo Ferro 1151159
  */
 public class RegistoExposicoesTest {
-    
+
     public RegistoExposicoesTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -95,5 +95,5 @@ public class RegistoExposicoesTest {
         RegistoExposicoes instance = new RegistoExposicoes();
         assertTrue(instance.equals(outroObjecto));
     }
-    
+
 }
