@@ -20,6 +20,14 @@ import javax.swing.KeyStroke;
 public class GlobalJMenuBar extends JMenuBar
 {
     /**
+     * Opção sair do menu.
+     */
+    private JMenuItem menuItemSair;
+    /**
+     * Opção terminar sessão do menu.
+     */
+    private JMenuItem menuItemTerminarSessao;
+    /**
      * Valor de opções.
      */
     private static final String OPCOES = "Opções";
@@ -27,6 +35,10 @@ public class GlobalJMenuBar extends JMenuBar
      * Valor de terminar sessão.
      */
     private static final String TERMINAR_SESSAO = "Terminar sessão";
+    /**
+     * Valor de sair.
+     */
+    private static final String SAIR = "Sair";
     
     /**
      * Constrói uma instância de GlobalJMenuBar por omissão.
@@ -36,8 +48,11 @@ public class GlobalJMenuBar extends JMenuBar
         JMenu menuOpcoes = new JMenu(OPCOES);
         menuOpcoes.setMnemonic(KeyEvent.VK_O);
         
-        JMenuItem menuItemTerminarSessao = new JMenuItem(TERMINAR_SESSAO, 'T');
+        menuItemTerminarSessao = new JMenuItem(TERMINAR_SESSAO, 'T');
         menuItemTerminarSessao.setAccelerator(KeyStroke.getKeyStroke("ctrl T"));
+        
+        menuItemSair = new JMenuItem(SAIR, 'S');
+        menuItemSair.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
         
         menuItemTerminarSessao.addActionListener(new ActionListener() {
             @Override
@@ -47,8 +62,43 @@ public class GlobalJMenuBar extends JMenuBar
         });
         
         menuOpcoes.add(menuItemTerminarSessao);
+        menuOpcoes.add(menuItemSair);
         
         add(menuOpcoes);
     }
+
+    /**
+     * Devolve o item sair do menu.
+     * 
+     * @return item sair do menu
+     */
+    public JMenuItem getMenuItemSair() {
+        return menuItemSair;
+    }
+    /**
+     * Modifica o item sair do menu.
+     * 
+     * @param menuItemSair item sair do menu
+     */
+    public void setMenuItemSair(JMenuItem menuItemSair) {
+        this.menuItemSair = menuItemSair;
+    }
+    /**
+     * Devolve o item terminar sessão do menu.
+     * 
+     * @return item terminar sessão do menu
+     */
+    public JMenuItem getMenuItemTerminarSessao() {
+        return menuItemTerminarSessao;
+    }
+    /**
+     * Modifica o item terminar sessão do menu.
+     * 
+     * @param menuItemTerminarSessao item terminar sessão do menu
+     */
+    public void setMenuItemTerminarSessao(JMenuItem menuItemTerminarSessao) {
+        this.menuItemTerminarSessao = menuItemTerminarSessao;
+    }
+    
     
 }

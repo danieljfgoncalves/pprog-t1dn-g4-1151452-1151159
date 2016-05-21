@@ -4,7 +4,12 @@
 package centroexposicoes.ui.components;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 
 /**
  * Representa um template para o UI da aplicação.
@@ -23,7 +28,14 @@ public class GlobalJFrame extends JFrame
     {
         super(APPLICATION_WINDOW_TITLE);
         
-        setJMenuBar(new GlobalJMenuBar());
+        setJMenuBar(criarGlobalJMenuBar());
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                sair();
+            }
+        });
         
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         pack();
@@ -31,5 +43,21 @@ public class GlobalJFrame extends JFrame
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
+    }
+
+    private JMenuBar criarGlobalJMenuBar() {
+        GlobalJMenuBar menuBar = new GlobalJMenuBar();
+        menuBar.getMenuItemSair().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sair();
+            }
+        });
+        return menuBar;
+    }
+    
+    private void sair()
+    {
+        dispose();
     }
 }
