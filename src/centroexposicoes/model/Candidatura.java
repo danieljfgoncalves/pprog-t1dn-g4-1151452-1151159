@@ -49,34 +49,34 @@ public class Candidatura {
     /**
      * Nome comercial da empresa por omissão.
      */
-    private static final String NOME_EMPRESA = "Sem designação";
+    private static final String NOME_EMPRESA_POR_OMISSAO = "Sem designação";
     /**
      * Morada por omissão.
      */
-    private static final String MORADA = "Sem morada";
+    private static final String MORADA_POR_OMISSAO = "Sem morada";
     /**
      * Número do telemóvel por omissão.
      */
-    private static final String TELEMOVEL = "Número indefinido";
+    private static final String TELEMOVEL_POR_OMISSAO = "Número indefinido";
     /**
      * Área da exposição pretendida por omissão.
      */
-    private static final float AREA_EXPOSITOR = 100.0f;
+    private static final float AREA_EXPOSITOR_POR_OMISSAO = 100.0f;
     /**
      * Quantidade de convites a adquirir.
      */
-    private static final int NUMERO_CONVITES = 10;
+    private static final int NUMERO_CONVITES_POR_OMISSAO = 10;
 
     /**
      * Constrói uma instância da candidatura com os valores por omissão.
      */
     public Candidatura() {
 
-        this.nomeEmpresa = NOME_EMPRESA;
-        this.morada = MORADA;
-        this.telemovel = TELEMOVEL;
-        this.areaExpositor = AREA_EXPOSITOR;
-        this.numeroConvites = NUMERO_CONVITES;
+        this.nomeEmpresa = NOME_EMPRESA_POR_OMISSAO;
+        this.morada = MORADA_POR_OMISSAO;
+        this.telemovel = TELEMOVEL_POR_OMISSAO;
+        this.areaExpositor = AREA_EXPOSITOR_POR_OMISSAO;
+        this.numeroConvites = NUMERO_CONVITES_POR_OMISSAO;
         this.listaProdutos = new ArrayList<>();
         this.listaDemonstracoes = new ArrayList<>();
     }
@@ -212,7 +212,7 @@ public class Candidatura {
     }
 
     /**
-     * Devovle a lista de produtos da candidatura (Composição).
+     * Devolve a lista de produtos da candidatura (Composição).
      *
      * @return a lista de produtos da candidatura (Composição).
      */
@@ -324,16 +324,15 @@ public class Candidatura {
                 + ", numeroConvites=" + numeroConvites
                 + '}';
     }
-    
+
     /**
      * Compara se outro objeto é igual a esta Candidatura.
-     * 
+     *
      * @param outroObjeto objeto a comparar
      * @return true se forem iguais. False caso contrário.
      */
     @Override
-    public boolean equals(Object outroObjeto)
-    {
+    public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {
             return true;
         }
@@ -341,9 +340,13 @@ public class Candidatura {
             return false;
         }
         Candidatura outraCandidatura = (Candidatura) outroObjeto;
-        
-        return nomeEmpresa.equals(outraCandidatura.nomeEmpresa) && morada.equals(outraCandidatura.morada) 
-                && telemovel.equals(outraCandidatura.telemovel) && areaExpositor == outraCandidatura.areaExpositor 
-                && numeroConvites == outraCandidatura.numeroConvites;
+
+        return this.nomeEmpresa.equals(outraCandidatura.nomeEmpresa)
+                && this.morada.equals(outraCandidatura.morada)
+                && this.telemovel.equals(outraCandidatura.telemovel)
+                && this.areaExpositor == outraCandidatura.areaExpositor
+                && this.numeroConvites == outraCandidatura.numeroConvites
+                && this.listaDemonstracoes.equals(outraCandidatura.listaDemonstracoes)
+                && this.listaProdutos.equals(outraCandidatura.listaProdutos);
     }
 }
