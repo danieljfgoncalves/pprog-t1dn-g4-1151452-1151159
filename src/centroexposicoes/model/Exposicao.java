@@ -299,7 +299,7 @@ public class Exposicao {
      * @param listaCandidaturas listaCandidaturas da exposição.
      */
     public void setListaCandidaturas(ListaCandidaturas listaCandidaturas) {
-        this.listaCandidaturas = listaCandidaturas;
+        this.listaCandidaturas = new ListaCandidaturas(listaCandidaturas);
     }
 
     /**
@@ -317,7 +317,7 @@ public class Exposicao {
      * @param listaDemonstracoes lista de demonstracoes da exposição.
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
-        this.listaDemonstracoes = listaDemonstracoes;
+        this.listaDemonstracoes = new ArrayList<>(listaDemonstracoes);
     }
 
     /**

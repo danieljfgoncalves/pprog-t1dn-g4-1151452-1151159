@@ -9,7 +9,6 @@ import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Produto;
 import centroexposicoes.model.RegistoExposicoes;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
