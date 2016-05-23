@@ -4,76 +4,76 @@
 package centroexposicoes.model;
 
 /**
- * Representa um organizador.
+ * Representa um representante de expositor.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Organizador {
+public class Representante {
 
     /**
-     * Dados de utilizador do organizador.
+     * Dados de utilizador do representante.
      */
     private Utilizador utilizador;
 
     /**
-     * Dados de utilizador do organizador por omissão.
+     * Dados de utilizador do representante por omissão.
      */
     private static final Utilizador UTILIZADOR_POR_OMISSAO = new Utilizador();
 
     /**
-     * Constroi uma instância de organizador com os valores por omissão.
+     * Constroi uma instância de representante com os valores por omissão.
      */
-    public Organizador() {
+    public Representante() {
         this.utilizador = UTILIZADOR_POR_OMISSAO;
     }
 
     /**
-     * Constroi uma instância de organizador com os valores por recebidos por
+     * Constroi uma instância de representante com os valores por recebidos por
      * paramêtros.
      *
-     * @param utilizador dados de utilizador do organizador.
+     * @param utilizador dados de utilizador do representante.
      */
-    public Organizador(Utilizador utilizador) {
+    public Representante(Utilizador utilizador) {
         this.utilizador = utilizador;
     }
 
     /**
-     * Constroi uma instância de organizador com os valores copiados de outro
-     * organizador.
+     * Constroi uma instância de representante com os valores copiados de outro
+     * representante.
      *
-     * @param outroOrganizador outro organizador que pretende copiar.
+     * @param outroRepresentante outro representante que pretende copiar.
      */
-    public Organizador(Organizador outroOrganizador) {
-        this.utilizador = outroOrganizador.utilizador;
+    public Representante(Representante outroRepresentante) {
+        this.utilizador = outroRepresentante.utilizador;
     }
 
     /**
-     * Devolve o objeto utilizador do organizador.
+     * Devolve o objeto utilizador do representante.
      *
-     * @return o objeto utilizador do organizador.
+     * @return o objeto utilizador do representante.
      */
     public Utilizador getUtilizador() {
         return utilizador;
     }
 
     /**
-     * Modifica o objeto utilizador do organizador.
+     * Modifica o objeto utilizador do representante.
      *
-     * @param utilizador o objeto utilizador do organizador.
+     * @param utilizador o objeto utilizador do representante.
      */
     public void setUtilizador(Utilizador utilizador) {
         this.utilizador = utilizador;
     }
 
     /**
-     * Devolve a descrição textual de todos os atributos de um organizador.
+     * Devolve a descrição textual de todos os atributos de um representante.
      *
      * @return caraterísticas da candidatura.
      */
     @Override
     public String toString() {
-        return "Organizador{" + "utilizador=" + utilizador + '}';
+        return "Representante{" + "utilizador=" + utilizador + '}';
     }
 
     /**
@@ -84,15 +84,15 @@ public class Organizador {
      */
     @Override
     public boolean equals(Object outroObjeto) {
-        
+
         if (this == outroObjeto) {
             return true;
         }
         if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
             return false;
         }
-        Organizador outroOrganizador = (Organizador) outroObjeto;
-        
-        return this.utilizador.equals(outroOrganizador.utilizador);
+        Representante outroRepresentante = (Representante) outroObjeto;
+
+        return this.utilizador.equals(outroRepresentante.utilizador);
     }
 }
