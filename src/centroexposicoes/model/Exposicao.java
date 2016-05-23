@@ -6,6 +6,7 @@ package centroexposicoes.model;
 import centroexposicoes.utils.Data;
 import java.util.ArrayList;
 import java.util.List;
+import utilitarios.Data;
 
 /**
  * Representa uma Exposição.
