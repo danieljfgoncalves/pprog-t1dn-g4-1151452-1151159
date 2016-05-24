@@ -4,18 +4,21 @@
 package centroexposicoes.ui.components;
 
 import centroexposicoes.model.Exposicao;
+import centroexposicoes.ui.RegistarCandidaturaUI;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -24,12 +27,20 @@ import javax.swing.border.EmptyBorder;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class DialogSelecionarExposicao extends JDialog
+public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecionavel> extends JDialog
 {
     /**
      * Janela que instância o diálogo.
      */
-    private GlobalJFrame framePai;
+    private T framePai;
+    /**
+     * Lista com as exposições.
+     */
+    private List<Exposicao> listaExposicoes;
+    /**
+     * Tabela cmo as exposições.
+     */
+    private JTable listaExposicoesJTable;
     /**
      * Título da janela.
      */
@@ -43,13 +54,14 @@ public class DialogSelecionarExposicao extends JDialog
     /**
      * Constrói um diálogo para selecionar uma exposição.
      */
-    public DialogSelecionarExposicao(GlobalJFrame framePai, List<Exposicao> listaExposicoes)
+    public DialogSelecionarExposicao(T framePai, List<Exposicao> listaExposicoes)
     {
         super(framePai, TITULO, true);
         
         this.framePai = framePai;
+        this.listaExposicoes = listaExposicoes;
         
-        criarComponentes(listaExposicoes);
+        criarComponentes();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
@@ -60,10 +72,10 @@ public class DialogSelecionarExposicao extends JDialog
     /**
      * Cria os componentes da interface gráfica.
      */
-    private void criarComponentes(List<Exposicao> listaExposicoes)
+    private void criarComponentes()
     {
         JPanel p1 = criarPainelSelecionarExposicao();
-        JPanel p2 = criarPainelListaExposicoes(listaExposicoes);
+        JScrollPane p2 = criarPainelListaExposicoes();
         JPanel p3 = criarPainelBotoes();
 
         add(p1, BorderLayout.NORTH);
@@ -97,22 +109,21 @@ public class DialogSelecionarExposicao extends JDialog
      * @param listaExposicoes lista de exposições
      * @return painel com lista de exposições
      */
-    private JPanel criarPainelListaExposicoes(List<Exposicao> listaExposicoes)
+    private JScrollPane criarPainelListaExposicoes()
     {
-        String[] exposicoes = new String[listaExposicoes.size()];
-        for (int i = 0; i < exposicoes.length; i++) {
-            exposicoes[i] = listaExposicoes.get(i).getTitulo();
-        }
-        JList listaExposicoesJList = new JList<>(exposicoes);
+        listaExposicoesJTable = new JTable(new ModeloTabelaListaExposicao(listaExposicoes));
+        listaExposicoesJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
-        p.add(listaExposicoesJList);
+        JScrollPane scrollPane = new JScrollPane(listaExposicoesJTable);
 
-        return p;
+        final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
+        final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
+        scrollPane.setBorder(BorderFactory.createEmptyBorder( MARGEM_SUPERIOR, 
+                                                              MARGEM_ESQUERDA,
+                                                              MARGEM_INFERIOR, 
+                                                              MARGEM_DIREITA));
+
+        return scrollPane;
     }
     
     /**
@@ -144,7 +155,8 @@ public class DialogSelecionarExposicao extends JDialog
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO fechar janela e enviar exposicao seleciona
+                framePai.setExposicao(listaExposicoes.get(listaExposicoesJTable.getSelectedRow()));
+                dispose();
             }
         });
         return btn;
@@ -161,7 +173,7 @@ public class DialogSelecionarExposicao extends JDialog
         Exposicao e2 = new Exposicao();
         listaExposicoes.add(e1);
         listaExposicoes.add(e2);
-        GlobalJFrame framePai = new GlobalJFrame();
+        RegistarCandidaturaUI framePai = new RegistarCandidaturaUI();
         
         new DialogSelecionarExposicao(framePai, listaExposicoes);
     }
