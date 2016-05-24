@@ -42,7 +42,6 @@ public class GlobalJFrame extends JFrame
         setMinimumSize(new Dimension(getWidth(), getHeight()));
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setVisible(true);
     }
 
     private JMenuBar criarGlobalJMenuBar() {

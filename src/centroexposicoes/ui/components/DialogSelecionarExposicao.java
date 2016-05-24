@@ -3,6 +3,7 @@
  */
 package centroexposicoes.ui.components;
 
+import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
 import centroexposicoes.ui.RegistarCandidaturaUI;
 import java.awt.BorderLayout;
@@ -26,6 +27,7 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
+ * @param <T>
  */
 public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecionavel> extends JDialog
 {
@@ -173,7 +175,10 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
         Exposicao e2 = new Exposicao();
         listaExposicoes.add(e1);
         listaExposicoes.add(e2);
-        RegistarCandidaturaUI framePai = new RegistarCandidaturaUI();
+        
+        CentroExposicoes ce =new CentroExposicoes();
+        
+        RegistarCandidaturaUI framePai = new RegistarCandidaturaUI(ce);
         
         new DialogSelecionarExposicao(framePai, listaExposicoes);
     }

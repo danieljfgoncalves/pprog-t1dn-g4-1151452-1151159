@@ -126,10 +126,10 @@ public class DialogNovoProduto extends JDialog {
                         throw new IllegalArgumentException("Designção não é válida! Introduza novamente.");
                     }
 
-                    // TODO: Implementar o metodo do RegistarCandidaturaUI
-//                    framePai.addProduto(designacao);
+                    framePai.novoProduto(designacao);
                     dispose();
-
+                    
+                    
                 } catch (IllegalArgumentException ex) {
                     
                     JOptionPane.showMessageDialog(
@@ -171,7 +171,7 @@ public class DialogNovoProduto extends JDialog {
      */
     public static void main(String[] args) {
 
-        DialogNovoProduto dialog = new DialogNovoProduto(new RegistarCandidaturaUI());
+//        DialogNovoProduto dialog = new DialogNovoProduto(new RegistarCandidaturaUI());
 
     }
 }
