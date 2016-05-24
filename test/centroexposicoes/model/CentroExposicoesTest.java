@@ -27,7 +27,6 @@ public class CentroExposicoesTest {
     
     @BeforeClass
     public static void setUpClass() {
-        centroExposicoes = new CentroExposicoes();
     }
     
     @AfterClass
