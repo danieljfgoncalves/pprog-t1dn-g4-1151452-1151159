@@ -3,6 +3,7 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class ListaOrganizadores {
+public class ListaOrganizadores implements Serializable {
 
     /**
      * Lista de organizadores.
@@ -28,7 +29,8 @@ public class ListaOrganizadores {
     }
 
     /**
-     * Constrói uma instância de lista de Organizadores recebendo uma lista de Organizadores.
+     * Constrói uma instância de lista de Organizadores recebendo uma lista de
+     * Organizadores.
      *
      * @param listaOrganizadores lista de Organizadores.
      */
@@ -37,7 +39,8 @@ public class ListaOrganizadores {
     }
 
     /**
-     * Constrói uma instância de lista de Organizadores copiando uma lista de Organizadores.
+     * Constrói uma instância de lista de Organizadores copiando uma lista de
+     * Organizadores.
      *
      * @param listaOrganizadores lista de Organizadores.
      */
@@ -64,9 +67,11 @@ public class ListaOrganizadores {
     }
 
     /**
-     * Devolve a representação textual de todos os atributos da lista de Organizadores.
+     * Devolve a representação textual de todos os atributos da lista de
+     * Organizadores.
      *
-     * @return representação textual de todos os atributos da lista de Organizadores.
+     * @return representação textual de todos os atributos da lista de
+     * Organizadores.
      */
     @Override
     public String toString() {

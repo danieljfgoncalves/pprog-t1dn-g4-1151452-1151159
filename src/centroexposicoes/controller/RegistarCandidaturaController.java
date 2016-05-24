@@ -71,9 +71,10 @@ public class RegistarCandidaturaController {
      *
      * @param exposicao Exposição
      */
-    public void novaCandidatura(Exposicao exposicao) {
+    public Candidatura novaCandidatura(Exposicao exposicao) {
         this.exposicao = exposicao;
         candidatura = exposicao.novaCandidatura();
+        return candidatura;
     }
 
     /**
@@ -122,7 +123,7 @@ public class RegistarCandidaturaController {
      * @return Lista de demonstrações
      */
     public List<Demonstracao> getListaDemonstracoes() {
-        listaDemonstracoes = candidatura.getListaDemonstracoes();
+        listaDemonstracoes = exposicao.getListaDemonstracoes();
         return listaDemonstracoes;
     }
 

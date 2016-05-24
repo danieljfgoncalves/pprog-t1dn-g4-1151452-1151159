@@ -3,6 +3,7 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,64 +13,67 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class RegistoExposicoes
-{
+public class RegistoExposicoes implements Serializable {
+
     /**
      * Lista das exposições.
      */
     private List<Exposicao> listaExposicoes;
-    
+
     /**
      * Constrói uma instância de registo de exposições.
      */
-    public RegistoExposicoes()
-    {
+    public RegistoExposicoes() {
         listaExposicoes = new ArrayList<>();
     }
+
     /**
-     * Constrói uma instância de registo de exposições recebendo a lista de exposições.
-     * 
+     * Constrói uma instância de registo de exposições recebendo a lista de
+     * exposições.
+     *
      * @param listaExposicoes lista de exposições
      */
-    public RegistoExposicoes(List<Exposicao> listaExposicoes)
-    {
+    public RegistoExposicoes(List<Exposicao> listaExposicoes) {
         this.listaExposicoes = new ArrayList<>(listaExposicoes);
     }
+
     /**
-     * Constrói uma instância de registo de exposições copiando outro registo de exposições.
-     * 
+     * Constrói uma instância de registo de exposições copiando outro registo de
+     * exposições.
+     *
      * @param registoExposicoes registo de exposições a ser copiado
      */
-    public RegistoExposicoes(RegistoExposicoes registoExposicoes)
-    {
+    public RegistoExposicoes(RegistoExposicoes registoExposicoes) {
         this.listaExposicoes = new ArrayList<>(registoExposicoes.listaExposicoes);
     }
 
     /**
      * Devolve a lista de exposições.
-     * 
+     *
      * @return lista de exposições
      */
     public List<Exposicao> getListaExposicoes() {
         return listaExposicoes;
     }
+
     /**
      * Modifica a lista de exposições
-     * 
+     *
      * @param listaExposicoes lista de exposições
      */
     public void setListaExposicoes(List<Exposicao> listaExposicoes) {
         this.listaExposicoes = listaExposicoes;
     }
-    
+
     /**
-     * Devolve a representação textual de todos os atributos do registo de exposições.
-     * 
-     * @return representação textual de todos os atributos do registo de exposições
+     * Devolve a representação textual de todos os atributos do registo de
+     * exposições.
+     *
+     * @return representação textual de todos os atributos do registo de
+     * exposições
      */
     @Override
-    public String toString()
-    {
+    public String toString() {
         StringBuilder s = new StringBuilder();
         s.append("RegistoExposicoes{");
         for (Exposicao exposicao : listaExposicoes) {
@@ -78,15 +82,15 @@ public class RegistoExposicoes
         s.append("}");
         return s.toString();
     }
+
     /**
      * Compara se outro objeto é igual a este RegistoExposicoes.
-     * 
+     *
      * @param outroObjeto objeto a comparar
      * @return true se forem iguais. False caso contrário
      */
     @Override
-    public boolean equals(Object outroObjeto)
-    {
+    public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {
             return true;
         }
@@ -94,7 +98,7 @@ public class RegistoExposicoes
             return false;
         }
         RegistoExposicoes outroRegistoExposicoes = (RegistoExposicoes) outroObjeto;
-        
+
         return listaExposicoes.equals(outroRegistoExposicoes.listaExposicoes);
     }
 }

@@ -3,19 +3,21 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
+
 /**
  * Representa uma avaliação de uma candidatura.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Avaliacao {
+public class Avaliacao implements Serializable {
 
     /**
      * Tipos de decisão de Avaliação.
      */
     public static enum TipoAvaliacao {
-        
+
         Aprovado, Rejeitado, EmAvaliacao
     };
 
@@ -156,7 +158,7 @@ public class Avaliacao {
      */
     @Override
     public boolean equals(Object outroObjeto) {
-        
+
         if (this == outroObjeto) {
             return true;
         }
@@ -164,7 +166,7 @@ public class Avaliacao {
             return false;
         }
         Avaliacao outraAvaliacao = (Avaliacao) outroObjeto;
-        
+
         return this.decisao.equals(outraAvaliacao.decisao)
                 && this.atribuicao.equals(outraAvaliacao.atribuicao)
                 && this.txtJustificativo.equals(outraAvaliacao.txtJustificativo);

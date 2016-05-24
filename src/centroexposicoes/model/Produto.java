@@ -4,6 +4,7 @@
 package centroexposicoes.model;
 
 import centroexposicoes.utils.Validar;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Objects;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Produto {
+public class Produto implements Serializable {
 
     /**
      * Designação do produto que pretende expor.
@@ -22,7 +23,7 @@ public class Produto {
      * Designação do produto que pretende expor por omissão.
      */
     private static final String DESIGNACAO_POR_OMISSAO = "Sem designação";
-    
+
     /**
      * Constrói uma instância do Produto com os valores por omissão.
      */
@@ -30,6 +31,7 @@ public class Produto {
 
         this.designacao = DESIGNACAO_POR_OMISSAO;
     }
+
     /**
      * Constrói uma instância do Produto com os valores recebidos por
      * paramêtros.
@@ -40,6 +42,7 @@ public class Produto {
 
         this.designacao = designacao;
     }
+
     /**
      * Constrói uma instância do Produto a partir de outro produto.
      *
@@ -58,6 +61,7 @@ public class Produto {
     public String getDesignacao() {
         return designacao;
     }
+
     /**
      * Modifica a designação do produto.
      *
@@ -66,6 +70,7 @@ public class Produto {
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
     }
+
     /**
      * Verifica se o produto é válido.
      *
@@ -85,16 +90,16 @@ public class Produto {
     public String toString() {
         return String.format("Produto{designacao=%s}", designacao);
     }
-    
+
     /**
      * Compara se outro objeto é igual a este Produto.
-     * 
+     *
      * @param outroObjeto objeto a comparar
      * @return true se forem iguais. False caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {
-        
+
         if (this == outroObjeto) {
             return true;
         }

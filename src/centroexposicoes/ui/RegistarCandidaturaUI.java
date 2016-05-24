@@ -4,6 +4,7 @@
 package centroexposicoes.ui;
 
 import centroexposicoes.controller.RegistarCandidaturaController;
+import centroexposicoes.model.Candidatura;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
@@ -14,9 +15,12 @@ import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModeloListProdutos;
 import centroexposicoes.ui.components.ModeloTabelaListaDemonstracao;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -45,6 +49,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
      * Exposição selecionada pelo UI.
      */
     private Exposicao exposicaoSelecionada;
+    private Candidatura candidatura;
     private List<Exposicao> listaExposicoes;
     private List<Demonstracao> listaDemonstracoes;
     private ModeloListProdutos modeloListProdutos;
@@ -69,9 +74,6 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
         this.controller = new RegistarCandidaturaController(centroExposicoes);
         this.listaExposicoes = controller.getExposições();
-        
-        // REVER NO CONTROLLER - SE NÃO HOUVEREM DEMONSRAÇÕES?
-        //this.listaDemonstracoes = controller.getListaDemonstracoes();
 
         //APENAS PARA TESTAR INICIO
         Exposicao e1 = new Exposicao();
@@ -79,17 +81,20 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         this.listaExposicoes.add(e1);
         this.listaExposicoes.add(e1);
         this.listaExposicoes.add(e1);
-        Demonstracao d1 = new Demonstracao();
-        this.listaDemonstracoes = new ArrayList<>();
-        this.listaDemonstracoes.add(d1);
-        this.listaDemonstracoes.add(d1);
-        this.listaDemonstracoes.add(d1);
-        this.listaDemonstracoes.add(d1);
-        new DialogSelecionarExposicao<>(this, this.listaExposicoes);
         //APENAS PARA TESTAR FIM
 
-        //ESTÁ CORRECTO. APAGAR A PARTE DE "APENAS PARA TESTAR" E DESCOMENTAR ESTA.
-        //new DialogSelecionarExposicao<>(this, this.listaExposicoes);
+        new DialogSelecionarExposicao<>(this, this.listaExposicoes);
+        candidatura = controller.novaCandidatura(exposicaoSelecionada);
+        this.listaDemonstracoes = controller.getListaDemonstracoes();
+        
+        //APENAS PARA TESTAR INICIO
+        Demonstracao d1 = new Demonstracao();
+        this.listaDemonstracoes.add(d1);
+        this.listaDemonstracoes.add(d1);
+        this.listaDemonstracoes.add(d1);
+        this.listaDemonstracoes.add(d1);
+        //APENAS PARA TESTAR FIM
+        
         criarComponentes();
 
         setVisible(true);
@@ -100,6 +105,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         add(criarPainelDados(), BorderLayout.WEST);
         add(criarPainelProdutos(), BorderLayout.CENTER);
         add(criarPainelDemonstracoes(), BorderLayout.EAST);
+        add(criarPainelConfirmar(), BorderLayout.SOUTH);
     }
 
     private JPanel criarPainelDados() {
@@ -161,6 +167,27 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return scrollPane;
     }
 
+
+    private JPanel criarPainelConfirmar() {
+        JPanel p = new JPanel();
+        setBackground(Color.RED);
+        
+        p.add(criarBotaoConfirmar());
+        
+        return p;
+    }
+
+    private JButton criarBotaoConfirmar() {
+        JButton btn = new JButton("Confirmar Dados");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        return btn;
+    }
+    
     private JPanel criarPainelCampo(String lblTexto, JTextField txtField, int largura) {
 
         JLabel lbl = new JLabel(lblTexto, JLabel.RIGHT);

@@ -3,14 +3,16 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
+
 /**
  * Representa um utilizador.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Utilizador
-{
+public class Utilizador implements Serializable {
+
     /**
      * Nome do utilizador.
      */
@@ -27,7 +29,7 @@ public class Utilizador
      * Password do utilizador.
      */
     private String password;
-    
+
     /**
      * Contagem do número de instrâncias de utilizadores criadas.
      */
@@ -48,139 +50,136 @@ public class Utilizador
      * password do utilizador por omissão.
      */
     private static final String PASSWORD_POR_OMISSAO = "P4SSW0RD";
-    
+
     /**
      * Constrói um instância de utilizador com os valores por omissão.
      */
-    public Utilizador()
-    {
+    public Utilizador() {
         contagemNumeroUtilizadores++;
         nome = NOME_POR_OMISSAO + contagemNumeroUtilizadores; //Fazer com que seja único
         email = EMAIL_POR_OMISSAO + contagemNumeroUtilizadores; //Fazer com que seja único
         password = PASSWORD_POR_OMISSAO;
     }
+
     /**
      * Constrói um instância de utilizador com os valores por omissão.
-     * 
+     *
      * @param nome nome do utilizador
      * @param email email do utilizador
      * @param username username do utilizador
      * @param password password do utilizador
      */
-    public Utilizador(String nome, String email, String username, String password)
-    {
+    public Utilizador(String nome, String email, String username, String password) {
         contagemNumeroUtilizadores++;
         this.nome = nome;
         this.email = email;
         this.username = username;
         this.password = password;
     }
+
     /**
      * Constrói um instância de utilizador copiando outro utilizador.
-     * 
+     *
      * @param utilizador outro utilizador
      */
-    public Utilizador(Utilizador utilizador)
-    {
+    public Utilizador(Utilizador utilizador) {
         contagemNumeroUtilizadores++;
         nome = utilizador.nome;
         email = utilizador.email;
         username = utilizador.username;
         password = utilizador.password;
     }
-    
+
     /**
      * Devolve o nome do utilizador.
-     * 
+     *
      * @return nome do utilizador
      */
-    public String getNome()
-    {
+    public String getNome() {
         return nome;
     }
+
     /**
      * Modifica o nome do utilizador.
-     * 
+     *
      * @param nome nome do utilizador
      */
-    public void setNome(String nome)
-    {
+    public void setNome(String nome) {
         this.nome = nome;
     }
+
     /**
      * Devolve o email do utilizador.
-     * 
+     *
      * @return email do utilizador
      */
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
+
     /**
      * Modifica o email do utilizador.
-     * 
+     *
      * @param email email do utilizador
      */
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
+
     /**
      * Devolve o username do utilizador.
-     * 
+     *
      * @return username do utilizador
      */
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
+
     /**
      * Modifica o username do utilizador.
-     * 
+     *
      * @param username username do utilizador
      */
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
+
     /**
      * Devolve a password do utilizador.
-     * 
+     *
      * @return password do utilizador
      */
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
+
     /**
      * Modifica a password do utilizador.
-     * 
+     *
      * @param password password do utilizador
      */
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
      * Gera uma representação textual do utilizador.
-     * 
+     *
      * @return representação textual do utilizador.
      */
     @Override
-    public String toString()
-    {
+    public String toString() {
         return String.format("Nome: %s; Email: %s; Username: %s; Password: %s", nome, email, username, password);
     }
+
     /**
      * Compara se outro objeto é igual a este utilizador.
-     * 
+     *
      * @param outroObjeto objeto a comparar
      * @return true se forem iguais. False caso contrário.
      */
     @Override
-    public boolean equals(Object outroObjeto)
-    {
+    public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {
             return true;
         }
@@ -188,7 +187,7 @@ public class Utilizador
             return false;
         }
         Utilizador outroUtilizador = (Utilizador) outroObjeto;
-        
+
         return nome.equals(outroUtilizador.nome) && email.equals(outroUtilizador.email) && username.equals(outroUtilizador.username) && password.equals(outroUtilizador.password);
     }
 }

@@ -4,6 +4,7 @@
 package centroexposicoes.model;
 
 import centroexposicoes.utils.Validar;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Candidatura {
+public class Candidatura implements Serializable {
 
     /**
      * Nome comercial da empresa.

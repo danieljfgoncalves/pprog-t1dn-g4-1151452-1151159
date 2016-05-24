@@ -3,6 +3,7 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class RegistoMecanismos {
+public class RegistoMecanismos implements Serializable {
 
     /**
      * Lista das mecanismos.
@@ -64,14 +65,15 @@ public class RegistoMecanismos {
         this.listaMecanismos = listaMecanismos;
     }
 
-     /**
-     * Devolve a descrição textual de todos os atributos de um registo de mecanismos.
+    /**
+     * Devolve a descrição textual de todos os atributos de um registo de
+     * mecanismos.
      *
      * @return caraterísticas do registo de mecanismos.
      */
     @Override
     public String toString() {
-        
+
         StringBuilder s = new StringBuilder();
         s.append("RegistoMecanismos{ ");
         for (MecanismoAtribuicao mecanismo : this.listaMecanismos) {

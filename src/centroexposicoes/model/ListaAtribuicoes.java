@@ -3,6 +3,7 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class ListaAtribuicoes {
+public class ListaAtribuicoes implements Serializable {
 
     /**
      * Lista de atribuições.

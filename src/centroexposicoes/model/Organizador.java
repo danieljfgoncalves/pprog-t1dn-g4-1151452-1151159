@@ -3,13 +3,15 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
+
 /**
  * Representa um organizador.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Organizador {
+public class Organizador implements Serializable {
 
     /**
      * Dados de utilizador do organizador.
@@ -84,7 +86,7 @@ public class Organizador {
      */
     @Override
     public boolean equals(Object outroObjeto) {
-        
+
         if (this == outroObjeto) {
             return true;
         }
@@ -92,7 +94,7 @@ public class Organizador {
             return false;
         }
         Organizador outroOrganizador = (Organizador) outroObjeto;
-        
+
         return this.utilizador.equals(outroOrganizador.utilizador);
     }
 }
