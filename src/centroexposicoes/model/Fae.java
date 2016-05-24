@@ -70,14 +70,13 @@ public class Fae
     @Override
     public String toString()
     {
-        return String.format("Utilizador FAE:%n%s", utilizadorFae);
+        return String.format("Fae{utilizadorFae:%s}", utilizadorFae);
     }
-    
     /**
      * Compara se outro objeto é igual a este utilizador.
      * 
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário.
+     * @return true se forem iguais, false caso contrário.
      */
     @Override
     public boolean equals(Object outroObjeto)
