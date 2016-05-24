@@ -46,10 +46,75 @@ public class Demonstracao
     
     /**
      * Constrói uma instância de demonstração recebendo a designação.
+     * 
+     * @param designacao designacao
      */
     public Demonstracao(String designacao)
     {
         codigoUnico = TEXTO_CODIGO_UNICO + ++contagemDemonstracao;
         this.designacao = designacao;
+    }
+    /**
+     * Constrói uma instância de demonstração copiando outra demonstração.
+     * @param demonstracao
+     */
+    public Demonstracao(Demonstracao demonstracao)
+    {
+        this.codigoUnico = demonstracao.codigoUnico;
+        this.designacao = demonstracao.designacao;
+    }
+
+    /**
+     * Devolve o código único.
+     * 
+     * @return código único
+     */
+    public String getCodigoUnico() {
+        return codigoUnico;
+    }
+    /**
+     * Devolve a designação.
+     * 
+     * @return designação
+     */
+    public String getDesignacao() {
+        return designacao;
+    }
+    /**
+     * Modifica a designação.
+     * 
+     * @param designacao designação
+     */
+    public void setDesignacao(String designacao) {
+        this.designacao = designacao;
+    }
+
+    /**
+     * Devolve a descrição textual de todos os atributos da demonstração.
+     *
+     * @return caraterísticas da demonstração
+     */
+    @Override
+    public String toString() {
+        return String.format("Demonstracao{codigoUnico=%s, designacao=%s}", codigoUnico, designacao);
+    }
+    /**
+     * Compara se outro objeto é igual a esta demonstração.
+     * 
+     * @param outroObjeto objeto a comparar
+     * @return true se forem iguais, false caso contrário
+     */
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || !(outroObjeto instanceof Produto)) {
+            return false;
+        }
+
+        final Demonstracao outraDemonstracao = (Demonstracao) outroObjeto;
+
+        return codigoUnico.equals(outraDemonstracao.codigoUnico) && designacao.equals(outraDemonstracao.designacao);
     }
 }

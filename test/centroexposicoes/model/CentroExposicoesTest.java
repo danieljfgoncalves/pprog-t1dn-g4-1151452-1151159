@@ -20,6 +20,8 @@ import static org.junit.Assert.*;
  */
 public class CentroExposicoesTest {
     
+    private CentroExposicoes centroExposicoes;
+    
     public CentroExposicoesTest() {
     }
     
@@ -33,6 +35,7 @@ public class CentroExposicoesTest {
     
     @Before
     public void setUp() {
+        centroExposicoes = new CentroExposicoes();
     }
     
     @After
@@ -45,10 +48,46 @@ public class CentroExposicoesTest {
     @Test
     public void testGetRegistoExposicoes() {
         System.out.println("getRegistoExposicoes");
-        CentroExposicoes instance = new CentroExposicoes();
+        CentroExposicoes instance = centroExposicoes;
         RegistoExposicoes expResult = new RegistoExposicoes();
         RegistoExposicoes result = instance.getRegistoExposicoes();
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setRegistoExposicoes method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoExposicoes() {
+        System.out.println("setRegistoExposicoes");
+        RegistoExposicoes registoExposicoes = new RegistoExposicoes();
+        CentroExposicoes instance = centroExposicoes;
+        instance.setRegistoExposicoes(registoExposicoes);
+        assertEquals(instance.getRegistoExposicoes(), registoExposicoes);
+    }
+
+    /**
+     * Test of getRegistoMecanismos method, of class CentroExposicoes.
+     */
+    @Test
+    public void testGetRegistoMecanismos() {
+        System.out.println("getRegistoMecanismos");
+        CentroExposicoes instance = centroExposicoes;
+        RegistoMecanismos expResult = new RegistoMecanismos();
+        RegistoMecanismos result = instance.getRegistoMecanismos();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setRegistoMecanismos method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoMecanismos() {
+        System.out.println("setRegistoMecanismos");
+        RegistoMecanismos registoMecanismos = new RegistoMecanismos();
+        CentroExposicoes instance = centroExposicoes;
+        instance.setRegistoMecanismos(registoMecanismos);
+        assertEquals(instance.getRegistoMecanismos(), registoMecanismos);
     }
 
     /**
@@ -57,10 +96,23 @@ public class CentroExposicoesTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        CentroExposicoes instance = new CentroExposicoes();
-        String expResult = String.format("Registo Exposições:%n");
+        CentroExposicoes instance = centroExposicoes;
+        RegistoExposicoes registoExposicoes = new RegistoExposicoes();
+        RegistoMecanismos registoMecanismos = new RegistoMecanismos();
+        String expResult = String.format("CentroExposicoes{registoExposicoes=%s, registoMecanismos=%s}", registoExposicoes, registoMecanismos); 
         String result = instance.toString();
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of equals method, of class CentroExposicoes.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object outroObjeto = new CentroExposicoes();
+        CentroExposicoes instance = centroExposicoes;
+        assertTrue(instance.equals(outroObjeto));
     }
     
 }
