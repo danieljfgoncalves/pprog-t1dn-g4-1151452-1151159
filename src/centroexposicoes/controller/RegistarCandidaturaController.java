@@ -9,6 +9,7 @@ import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Produto;
 import centroexposicoes.model.RegistoExposicoes;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +53,8 @@ public class RegistarCandidaturaController {
      */
     public RegistarCandidaturaController(CentroExposicoes centroExposicoes) {
         registoExposicoes = centroExposicoes.getRegistoExposicoes();
+        listaProdutos = new ArrayList<>();
+        listaDemonstracoes = new ArrayList<>();
     }
 
     /**
