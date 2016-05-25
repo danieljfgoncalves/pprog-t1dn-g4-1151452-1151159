@@ -9,7 +9,7 @@ package centroexposicoes.model;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Organizador {
+public class Organizador implements Ator {
 
     /**
      * Dados de utilizador do organizador.
@@ -94,5 +94,11 @@ public class Organizador {
         Organizador outroOrganizador = (Organizador) outroObjeto;
         
         return this.utilizador.equals(outroOrganizador.utilizador);
+    }
+
+    @Override
+    public String getNome() {
+        
+        return this.utilizador.getNome();
     }
 }

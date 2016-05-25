@@ -9,7 +9,7 @@ package centroexposicoes.model;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Fae
+public class Fae implements Ator
 {
     /**
      * Os dados do fae.
@@ -90,5 +90,11 @@ public class Fae
         Fae outroFae = (Fae) outroObjeto;
         
         return utilizadorFae.equals(outroFae.utilizadorFae);
+    }
+
+    @Override
+    public String getNome() {
+        
+        return this.utilizadorFae.getNome();
     }
 }

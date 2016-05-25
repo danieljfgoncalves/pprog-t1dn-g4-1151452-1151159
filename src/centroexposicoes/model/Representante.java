@@ -9,7 +9,7 @@ package centroexposicoes.model;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Representante {
+public class Representante implements Ator {
 
     /**
      * Dados de utilizador do representante.
@@ -94,5 +94,11 @@ public class Representante {
         Representante outroRepresentante = (Representante) outroObjeto;
 
         return this.utilizador.equals(outroRepresentante.utilizador);
+    }
+
+    @Override
+    public String getNome() {
+        
+        return this.utilizador.getNome();
     }
 }

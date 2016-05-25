@@ -5,6 +5,7 @@ package centroexposicoes.ui.components;
 
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
+import centroexposicoes.model.Representante;
 import centroexposicoes.ui.RegistarCandidaturaUI;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -178,7 +179,7 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
         
         CentroExposicoes ce =new CentroExposicoes();
         
-        RegistarCandidaturaUI framePai = new RegistarCandidaturaUI(ce);
+        RegistarCandidaturaUI framePai = new RegistarCandidaturaUI(ce, new Representante());
         
         new DialogSelecionarExposicao(framePai, listaExposicoes);
     }

@@ -6,6 +6,7 @@ package centroexposicoes.ui;
 import centroexposicoes.controller.RegistarCandidaturaController;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
+import centroexposicoes.model.Representante;
 import centroexposicoes.ui.components.DialogNovoProduto;
 import centroexposicoes.ui.components.DialogSelecionarExposicao;
 import centroexposicoes.ui.components.ExposicaoSelecionavel;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -42,6 +44,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
      * Exposição selecionada pelo UI.
      */
     private Exposicao exposicaoSelecionada;
+    private Representante repSelecionado;
 
     private final RegistarCandidaturaController controller;
     private ModeloListProdutos modeloListProdutos;
@@ -58,9 +61,10 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     private static int CAMPO_TXT_LARGURA = 20;
     private static int CAMPO_NUM_LARGURA = 6;
 
-    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes) {
+    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Representante representante) {
 
         this.controller = new RegistarCandidaturaController(centroExposicoes);
+        this.repSelecionado = representante;
 
         List<Exposicao> listaExposicoes = new ArrayList<>();
         Exposicao e1 = new Exposicao();
@@ -204,6 +208,6 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         listaExposicoes.add(e1);
         listaExposicoes.add(e2);
 
-        new RegistarCandidaturaUI(ce);
+        new RegistarCandidaturaUI(ce, new Representante());
     }
 }
