@@ -4,7 +4,9 @@
 package centroexposicoes.ui;
 
 import centroexposicoes.controller.RegistarCandidaturaController;
+import centroexposicoes.model.Candidatura;
 import centroexposicoes.model.CentroExposicoes;
+import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Representante;
 import centroexposicoes.ui.components.DialogNovoProduto;
@@ -12,11 +14,14 @@ import centroexposicoes.ui.components.DialogSelecionarExposicao;
 import centroexposicoes.ui.components.ExposicaoSelecionavel;
 import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModeloListProdutos;
+import centroexposicoes.ui.components.ModeloTabelaListaDemonstracao;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -28,8 +33,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -45,35 +52,55 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
      */
     private Exposicao exposicaoSelecionada;
     private Representante repSelecionado;
+    private Candidatura candidatura;
+    private List<Exposicao> listaExposicoes;
+    private List<Demonstracao> listaDemonstracoes;
 
-    private final RegistarCandidaturaController controller;
     private ModeloListProdutos modeloListProdutos;
 
+    private final RegistarCandidaturaController controller;
+
+    private JTable listaDemonstracoesJTable;
+    
     private JTextField txtNomeEmpresa;
     private JTextArea txtMorada;
     private JTextField txtTelemovel;
     private JTextField txtAreaExpositor;
     private JTextField txtNumConvites;
 
-    private static Dimension LBL_TAMANHO = new Dimension(94, 16);
+    private static final Dimension LBL_TAMANHO = new Dimension(94, 16);
     final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
     final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
-    private static int CAMPO_TXT_LARGURA = 20;
-    private static int CAMPO_NUM_LARGURA = 6;
+    private static final int CAMPO_TXT_LARGURA = 20;
+    private static final int CAMPO_NUM_LARGURA = 6;
 
     public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Representante representante) {
 
         this.controller = new RegistarCandidaturaController(centroExposicoes);
         this.repSelecionado = representante;
 
-        List<Exposicao> listaExposicoes = new ArrayList<>();
-        Exposicao e1 = new Exposicao();
-        Exposicao e2 = new Exposicao();
-        listaExposicoes.add(e1);
-        listaExposicoes.add(e2);
-        new DialogSelecionarExposicao<>(this, listaExposicoes);
+        this.listaExposicoes = controller.getExposições();
 
-//        new DialogSelecionarExposicao<>(this, this.controller.getExposições());
+        //APENAS PARA TESTAR INICIO
+        Exposicao e1 = new Exposicao();
+        this.listaExposicoes.add(e1);
+        this.listaExposicoes.add(e1);
+        this.listaExposicoes.add(e1);
+        this.listaExposicoes.add(e1);
+        //APENAS PARA TESTAR FIM
+
+        new DialogSelecionarExposicao<>(this, this.listaExposicoes);
+        candidatura = controller.novaCandidatura(exposicaoSelecionada);
+        this.listaDemonstracoes = controller.getListaDemonstracoes();
+        
+        //APENAS PARA TESTAR INICIO
+        Demonstracao d1 = new Demonstracao();
+        this.listaDemonstracoes.add(d1);
+        this.listaDemonstracoes.add(d1);
+        this.listaDemonstracoes.add(d1);
+        this.listaDemonstracoes.add(d1);
+        //APENAS PARA TESTAR FIM
+        
         criarComponentes();
 
         setVisible(true);
@@ -83,8 +110,90 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
         add(criarPainelDados(), BorderLayout.WEST);
         add(criarPainelProdutos(), BorderLayout.CENTER);
+        add(criarPainelDemonstracoes(), BorderLayout.EAST);
+        add(criarPainelConfirmar(), BorderLayout.SOUTH);
     }
 
+    private JPanel criarPainelDados() {
+
+        JPanel painelDados = new JPanel(new GridLayout(5, 1));
+
+        painelDados.add(criarPainelCampo("Nome Empresa:", this.txtNomeEmpresa, CAMPO_TXT_LARGURA));
+        painelDados.add(criarPainelMorada());
+        painelDados.add(criarPainelCampo("Telemovel:", this.txtTelemovel, CAMPO_TXT_LARGURA));
+        painelDados.add(criarPainelCampo("Area do Expositor:", this.txtAreaExpositor, CAMPO_NUM_LARGURA));
+        painelDados.add(criarPainelCampo("Número de Convites:", this.txtNumConvites, CAMPO_NUM_LARGURA));
+
+        return painelDados;
+    }
+
+    private JPanel criarPainelProdutos() {
+
+        JPanel pProdutos = new JPanel(new BorderLayout());
+
+        JPanel pTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        pTitulo.add(new JLabel("Lista de Produtos"));
+
+        pProdutos.add(pTitulo, BorderLayout.NORTH);
+        pProdutos.add(criarJListProdutos(), BorderLayout.CENTER);
+
+        JPanel pBotao = new JPanel();
+        pBotao.add(criarBotaoAddProduto());
+        
+        pProdutos.add(pBotao, BorderLayout.SOUTH);
+
+        return pProdutos;
+    }
+
+    private JPanel criarPainelDemonstracoes() {
+        JPanel pDemonstracoes = new JPanel(new BorderLayout());
+        
+        JPanel pTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        pTitulo.add(new JLabel("Lista de Demonstrações"));
+        
+        pDemonstracoes.add(pTitulo, BorderLayout.NORTH);
+        pDemonstracoes.add(criarScrollPaneDemonstrações(), BorderLayout.CENTER);
+        
+        return pDemonstracoes;
+    }    
+
+    private JScrollPane criarScrollPaneDemonstrações() {
+        listaDemonstracoesJTable = new JTable(new ModeloTabelaListaDemonstracao(listaDemonstracoes));
+        listaDemonstracoesJTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+        JScrollPane scrollPane = new JScrollPane(listaDemonstracoesJTable);
+
+        final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
+        final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
+        scrollPane.setBorder(BorderFactory.createEmptyBorder( MARGEM_SUPERIOR, 
+                                                              MARGEM_ESQUERDA,
+                                                              MARGEM_INFERIOR, 
+                                                              MARGEM_DIREITA));
+
+        return scrollPane;
+    }
+
+
+    private JPanel criarPainelConfirmar() {
+        JPanel p = new JPanel();
+        setBackground(Color.RED);
+        
+        p.add(criarBotaoConfirmar());
+        
+        return p;
+    }
+
+    private JButton criarBotaoConfirmar() {
+        JButton btn = new JButton("Confirmar Dados");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        return btn;
+    }
+    
     private JPanel criarPainelCampo(String lblTexto, JTextField txtField, int largura) {
 
         JLabel lbl = new JLabel(lblTexto, JLabel.RIGHT);
@@ -113,19 +222,6 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         pMorada.add(this.txtMorada);
 
         return pMorada;
-    }
-
-    private JPanel criarPainelDados() {
-
-        JPanel painelDados = new JPanel(new GridLayout(5, 1));
-
-        painelDados.add(criarPainelCampo("Nome Empresa:", this.txtNomeEmpresa, CAMPO_TXT_LARGURA));
-        painelDados.add(criarPainelMorada());
-        painelDados.add(criarPainelCampo("Telemovel:", this.txtTelemovel, CAMPO_TXT_LARGURA));
-        painelDados.add(criarPainelCampo("Area do Expositor:", this.txtAreaExpositor, CAMPO_NUM_LARGURA));
-        painelDados.add(criarPainelCampo("Número de Convites:", this.txtNumConvites, CAMPO_NUM_LARGURA));
-
-        return painelDados;
     }
 
     private JScrollPane criarJListProdutos() {
@@ -158,26 +254,6 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         });
 
         return btn;
-    }
-
-    private JPanel criarPainelProdutos() {
-
-        JPanel pProdutos = new JPanel();
-
-        pProdutos.setBackground(Color.red);
-
-        JPanel pTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        pTitulo.add(new JLabel("Lista de Produtos"));
-
-        pProdutos.add(pTitulo, BorderLayout.NORTH);
-        pProdutos.add(criarJListProdutos(), BorderLayout.CENTER);
-
-        JPanel pBotao = new JPanel();
-        pBotao.add(criarBotaoAddProduto());
-        
-        pProdutos.add(pBotao, BorderLayout.SOUTH);
-
-        return pProdutos;
     }
 
     public boolean novoProduto(String designacao) {

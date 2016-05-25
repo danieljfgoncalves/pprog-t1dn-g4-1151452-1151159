@@ -9,6 +9,7 @@ import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Produto;
 import centroexposicoes.model.RegistoExposicoes;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +53,8 @@ public class RegistarCandidaturaController {
      */
     public RegistarCandidaturaController(CentroExposicoes centroExposicoes) {
         registoExposicoes = centroExposicoes.getRegistoExposicoes();
+        listaProdutos = new ArrayList<>();
+        listaDemonstracoes = new ArrayList<>();
     }
 
     /**
@@ -68,9 +71,10 @@ public class RegistarCandidaturaController {
      *
      * @param exposicao Exposição
      */
-    public void novaCandidatura(Exposicao exposicao) {
+    public Candidatura novaCandidatura(Exposicao exposicao) {
         this.exposicao = exposicao;
         candidatura = exposicao.novaCandidatura();
+        return candidatura;
     }
 
     /**
@@ -119,7 +123,7 @@ public class RegistarCandidaturaController {
      * @return Lista de demonstrações
      */
     public List<Demonstracao> getListaDemonstracoes() {
-        listaDemonstracoes = candidatura.getListaDemonstracoes();
+        listaDemonstracoes = exposicao.getListaDemonstracoes();
         return listaDemonstracoes;
     }
 

@@ -1,5 +1,7 @@
 package centroexposicoes.model;
 
+import java.io.Serializable;
+
 /*
  * Fornece as classes que contém o modelo logístico de um centro de exposições.
  */
@@ -9,7 +11,7 @@ package centroexposicoes.model;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Local {
+public class Local implements Serializable {
 
     /**
      * Localidade.
@@ -82,7 +84,7 @@ public class Local {
      */
     @Override
     public boolean equals(Object outroObjeto) {
-        
+
         if (this == outroObjeto) {
             return true;
         }
@@ -90,7 +92,7 @@ public class Local {
             return false;
         }
         Local outraLocal = (Local) outroObjeto;
-        
+
         return this.localidade.equals(outraLocal.localidade);
     }
 }

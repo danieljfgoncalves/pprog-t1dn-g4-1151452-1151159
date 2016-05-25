@@ -4,6 +4,7 @@
 package centroexposicoes.model;
 
 import centroexposicoes.utils.Data;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Exposicao {
+public class Exposicao implements Serializable {
 
     /**
      * Titulo da exposição.

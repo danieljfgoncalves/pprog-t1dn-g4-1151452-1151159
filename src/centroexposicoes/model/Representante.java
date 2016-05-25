@@ -3,13 +3,16 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
+
 /**
  * Representa um representante de expositor.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Representante implements Ator {
+public class Representante implements Ator, Serializable {
+
 
     /**
      * Dados de utilizador do representante.

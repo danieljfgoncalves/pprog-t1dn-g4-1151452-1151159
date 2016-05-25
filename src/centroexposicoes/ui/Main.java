@@ -3,6 +3,9 @@
  */
 package centroexposicoes.ui;
 
+import centroexposicoes.model.CentroExposicoes;
+import centroexposicoes.model.FicheiroCentroExposicoes;
+
 /**
  * Classe para o arranque da aplicação.
  *
@@ -19,9 +22,15 @@ public class Main
      */
     public static void main(String[] args)
     {
-        // TODO carregar dados apartir de bin. Caso não exista, a partir de txt.
+        FicheiroCentroExposicoes ficheiroCentroExposicoes = new FicheiroCentroExposicoes();
         
-        // TODO iniciar janela principal.
+        CentroExposicoes centroExposicoes = ficheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
+        
+        if (centroExposicoes == null) {
+            //TODO se não for possível ler a partir do ficheiro binário, ler apartir do ficheiro de texto.
+        }
+        
+        //TODO chamar janela login.
     }
     
 }

@@ -20,14 +20,13 @@ import static org.junit.Assert.*;
  */
 public class CentroExposicoesTest {
     
-    private static CentroExposicoes centroExposicoes;
+    private CentroExposicoes centroExposicoes;
     
     public CentroExposicoesTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
-        centroExposicoes = new CentroExposicoes();
     }
     
     @AfterClass
@@ -36,6 +35,7 @@ public class CentroExposicoesTest {
     
     @Before
     public void setUp() {
+        centroExposicoes = new CentroExposicoes();
     }
     
     @After

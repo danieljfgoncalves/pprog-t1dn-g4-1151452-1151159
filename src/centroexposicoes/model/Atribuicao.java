@@ -3,13 +3,15 @@
  */
 package centroexposicoes.model;
 
+import java.io.Serializable;
+
 /**
  * Representa uma atribuição.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Atribuicao {
+public class Atribuicao implements Serializable {
 
     /**
      * Candidatura atribuida.
@@ -105,7 +107,7 @@ public class Atribuicao {
      */
     @Override
     public String toString() {
-        
+
         return "Atribuicao{" + "candidatura=" + candidatura
                 + ", fae=" + fae
                 + '}';
@@ -126,7 +128,7 @@ public class Atribuicao {
             return false;
         }
         Atribuicao outraAtribuicao = (Atribuicao) outroObjeto;
-        
+
         return this.candidatura.equals(outraAtribuicao.candidatura)
                 && this.fae.equals(outraAtribuicao.fae);
     }
