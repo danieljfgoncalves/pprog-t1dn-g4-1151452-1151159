@@ -30,7 +30,7 @@ public class Main
             //TODO se não for possível ler a partir do ficheiro binário, ler apartir do ficheiro de texto.
         }
         
-        //TODO chamar janela login.
+        //new LoginUI(centroExposicoes, ficheiroCentroExposicoes);
     }
     
 }

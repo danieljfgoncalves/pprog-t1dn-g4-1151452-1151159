@@ -4,7 +4,6 @@
 package centroexposicoes.ui;
 
 import centroexposicoes.controller.RegistarCandidaturaController;
-import centroexposicoes.model.Candidatura;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -114,13 +112,45 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     private JPanel criarPainelDados() {
 
         JPanel painelDados = new JPanel(new GridLayout(5, 1));
-
-        painelDados.add(criarPainelCampo("Nome Empresa:", this.txtNomeEmpresa, CAMPO_TXT_LARGURA));
+        
+        JLabel lblNomeEmpresa = new JLabel("Nome Empresa:", JLabel.RIGHT);
+        this.txtNomeEmpresa = new JTextField(CAMPO_TXT_LARGURA);
+        JPanel pNomeEmpresa = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        pNomeEmpresa.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pNomeEmpresa.add(lblNomeEmpresa);
+        pNomeEmpresa.add(txtNomeEmpresa);
+        
+        JLabel lblTelemovel = new JLabel("Telemóvel:", JLabel.RIGHT);
+        this.txtTelemovel = new JTextField(CAMPO_TXT_LARGURA);
+        JPanel pTelemovel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        pTelemovel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pTelemovel.add(lblTelemovel);
+        pTelemovel.add(txtTelemovel);
+        
+        JLabel lblAreaExpositor = new JLabel("Área do expositor:", JLabel.RIGHT);
+        this.txtAreaExpositor = new JTextField(CAMPO_NUM_LARGURA);
+        JPanel pAreaExpositor = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        pAreaExpositor.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pAreaExpositor.add(lblAreaExpositor);
+        pAreaExpositor.add(txtAreaExpositor);
+        
+        JLabel lblNumConvites = new JLabel("Número de Convites:", JLabel.RIGHT);
+        this.txtNumConvites = new JTextField(CAMPO_NUM_LARGURA);
+        JPanel pNumConvites = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        pNumConvites.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pNumConvites.add(lblNumConvites);
+        pNumConvites.add(txtNumConvites);
+        
+        painelDados.add(pNomeEmpresa);
         painelDados.add(criarPainelMorada());
-        painelDados.add(criarPainelCampo("Telemovel:", this.txtTelemovel, CAMPO_TXT_LARGURA));
-        painelDados.add(criarPainelCampo("Area do Expositor:", this.txtAreaExpositor, CAMPO_NUM_LARGURA));
-        painelDados.add(criarPainelCampo("Número de Convites:", this.txtNumConvites, CAMPO_NUM_LARGURA));
-
+        painelDados.add(pTelemovel);
+        painelDados.add(pAreaExpositor);
+        painelDados.add(pNumConvites);
+        
         return painelDados;
     }
 
@@ -193,30 +223,44 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
                 float areaExpositor = Float.parseFloat(txtAreaExpositor.getText());
                 int numeroConvites = Integer.parseInt(txtNumConvites.getText());
                 controller.setDados(nomeEmpresa, morada, telemovel, areaExpositor, numeroConvites);
-                controller.setListaDemonstracoes(listaDemonstracoes);
+                
+                List<Demonstracao> listaDemonstracoesSelecionadas = getListaDemonstracoesSelecionadas();
+                controller.setListaDemonstracoes(listaDemonstracoesSelecionadas);
                 controller.registaCandidaturas();
                 dispose();
             }
         });
         return btn;
     }
-    
-    private JPanel criarPainelCampo(String lblTexto, JTextField txtField, int largura) {
 
-        JLabel lbl = new JLabel(lblTexto, JLabel.RIGHT);
-        lbl.setPreferredSize(LBL_TAMANHO);
-
-        txtField = new JTextField(largura);
-
-        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
-        p.add(lbl);
-        p.add(txtField);
-
-        return p;
+    private List<Demonstracao> getListaDemonstracoesSelecionadas() {
+        List<Demonstracao> listaDemonstracoesSelecionadas = new ArrayList<>();
+        
+        for (int row : listaDemonstracoesJTable.getSelectedRows()) {
+            listaDemonstracoesSelecionadas.add(listaDemonstracoes.get(row));
+        }
+        
+        return listaDemonstracoesSelecionadas;
     }
+    
+    
+//    //ao alterar txtField não está a alterar no objeto enviado por parâmetro.
+//    private JPanel criarPainelCampo(String lblTexto, JTextField txtField, int largura) {
+//
+//        JLabel lbl = new JLabel(lblTexto, JLabel.RIGHT);
+//        lbl.setPreferredSize(LBL_TAMANHO);
+//
+//        txtField.setColumns(largura);
+//
+//        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
+//
+//        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+//                MARGEM_INFERIOR, MARGEM_DIREITA));
+//        p.add(lbl);
+//        p.add(txtField);
+//
+//        return p;
+//    }
 
     private JPanel criarPainelMorada() {
 
