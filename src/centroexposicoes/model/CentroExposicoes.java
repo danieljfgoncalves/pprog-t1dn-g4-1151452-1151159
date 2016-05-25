@@ -21,6 +21,10 @@ public class CentroExposicoes implements Serializable {
      * Mecanismos do centro de exposições.
      */
     private RegistoMecanismos registoMecanismos;
+    /**
+     * Representantes de Expositor do centro de exposições.
+     */
+    private RegistoRepresentantes registoRepresentantes;
 
     /**
      * Constrói uma instância de centro de exposições com os valores por
@@ -29,18 +33,21 @@ public class CentroExposicoes implements Serializable {
     public CentroExposicoes() {
         registoExposicoes = new RegistoExposicoes();
         registoMecanismos = new RegistoMecanismos();
+        registoRepresentantes = new RegistoRepresentantes();
     }
 
     /**
      * Constrói uma instância de centro de exposições recebendo o registo de
-     * exposições e o registo de mecanismos.
+     * exposições, o registo de mecanismos e registo de representantes.
      *
      * @param registoExposicoes registo de exposições
      * @param registoMecanismos registo de mecanismos
+     * @param registoRepresentantes registo de representantes
      */
-    public CentroExposicoes(RegistoExposicoes registoExposicoes, RegistoMecanismos registoMecanismos) {
+    public CentroExposicoes(RegistoExposicoes registoExposicoes, RegistoMecanismos registoMecanismos, RegistoRepresentantes registoRepresentantes) {
         this.registoExposicoes = new RegistoExposicoes(registoExposicoes);
         this.registoMecanismos = new RegistoMecanismos(registoMecanismos);
+        this.registoRepresentantes = new RegistoRepresentantes(registoRepresentantes);
     }
 
     /**
@@ -52,6 +59,7 @@ public class CentroExposicoes implements Serializable {
     public CentroExposicoes(CentroExposicoes centroExposicoes) {
         registoExposicoes = new RegistoExposicoes(centroExposicoes.registoExposicoes);
         registoMecanismos = new RegistoMecanismos(centroExposicoes.registoMecanismos);
+        registoRepresentantes = new RegistoRepresentantes(centroExposicoes.registoRepresentantes);
     }
 
     /**
@@ -88,6 +96,24 @@ public class CentroExposicoes implements Serializable {
      */
     public void setRegistoMecanismos(RegistoMecanismos registoMecanismos) {
         this.registoMecanismos = new RegistoMecanismos(registoMecanismos);
+    }
+
+    /**
+     * Devolve o registo de representantes.
+     *
+     * @return Registo de representantes.
+     */
+    public RegistoRepresentantes getRegistoRepresentantes() {
+        return new RegistoRepresentantes(registoRepresentantes);
+    }
+
+    /**
+     * Modifica o registo de representantes.
+     *
+     * @param registoRepresentantes registo de representantes
+     */
+    public void setRegistoRepresentantes(RegistoRepresentantes registoRepresentantes) {
+        this.registoRepresentantes = new RegistoRepresentantes(registoRepresentantes);
     }
 
     /**

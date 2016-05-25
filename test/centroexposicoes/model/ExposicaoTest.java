@@ -53,7 +53,7 @@ public class ExposicaoTest {
         listaDemonstracoes.add(new Demonstracao("demo4"));
 
         exposicao = new Exposicao("expo1", "descricao1", new Data(2016, 01, 01), new Data(2016, 04, 01),
-                new Data(2016, 02, 01), new Data(2016, 03, 01), new Local(), listaCandidaturas, listaDemonstracoes);
+                new Data(2016, 02, 01), new Data(2016, 03, 01), new Local(), new ListaFaes(), new ListaOrganizadores(), listaCandidaturas, listaDemonstracoes);
     }
 
     @After

@@ -3,8 +3,10 @@
  */
 package centroexposicoes.ui;
 
+import centroexposicoes.controller.LoginController;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Fae;
+import centroexposicoes.model.FicheiroCentroExposicoes;
 import centroexposicoes.model.ListaFaes;
 import centroexposicoes.model.ListaOrganizadores;
 import centroexposicoes.model.Organizador;
@@ -60,12 +62,13 @@ public class LoginUI extends GlobalJFrame {
     private static final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
     private static final Dimension DIMENSAO_JANELA = new Dimension(600, 400);
 
-    public LoginUI(CentroExposicoes centroExposicoes, ListaFaes listaFaes, ListaOrganizadores listaOrganizadores, List<Representante> listaRepresentantes) {
+    public LoginUI(CentroExposicoes centroExposicoes, FicheiroCentroExposicoes ficheiroCE) {
 
         this.centroExposicoes = centroExposicoes;
-        this.listaFaes = listaFaes;
-        this.listaOrganizadores = listaOrganizadores;
-        this.listaRepresentantes = listaRepresentantes;
+        LoginController controller = new LoginController(centroExposicoes);
+        this.listaFaes = controller.getListaFaes();
+        this.listaOrganizadores = controller.getListaOrganizadores();
+        this.listaRepresentantes = controller.getListaRepresentantes();
 
         criarComponentes();
 
@@ -243,6 +246,7 @@ public class LoginUI extends GlobalJFrame {
 
                 Organizador org = listaOrganizadores.getListaOrganizadores().get(jListAtores.getSelectedIndex());
 
+                // TODO
 //                new AtribuirCandidaturaUI(centroExposicoes, org);
             }
         });
@@ -263,6 +267,7 @@ public class LoginUI extends GlobalJFrame {
 
                 Fae fae = listaFaes.getListaFaes().get(jListAtores.getSelectedIndex());
 
+                // TODO
 //                new AvaliarCandidaturaUI(centroExposicoes, fae);
             }
         });
@@ -298,22 +303,22 @@ public class LoginUI extends GlobalJFrame {
 
     public static void main(String[] args) {
 
-        List<Fae> lf = new ArrayList<Fae>();
-        lf.add(new Fae(new Utilizador("Ivo", "email", "ivo", "pass")));
-        lf.add(new Fae(new Utilizador("Daniel", "email", "ivo", "pass")));
-        ListaFaes lFae = new ListaFaes(lf);
-
-        List<Organizador> lo = new ArrayList<>();
-        lo.add(new Organizador(new Utilizador("Eric", "email", "ivo", "pass")));
-        lo.add(new Organizador(new Utilizador("Ricardo", "email", "ivo", "pass")));
-        lo.add(new Organizador(new Utilizador("Renato", "email", "ivo", "pass")));
-        ListaOrganizadores lOrg = new ListaOrganizadores(lo);
-
-        List<Representante> lr = new ArrayList<>();
-        lr.add(new Representante(new Utilizador("Bob", "email", "ivo", "pass")));
-
-        CentroExposicoes ce = new CentroExposicoes();
-
-        new LoginUI(ce, lFae, lOrg, lr);
+//        List<Fae> lf = new ArrayList<Fae>();
+//        lf.add(new Fae(new Utilizador("Ivo", "email", "ivo", "pass")));
+//        lf.add(new Fae(new Utilizador("Daniel", "email", "ivo", "pass")));
+//        ListaFaes lFae = new ListaFaes(lf);
+//
+//        List<Organizador> lo = new ArrayList<>();
+//        lo.add(new Organizador(new Utilizador("Eric", "email", "ivo", "pass")));
+//        lo.add(new Organizador(new Utilizador("Ricardo", "email", "ivo", "pass")));
+//        lo.add(new Organizador(new Utilizador("Renato", "email", "ivo", "pass")));
+//        ListaOrganizadores lOrg = new ListaOrganizadores(lo);
+//
+//        List<Representante> lr = new ArrayList<>();
+//        lr.add(new Representante(new Utilizador("Bob", "email", "ivo", "pass")));
+//
+//        CentroExposicoes ce = new CentroExposicoes();
+//
+//        new LoginUI(ce, lFae, lOrg, lr);
     }
 }

@@ -52,6 +52,16 @@ public class Exposicao implements Serializable {
     private Local local;
 
     /**
+     * Lista de faes da exposição.
+     */
+    private ListaFaes listaFaes;
+
+    /**
+     * Lista de organizadores da exposição.
+     */
+    private ListaOrganizadores listaOrganizadores;
+
+    /**
      * Lista das candidaturas da exposição.
      */
     private ListaCandidaturas listaCandidaturas;
@@ -94,7 +104,7 @@ public class Exposicao implements Serializable {
     /**
      * Local da exposição por omissão.
      */
-    private Local LOCAL_POR_OMISSAO = new Local();
+    private static final Local LOCAL_POR_OMISSAO = new Local();
 
     /**
      * Constrói uma instância de exposição com os valores por omissão.
@@ -107,6 +117,8 @@ public class Exposicao implements Serializable {
         this.dataFim = DATA_FIM_POR_OMISSAO;
         this.subInicio = SUB_INICIO_POR_OMISSAO;
         this.subFim = SUB_FIM_POR_OMISSAO;
+        this.listaFaes = new ListaFaes();
+        this.listaOrganizadores = new ListaOrganizadores();
         this.listaCandidaturas = new ListaCandidaturas();
         this.listaDemonstracoes = new ArrayList<>();
     }
@@ -123,11 +135,13 @@ public class Exposicao implements Serializable {
      * exposição.
      * @param subFim data do fim de submissão de candidaturas da exposição.
      * @param local local da exposição.
+     * @param listaFaes lista de faes da exposição.
+     * @param listaOrganizadores lista de organizadores da exposição.
      * @param listaCandidaturas lista de candidaturas da exposição.
      * @param listaDemonstracoes lista de demonstrações da exposição.
      */
     public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim,
-            Data subInicio, Data subFim, Local local, ListaCandidaturas listaCandidaturas,
+            Data subInicio, Data subFim, Local local, ListaFaes listaFaes, ListaOrganizadores listaOrganizadores, ListaCandidaturas listaCandidaturas,
             List<Demonstracao> listaDemonstracoes) {
         this.titulo = titulo;
         this.descricao = descricao;
@@ -136,6 +150,8 @@ public class Exposicao implements Serializable {
         this.subInicio = subInicio;
         this.subFim = subFim;
         this.local = local;
+        this.listaFaes = new ListaFaes(listaFaes);
+        this.listaOrganizadores = new ListaOrganizadores(listaOrganizadores);
         this.listaCandidaturas = new ListaCandidaturas(listaCandidaturas);
         this.listaDemonstracoes = new ArrayList<>(listaDemonstracoes);
     }
@@ -154,7 +170,9 @@ public class Exposicao implements Serializable {
         this.subInicio = outraExposicao.subInicio;
         this.subFim = outraExposicao.subFim;
         this.local = outraExposicao.local;
-        this.listaCandidaturas = new ListaCandidaturas(getListaCandidaturas());
+        this.listaFaes = new ListaFaes(outraExposicao.listaFaes);
+        this.listaOrganizadores = new ListaOrganizadores(outraExposicao.listaOrganizadores);
+        this.listaCandidaturas = new ListaCandidaturas(outraExposicao.listaCandidaturas);
         this.listaDemonstracoes = new ArrayList<>(outraExposicao.listaDemonstracoes);
     }
 
@@ -286,6 +304,24 @@ public class Exposicao implements Serializable {
     }
 
     /**
+     * Devolve a lista de faes da exposição.
+     *
+     * @return a lista de faes da exposição.
+     */
+    public ListaFaes getListaFaes() {
+        return new ListaFaes(this.listaFaes);
+    }
+
+    /**
+     * Modifica a lista de faes da exposição.
+     *
+     * @param listaFaes lista de faes da exposição.
+     */
+    public void setListaFaes(ListaFaes listaFaes) {
+        this.listaFaes = new ListaFaes(listaFaes);
+    }
+
+    /**
      * Devolve a lista de candidaturas da exposição.
      *
      * @return a lista de candidaturas da exposição.
@@ -301,6 +337,24 @@ public class Exposicao implements Serializable {
      */
     public void setListaCandidaturas(ListaCandidaturas listaCandidaturas) {
         this.listaCandidaturas = new ListaCandidaturas(listaCandidaturas);
+    }
+
+    /**
+     * Devolve a lista de organizadores da exposição.
+     *
+     * @return a lista de organizadores da exposição.
+     */
+    public ListaOrganizadores getListaOrganizadores() {
+        return new ListaOrganizadores(this.listaOrganizadores);
+    }
+
+    /**
+     * Modifica a lista de organizadores da exposição.
+     *
+     * @param listaOrganizadores lista organizadores da exposição.
+     */
+    public void setListaOrganizadores(ListaOrganizadores listaOrganizadores) {
+        this.listaOrganizadores = new ListaOrganizadores(listaOrganizadores);
     }
 
     /**
@@ -347,7 +401,7 @@ public class Exposicao implements Serializable {
      */
     @Override
     public String toString() {
-        return "Exposicao{" + "titulo=" + titulo + ", descricao=" + descricao + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", subInicio=" + subInicio + ", subFim=" + subFim + ", local=" + local + ", listaCandidaturas=" + listaCandidaturas + ", listaDemonstracoes=" + listaDemonstracoes + ", LOCAL_POR_OMISSAO=" + LOCAL_POR_OMISSAO + '}';
+        return "Exposicao{" + "titulo=" + titulo + ", descricao=" + descricao + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", subInicio=" + subInicio + ", subFim=" + subFim + ", local=" + local + ", listaFaes=" + listaFaes + ", listaOrganizadores=" + listaOrganizadores + ", listaCandidaturas=" + listaCandidaturas + ", listaDemonstracoes=" + listaDemonstracoes + '}';
     }
 
     /**
@@ -374,6 +428,8 @@ public class Exposicao implements Serializable {
                 && this.subInicio.equals(outraExpo.subInicio)
                 && this.subFim.equals(outraExpo.subFim)
                 && this.local.equals(outraExpo.local)
+                && this.listaOrganizadores.equals(outraExpo.listaOrganizadores)
+                && this.listaFaes.equals(outraExpo.listaFaes)
                 && this.listaCandidaturas.equals(outraExpo.listaCandidaturas)
                 && this.listaDemonstracoes.equals(outraExpo.listaDemonstracoes);
     }

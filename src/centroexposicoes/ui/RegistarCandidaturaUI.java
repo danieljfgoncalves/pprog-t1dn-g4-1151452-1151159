@@ -4,7 +4,6 @@
 package centroexposicoes.ui;
 
 import centroexposicoes.controller.RegistarCandidaturaController;
-import centroexposicoes.model.Candidatura;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -115,6 +113,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
         JPanel painelDados = new JPanel(new GridLayout(5, 1));
 
+        this.txtNomeEmpresa = new JTextField();
         painelDados.add(criarPainelCampo("Nome Empresa:", this.txtNomeEmpresa, CAMPO_TXT_LARGURA));
         painelDados.add(criarPainelMorada());
         painelDados.add(criarPainelCampo("Telemovel:", this.txtTelemovel, CAMPO_TXT_LARGURA));
@@ -206,7 +205,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         JLabel lbl = new JLabel(lblTexto, JLabel.RIGHT);
         lbl.setPreferredSize(LBL_TAMANHO);
 
-        txtField = new JTextField(largura);
+        txtField.setColumns(largura);
 
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
