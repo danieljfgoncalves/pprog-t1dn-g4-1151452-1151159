@@ -16,11 +16,9 @@ import centroexposicoes.ui.components.ModeloListProdutos;
 import centroexposicoes.ui.components.ModeloTabelaListaDemonstracao;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -49,7 +47,6 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
      * Exposição selecionada pelo UI.
      */
     private Exposicao exposicaoSelecionada;
-    private Candidatura candidatura;
     private List<Exposicao> listaExposicoes;
     private List<Demonstracao> listaDemonstracoes;
     private ModeloListProdutos modeloListProdutos;
@@ -84,7 +81,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         //APENAS PARA TESTAR FIM
 
         new DialogSelecionarExposicao<>(this, this.listaExposicoes);
-        candidatura = controller.novaCandidatura(exposicaoSelecionada);
+        controller.novaCandidatura(exposicaoSelecionada);
         this.listaDemonstracoes = controller.getListaDemonstracoes();
         
         //APENAS PARA TESTAR INICIO
@@ -95,6 +92,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         this.listaDemonstracoes.add(d1);
         //APENAS PARA TESTAR FIM
         
+        setLayout(new GridLayout(1, 3));
         criarComponentes();
 
         setVisible(true);
@@ -102,10 +100,9 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
     private void criarComponentes() {
 
-        add(criarPainelDados(), BorderLayout.WEST);
-        add(criarPainelProdutos(), BorderLayout.CENTER);
-        add(criarPainelDemonstracoes(), BorderLayout.EAST);
-        add(criarPainelConfirmar(), BorderLayout.SOUTH);
+        add(criarPainelDados());
+        add(criarPainelProdutos());
+        add(criarPainelDemonstracoes());
     }
 
     private JPanel criarPainelDados() {
@@ -143,10 +140,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         JPanel pDemonstracoes = new JPanel(new BorderLayout());
         
         JPanel pTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        pTitulo.add(new JLabel("Lista de Demonstrações"));
+        pTitulo.add(new JLabel("Selecione as demonstrações pretendidas:"));
         
         pDemonstracoes.add(pTitulo, BorderLayout.NORTH);
         pDemonstracoes.add(criarScrollPaneDemonstrações(), BorderLayout.CENTER);
+        pDemonstracoes.add(criarPainelConfirmar(), BorderLayout.SOUTH);
         
         return pDemonstracoes;
     }    
@@ -182,6 +180,15 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //TODO verificações
+                String nomeEmpresa = txtNomeEmpresa.getText();
+                String morada = txtMorada.getText();
+                String telemovel = txtTelemovel.getText();
+                float areaExpositor = Float.parseFloat(txtAreaExpositor.getText());
+                int numeroConvites = Integer.parseInt(txtNumConvites.getText());
+                controller.setDados(nomeEmpresa, morada, telemovel, areaExpositor, numeroConvites);
+                controller.setListaDemonstracoes(listaDemonstracoes);
+                controller.registaCandidaturas();
                 dispose();
             }
         });

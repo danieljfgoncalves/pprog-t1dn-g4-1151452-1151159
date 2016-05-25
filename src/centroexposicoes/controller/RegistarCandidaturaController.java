@@ -71,10 +71,9 @@ public class RegistarCandidaturaController {
      *
      * @param exposicao Exposição
      */
-    public Candidatura novaCandidatura(Exposicao exposicao) {
+    public void novaCandidatura(Exposicao exposicao) {
         this.exposicao = exposicao;
         candidatura = exposicao.novaCandidatura();
-        return candidatura;
     }
 
     /**
