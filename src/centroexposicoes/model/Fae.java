@@ -11,7 +11,8 @@ import java.io.Serializable;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Fae implements Serializable {
+public class Fae implements Ator, Serializable
+{
 
     /**
      * Os dados do fae.
@@ -91,5 +92,11 @@ public class Fae implements Serializable {
         Fae outroFae = (Fae) outroObjeto;
 
         return utilizadorFae.equals(outroFae.utilizadorFae);
+    }
+
+    @Override
+    public String getNome() {
+        
+        return this.utilizadorFae.getNome();
     }
 }

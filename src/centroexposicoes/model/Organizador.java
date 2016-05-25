@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Organizador implements Serializable {
+public class Organizador implements Ator, Serializable {
 
     /**
      * Dados de utilizador do organizador.
@@ -96,5 +96,11 @@ public class Organizador implements Serializable {
         Organizador outroOrganizador = (Organizador) outroObjeto;
 
         return this.utilizador.equals(outroOrganizador.utilizador);
+    }
+
+    @Override
+    public String getNome() {
+        
+        return this.utilizador.getNome();
     }
 }
