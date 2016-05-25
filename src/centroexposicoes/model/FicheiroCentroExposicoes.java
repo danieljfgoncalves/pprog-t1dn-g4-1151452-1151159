@@ -100,17 +100,27 @@ public class FicheiroCentroExposicoes {
         listaDemonstracoes.add(new Demonstracao("Getting started with bootstrap."));
         listaDemonstracoes.add(new Demonstracao("Hackaton"));
         
-        Candidatura sonae = new Candidatura("SONAE", "Porto", "918765432", 42.2f, 4, lo, listaDemonstracoes);
+        Candidatura sonae = new Candidatura("SONAE", "Porto", "918765432", 42.2f, 4, lo, listaDemonstracoes, new ArrayList<>());
+        Atribuicao atribuicao = new Atribuicao(sonae, ivo);
+        Avaliacao avaliacao = new Avaliacao(Avaliacao.TipoAvaliacao.Aprovado, atribuicao, "Dentro do contexto.");
+        List<Avaliacao> listAvaliacoes = new ArrayList<>();
+        listAvaliacoes.add(avaliacao);
+        sonae.setListaAvaliacoes(listAvaliacoes);
+        
         List<Candidatura> lc = new ArrayList<>();
         lc.add(new Candidatura(sonae));
-        lc.add(new Candidatura("PortoTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes));
+        lc.add(new Candidatura("PortoTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes, listAvaliacoes));
         ListaCandidaturas listaCandidaturas = new ListaCandidaturas(lc);
+        
+        List<Atribuicao> la = new ArrayList<>();
+        la.add(atribuicao);
+        ListaAtribuicoes listaAtribuicoes = new ListaAtribuicoes(la);
         
         Exposicao e1 = new Exposicao("Carros", "Expôr carros", 
                 new Data(2016, 6, 10), new Data(2016, 8, 20), 
                 new Data(2016, 6, 15), new Data(2016, 7, 15), 
                 new Local("Maia"), listaFaes, listaOrganizadores, 
-                listaCandidaturas, listaDemonstracoes);
+                listaCandidaturas, listaDemonstracoes, listaAtribuicoes);
         
         List<Exposicao> listaExposicoes = new ArrayList();
         listaExposicoes.add(e1);

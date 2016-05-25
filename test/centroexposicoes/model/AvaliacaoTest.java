@@ -42,5 +42,115 @@ public class AvaliacaoTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of getDecisao method, of class Avaliacao.
+     */
+    @Test
+    public void testGetDecisao() {
+        System.out.println("getDecisao");
+        Avaliacao instance = new Avaliacao();
+        Avaliacao.TipoAvaliacao expResult = null;
+        Avaliacao.TipoAvaliacao result = instance.getDecisao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDecisao method, of class Avaliacao.
+     */
+    @Test
+    public void testSetDecisao() {
+        System.out.println("setDecisao");
+        Avaliacao.TipoAvaliacao decisao = null;
+        Avaliacao instance = new Avaliacao();
+        instance.setDecisao(decisao);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getAtribuicao method, of class Avaliacao.
+     */
+    @Test
+    public void testGetAtribuicao() {
+        System.out.println("getAtribuicao");
+        Avaliacao instance = new Avaliacao();
+        Atribuicao expResult = null;
+        Atribuicao result = instance.getAtribuicao();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setAtribuicao method, of class Avaliacao.
+     */
+    @Test
+    public void testSetAtribuicao() {
+        System.out.println("setAtribuicao");
+        Atribuicao atribuicao = null;
+        Avaliacao instance = new Avaliacao();
+        instance.setAtribuicao(atribuicao);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getTxtJustificativo method, of class Avaliacao.
+     */
+    @Test
+    public void testGetTxtJustificativo() {
+        System.out.println("getTxtJustificativo");
+        Avaliacao instance = new Avaliacao();
+        String expResult = "";
+        String result = instance.getTxtJustificativo();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setTxtJustificativo method, of class Avaliacao.
+     */
+    @Test
+    public void testSetTxtJustificativo() {
+        System.out.println("setTxtJustificativo");
+        String txtJustificativo = "";
+        Avaliacao instance = new Avaliacao();
+        instance.setTxtJustificativo(txtJustificativo);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toString method, of class Avaliacao.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Avaliacao instance = new Avaliacao();
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of equals method, of class Avaliacao.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object outroObjeto = null;
+        Avaliacao instance = new Avaliacao();
+        boolean expResult = false;
+        boolean result = instance.equals(outroObjeto);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

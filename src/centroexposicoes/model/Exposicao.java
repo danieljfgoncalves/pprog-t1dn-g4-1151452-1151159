@@ -72,6 +72,11 @@ public class Exposicao implements Serializable {
     private List<Demonstracao> listaDemonstracoes;
 
     /**
+     * Lista das atribuições.
+     */
+    private ListaAtribuicoes listaAtribuicoes;
+    
+    /**
      * Titulo da exposição por omissão.
      */
     private static final String TITULO_POR_OMISSAO = "Sem titulo";
@@ -121,6 +126,7 @@ public class Exposicao implements Serializable {
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaCandidaturas = new ListaCandidaturas();
         this.listaDemonstracoes = new ArrayList<>();
+        this.listaAtribuicoes = new ListaAtribuicoes();
     }
 
     /**
@@ -139,10 +145,11 @@ public class Exposicao implements Serializable {
      * @param listaOrganizadores lista de organizadores da exposição.
      * @param listaCandidaturas lista de candidaturas da exposição.
      * @param listaDemonstracoes lista de demonstrações da exposição.
+     * @param listaAtribuicoes lista de atribuições da exposição.
      */
     public Exposicao(String titulo, String descricao, Data dataInicio, Data dataFim,
             Data subInicio, Data subFim, Local local, ListaFaes listaFaes, ListaOrganizadores listaOrganizadores, ListaCandidaturas listaCandidaturas,
-            List<Demonstracao> listaDemonstracoes) {
+            List<Demonstracao> listaDemonstracoes, ListaAtribuicoes listaAtribuicoes) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataInicio = dataInicio;
@@ -154,6 +161,7 @@ public class Exposicao implements Serializable {
         this.listaOrganizadores = new ListaOrganizadores(listaOrganizadores);
         this.listaCandidaturas = new ListaCandidaturas(listaCandidaturas);
         this.listaDemonstracoes = new ArrayList<>(listaDemonstracoes);
+        this.listaAtribuicoes = new ListaAtribuicoes(listaAtribuicoes);
     }
 
     /**
@@ -174,6 +182,7 @@ public class Exposicao implements Serializable {
         this.listaOrganizadores = new ListaOrganizadores(outraExposicao.listaOrganizadores);
         this.listaCandidaturas = new ListaCandidaturas(outraExposicao.listaCandidaturas);
         this.listaDemonstracoes = new ArrayList<>(outraExposicao.listaDemonstracoes);
+        this.listaAtribuicoes = new ListaAtribuicoes(outraExposicao.listaAtribuicoes);
     }
 
     /**
@@ -373,6 +382,44 @@ public class Exposicao implements Serializable {
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         this.listaDemonstracoes = new ArrayList<>(listaDemonstracoes);
+    }
+
+    /**
+     * Devolve a lista de Atribuições.
+     * 
+     * @return listra de atribuições
+     */
+    public ListaAtribuicoes getListaAtribuicoes() {
+        return new ListaAtribuicoes(listaAtribuicoes);
+    }
+
+    /**
+     * Modifica a lista de Atribuições.
+     * 
+     * @param listaAtribuicoes lista de atribuições
+     */
+    public void setListaAtribuicoes(ListaAtribuicoes listaAtribuicoes) {
+        this.listaAtribuicoes = new ListaAtribuicoes(listaAtribuicoes);
+    }
+    
+    /**
+     * Devolve a listra de atribuições por avaliar do fae especificado.
+     * 
+     * @param fae funcionário de apoio à exposição
+     * @return listra de atribuições por avaliar do fae especificado
+     */
+    public List<Atribuicao> getListaAtribuicoesPorAvaliar(Fae fae)
+    {
+        List<Atribuicao> listaAtribuicoesPorAvaliar = new ArrayList<>();
+        List<Atribuicao> la = this.listaAtribuicoes.getListaAtribuicoes();
+        
+        for (Atribuicao atribuicao : la) {
+            if (atribuicao.getFae().equals(fae)) {
+                listaAtribuicoesPorAvaliar.add(atribuicao);
+            }
+        }
+        
+        return listaAtribuicoesPorAvaliar;
     }
 
     /**
