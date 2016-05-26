@@ -65,6 +65,16 @@ public class ListaAtribuicoes implements Serializable {
     public void setListaAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.listaAtribuicoes = listaAtribuicoes;
     }
+    
+    public Atribuicao novaAtribuicao(Candidatura candidatura, Fae fae) {
+        
+        return new Atribuicao(candidatura, fae);
+    }
+    
+    public boolean validarAtribuicoes(Atribuicao atribuicao) {
+        
+        return (!this.listaAtribuicoes.contains(atribuicao));
+    }
 
     /**
      * Devolve a representação textual de todos os atributos da lista de

@@ -11,13 +11,17 @@ import java.io.Serializable;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Fae implements Ator, Serializable
-{
+public class Fae implements Ator, Serializable {
 
     /**
      * Os dados do fae.
      */
     private Utilizador utilizadorFae;
+
+    /**
+     * Contador de candidaturas por avaliar.
+     */
+    private int contCandPorAvaliar;
 
     /**
      * Constrói uma instância de funcionário de apoio à exposição com os valores
@@ -66,6 +70,34 @@ public class Fae implements Ator, Serializable
     }
 
     /**
+     * @return the contCandPorAvaliar
+     */
+    public int getContCandPorAvaliar() {
+        return contCandPorAvaliar;
+    }
+
+    /**
+     * @param contCandPorAvaliar the contCandPorAvaliar to set
+     */
+    public void setContCandPorAvaliar(int contCandPorAvaliar) {
+        this.contCandPorAvaliar = contCandPorAvaliar;
+    }
+    
+    @Override
+    public String getNome() {
+
+        return this.utilizadorFae.getNome();
+    }
+    
+    public void aumentarContCandPorAvaliar() {
+        this.setContCandPorAvaliar(this.getContCandPorAvaliar() + 1);
+    }   
+    
+    public void reduzirContCandPorAvaliar() {
+        this.setContCandPorAvaliar(this.getContCandPorAvaliar() - 1);
+    }
+
+    /**
      * Gera uma representação textual do utilizador.
      *
      * @return representação textual do utilizador.
@@ -92,11 +124,5 @@ public class Fae implements Ator, Serializable
         Fae outroFae = (Fae) outroObjeto;
 
         return utilizadorFae.equals(outroFae.utilizadorFae);
-    }
-
-    @Override
-    public String getNome() {
-        
-        return this.utilizadorFae.getNome();
     }
 }

@@ -6,7 +6,7 @@ package centroexposicoes.model;
 import java.util.List;
 
 /**
- * Representa um mecanismo de atribuição.
+ * Interface de mecanismo de atribuição.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159

@@ -56,6 +56,22 @@ public class RegistoExposicoes implements Serializable {
         return listaExposicoes;
     }
 
+    public List<Exposicao> getListaExposicoesPorOrganizador(Organizador organizador) {
+
+        List<Exposicao> listaExposPorOrg = new ArrayList();
+
+        for (Exposicao exposicao : this.listaExposicoes) {
+
+            List<Organizador> listaOrganizadoresdaExpo = exposicao.getListaOrganizadores().getListaOrganizadores();
+
+            if (listaOrganizadoresdaExpo.contains(organizador)) {
+                listaExposPorOrg.add(exposicao);
+            }
+        }
+
+        return listaExposPorOrg;
+    }
+
     /**
      * Modifica a lista de exposições
      *
