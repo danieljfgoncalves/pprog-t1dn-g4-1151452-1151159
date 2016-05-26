@@ -252,7 +252,7 @@ public class LoginUI extends GlobalJFrame {
 
                 // TODO
                 dispose();
-                new AtribuirCandidaturaUI();
+                new AtribuirCandidaturaUI(centroExposicoes, org, ficheiroCentroExposicoes);
             }
         });
 

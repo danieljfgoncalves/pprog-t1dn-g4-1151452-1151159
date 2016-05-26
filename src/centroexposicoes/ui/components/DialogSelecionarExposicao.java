@@ -5,7 +5,9 @@ package centroexposicoes.ui.components;
 
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
+import centroexposicoes.model.FicheiroCentroExposicoes;
 import centroexposicoes.model.Representante;
+import centroexposicoes.ui.LoginUI;
 import centroexposicoes.ui.RegistarCandidaturaUI;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -22,6 +24,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * Interface gráfica de um diálogo para selecionar uma exposição.
@@ -30,8 +34,11 @@ import javax.swing.border.EmptyBorder;
  * @author Ivo Ferro 1151159
  * @param <T>
  */
-public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecionavel> extends JDialog
-{
+public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecionavel> extends JDialog {
+
+    private CentroExposicoes centroExposicoes;
+    private FicheiroCentroExposicoes ficheiroCE;
+    
     /**
      * Janela que instância o diálogo.
      */
@@ -44,6 +51,8 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
      * Tabela cmo as exposições.
      */
     private JTable listaExposicoesJTable;
+
+    private JButton btnSelExpo;
     /**
      * Título da janela.
      */
@@ -52,18 +61,19 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
      * Texto selecionar exposição.
      */
     private static final String SELECIONAR_EXPOSICAO = "Selecione uma exposicao:";
-    
-    
+
     /**
      * Constrói um diálogo para selecionar uma exposição.
      */
-    public DialogSelecionarExposicao(T framePai, List<Exposicao> listaExposicoes)
-    {
+    public DialogSelecionarExposicao(T framePai, List<Exposicao> listaExposicoes, CentroExposicoes centroExposicoes, FicheiroCentroExposicoes ficheiroCE) {
         super(framePai, TITULO, true);
+
+        this.centroExposicoes = centroExposicoes;
+        this.ficheiroCE = ficheiroCE;
         
         this.framePai = framePai;
         this.listaExposicoes = listaExposicoes;
-        
+
         criarComponentes();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
@@ -71,12 +81,11 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
         setLocationRelativeTo(framePai);
         setVisible(true);
     }
-    
+
     /**
      * Cria os componentes da interface gráfica.
      */
-    private void criarComponentes()
-    {
+    private void criarComponentes() {
         JPanel p1 = criarPainelSelecionarExposicao();
         JScrollPane p2 = criarPainelListaExposicoes();
         JPanel p3 = criarPainelBotoes();
@@ -85,14 +94,13 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
         add(p2, BorderLayout.CENTER);
         add(p3, BorderLayout.SOUTH);
     }
-    
+
     /**
      * Cria o painel superior com a label para selecionar a exposição.
-     * 
+     *
      * @return painel superior.
      */
-    private JPanel criarPainelSelecionarExposicao()
-    {
+    private JPanel criarPainelSelecionarExposicao() {
         JLabel lbl = new JLabel(SELECIONAR_EXPOSICAO, JLabel.CENTER);
 
         JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -105,56 +113,88 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
 
         return p;
     }
-    
+
     /**
      * Cria o painel central com a lista de exposições.
-     * 
+     *
      * @param listaExposicoes lista de exposições
      * @return painel com lista de exposições
      */
-    private JScrollPane criarPainelListaExposicoes()
-    {
+    private JScrollPane criarPainelListaExposicoes() {
         listaExposicoesJTable = new JTable(new ModeloTabelaListaExposicao(listaExposicoes));
         listaExposicoesJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        listaExposicoesJTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                btnSelExpo.setEnabled(true);
+            }
+        });
 
         JScrollPane scrollPane = new JScrollPane(listaExposicoesJTable);
 
         final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
         final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
-        scrollPane.setBorder(BorderFactory.createEmptyBorder( MARGEM_SUPERIOR, 
-                                                              MARGEM_ESQUERDA,
-                                                              MARGEM_INFERIOR, 
-                                                              MARGEM_DIREITA));
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
+                MARGEM_ESQUERDA,
+                MARGEM_INFERIOR,
+                MARGEM_DIREITA));
 
         return scrollPane;
     }
-    
+
     /**
      * Cria o painel inferior com botões.
-     * 
+     *
      * @return painel inferior.
      */
     private JPanel criarPainelBotoes() {
-        JButton btnSelecionarExposicao = criarBotaoSelecionarExposicao();
-        getRootPane().setDefaultButton(btnSelecionarExposicao);
+        this.btnSelExpo = criarBotaoSelecionarExposicao();
+        getRootPane().setDefaultButton(this.btnSelExpo);
         
-        JPanel p = new JPanel();
+        JButton btnCancelar = criarBotaoCancelar();
+
+        JPanel p = new JPanel(new FlowLayout());
         final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
-        p.add(btnSelecionarExposicao);
+        p.add(this.btnSelExpo);
+        p.add(btnCancelar);
 
         return p;
     }
-    
+
+    /**
+     * Devolve o o botão cancelar.
+     *
+     * @return o botão cancelar.
+     */
+    private JButton criarBotaoCancelar() {
+
+        JButton btn = new JButton("Cancelar");
+        btn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                dispose();
+                new LoginUI(centroExposicoes, ficheiroCE);
+            }
+        });
+        return btn;
+    }
+
     /**
      * Cria o botão selecionar exposição.
-     * 
+     *
      * @return botão selecionar exposição
      */
     private JButton criarBotaoSelecionarExposicao() {
         JButton btn = new JButton("Selecionar Exposição");
+        btn.setEnabled(false);
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -164,10 +204,10 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
         });
         return btn;
     }
-    
+
     /**
      * Método para testar o UI.
-     *  
+     *
      * @param args argumentos da linha de comandos
      */
     public static void main(String[] args) {

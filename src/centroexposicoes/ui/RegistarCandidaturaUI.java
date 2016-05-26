@@ -93,18 +93,23 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
         this.listaExposicoes = controller.getExposições();
 
-        new DialogSelecionarExposicao<>(this, this.listaExposicoes);
-        controller.novaCandidatura(exposicaoSelecionada);
-        this.listaDemonstracoes = controller.getListaDemonstracoes();
+        new DialogSelecionarExposicao<>(this, this.listaExposicoes, centroExposicoes, ficheiroCentroExposicoes);
+        if (this.exposicaoSelecionada == null) {
+            dispose();
+        } else {
 
-        setLayout(new GridLayout(1, 3));
-        criarComponentes();
+            controller.novaCandidatura(exposicaoSelecionada);
+            this.listaDemonstracoes = controller.getListaDemonstracoes();
 
-        pack();
-        setSize(JANELA_TAMANHO);
-        setMinimumSize(new Dimension(getWidth(), getHeight()));
-        setLocationRelativeTo(null);
-        setVisible(true);
+            setLayout(new GridLayout(1, 3));
+            criarComponentes();
+            
+            pack();
+            setSize(JANELA_TAMANHO);
+            setMinimumSize(new Dimension(getWidth(), getHeight()));
+            setLocationRelativeTo(null);
+            setVisible(true);
+        }
     }
 
     private void criarComponentes() {
@@ -412,9 +417,8 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
     @Override
     public void setExposicao(Exposicao exposicao) {
+        
         exposicaoSelecionada = exposicao;
-
-        this.controller.novaCandidatura(exposicao);
     }
 
     /**

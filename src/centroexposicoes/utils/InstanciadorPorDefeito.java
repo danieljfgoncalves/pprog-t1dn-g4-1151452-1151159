@@ -73,9 +73,19 @@ public class InstanciadorPorDefeito {
                 new Data(2016, 6, 15), new Data(2016, 7, 15),
                 new Local("Maia"), listaFaes, listaOrganizadores,
                 listaCandidaturas, listaDemonstracoes, listaAtribuicoes);
+        
+        lo.remove(1);
+        lo.add(new Organizador(new Utilizador("Abilio", "email", "asta", "pass")));
+        ListaOrganizadores listaOrganizadores2 = new ListaOrganizadores(lo);
+        Exposicao e2 = new Exposicao("Motas", "Expôr motas",
+                new Data(2016, 8, 10), new Data(2016, 9, 12),
+                new Data(2016, 8, 12), new Data(2016, 8, 15),
+                new Local("Gaia"), listaFaes, listaOrganizadores2,
+                listaCandidaturas, listaDemonstracoes, listaAtribuicoes);
 
         List<Exposicao> listaExposicoes = new ArrayList();
         listaExposicoes.add(e1);
+        listaExposicoes.add(e2);
 
         List<MecanismoAtribuicao> listaMecanismos = new ArrayList();
         listaMecanismos.add(null);

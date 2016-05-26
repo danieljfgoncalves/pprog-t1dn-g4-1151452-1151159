@@ -11,6 +11,7 @@ import centroexposicoes.model.ListaOrganizadores;
 import centroexposicoes.model.Organizador;
 import centroexposicoes.model.RegistoExposicoes;
 import centroexposicoes.model.Representante;
+import centroexposicoes.model.Utilizador;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,16 +65,23 @@ public class LoginController {
 
         List<Fae> lf = this.listaFaes.getListaFaes();
         List<Organizador> lo = this.listaOrganizadores.getListaOrganizadores();
-        
+
         for (Exposicao exposicao : registoExposicoes.getListaExposicoes()) {
             for (Fae fae : exposicao.getListaFaes().getListaFaes()) {
-                lf.add(fae);
+
+                if (!lf.contains(fae)) {
+                    lf.add(fae);
+                }
             }
             for (Organizador organizador : exposicao.getListaOrganizadores().getListaOrganizadores()) {
-                lo.add(organizador);
+
+                if (!lo.contains(organizador)) {
+                    lo.add(organizador);
+                }
+
             }
         }
-        
+
         this.listaFaes.setListaFaes(lf);
         this.listaOrganizadores.setListaOrganizadores(lo);
     }
