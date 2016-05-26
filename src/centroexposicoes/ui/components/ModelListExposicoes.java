@@ -27,7 +27,7 @@ public class ModelListExposicoes extends AbstractListModel {
     }
 
     @Override
-    public Object getElementAt(int index) {
+    public Object getElementAt(int index) {      
         return this.listaExposicoes.get(index).getTitulo();
     }
 

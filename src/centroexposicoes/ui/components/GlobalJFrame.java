@@ -17,26 +17,25 @@ import javax.swing.JMenuBar;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class GlobalJFrame extends JFrame
-{
+public class GlobalJFrame extends JFrame {
+
     /**
      * Título da janela da aplicação por omissão.
      */
     private static final String APPLICATION_WINDOW_TITLE = "Centro de Exposições ISEP v0.1";
-    
-    public GlobalJFrame()
-    {
+
+    public GlobalJFrame() {
         super(APPLICATION_WINDOW_TITLE);
-        
+
         setJMenuBar(criarGlobalJMenuBar());
-        
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 sair();
             }
         });
-        
+
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
@@ -50,9 +49,8 @@ public class GlobalJFrame extends JFrame
         });
         return menuBar;
     }
-    
-    private void sair()
-    {
+
+    private void sair() {
         dispose();
     }
 }

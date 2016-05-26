@@ -15,15 +15,18 @@ import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModeloListProdutos;
 import centroexposicoes.ui.components.ModeloTabelaListaDemonstracao;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.ScrollPane;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -35,6 +38,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -68,10 +72,13 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     private JTextField txtNumConvites;
 
     private static final Dimension LBL_TAMANHO = new Dimension(94, 16);
-    final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-    final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
-    private static final int CAMPO_TXT_LARGURA = 20;
-    private static final int CAMPO_NUM_LARGURA = 6;
+
+    final Dimension JANELA_TAMANHO = new Dimension(1200, 600);
+    final int MARGEM_S_CAMPO = 0, MARGEM_I_CAMPO = 0,
+            MARGEM_E_CAMPO = 10, MARGEM_D_CAMPO = 0;
+    final int CAMPO_TXT_LARGURA = 20, CAMPO_NUM_LARGURA = 6;
+    final static EmptyBorder PADDING_BORDER = new EmptyBorder(10, 10, 10, 10);
+    final Dimension SCROLL_TAMANHO = new Dimension(300, 500);
 
     public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Representante representante) {
 
@@ -80,29 +87,17 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
         this.listaExposicoes = controller.getExposições();
 
-        //APENAS PARA TESTAR INICIO
-        Exposicao e1 = new Exposicao();
-        this.listaExposicoes.add(e1);
-        this.listaExposicoes.add(e1);
-        this.listaExposicoes.add(e1);
-        this.listaExposicoes.add(e1);
-        //APENAS PARA TESTAR FIM
-
         new DialogSelecionarExposicao<>(this, this.listaExposicoes);
         controller.novaCandidatura(exposicaoSelecionada);
         this.listaDemonstracoes = controller.getListaDemonstracoes();
 
-        //APENAS PARA TESTAR INICIO
-        Demonstracao d1 = new Demonstracao();
-        this.listaDemonstracoes.add(d1);
-        this.listaDemonstracoes.add(d1);
-        this.listaDemonstracoes.add(d1);
-        this.listaDemonstracoes.add(d1);
-        //APENAS PARA TESTAR FIM
-
         setLayout(new GridLayout(1, 3));
         criarComponentes();
 
+        pack();
+        setSize(JANELA_TAMANHO);
+        setMinimumSize(new Dimension(getWidth(), getHeight()));
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -115,37 +110,41 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
     private JPanel criarPainelDados() {
 
-        JPanel painelDados = new JPanel(new GridLayout(5, 1));
+        JPanel painelDados = new JPanel(new FlowLayout(FlowLayout.TRAILING, 10, 10));
 
         JLabel lblNomeEmpresa = new JLabel("Nome Empresa:", JLabel.RIGHT);
+        lblNomeEmpresa.setSize(LBL_TAMANHO);
         this.txtNomeEmpresa = new JTextField(CAMPO_TXT_LARGURA);
         JPanel pNomeEmpresa = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        pNomeEmpresa.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pNomeEmpresa.setBorder(new EmptyBorder(MARGEM_S_CAMPO, MARGEM_E_CAMPO,
+                MARGEM_I_CAMPO, MARGEM_D_CAMPO));
         pNomeEmpresa.add(lblNomeEmpresa);
         pNomeEmpresa.add(txtNomeEmpresa);
 
         JLabel lblTelemovel = new JLabel("Telemóvel:", JLabel.RIGHT);
+        lblTelemovel.setSize(LBL_TAMANHO);
         this.txtTelemovel = new JTextField(CAMPO_TXT_LARGURA);
         JPanel pTelemovel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        pTelemovel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pTelemovel.setBorder(new EmptyBorder(MARGEM_S_CAMPO, MARGEM_E_CAMPO,
+                MARGEM_I_CAMPO, MARGEM_D_CAMPO));
         pTelemovel.add(lblTelemovel);
         pTelemovel.add(txtTelemovel);
 
         JLabel lblAreaExpositor = new JLabel("Área do expositor:", JLabel.RIGHT);
+        lblAreaExpositor.setSize(LBL_TAMANHO);
         this.txtAreaExpositor = new JTextField(CAMPO_NUM_LARGURA);
         JPanel pAreaExpositor = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        pAreaExpositor.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pAreaExpositor.setBorder(new EmptyBorder(MARGEM_S_CAMPO, MARGEM_E_CAMPO,
+                MARGEM_I_CAMPO, MARGEM_D_CAMPO));
         pAreaExpositor.add(lblAreaExpositor);
         pAreaExpositor.add(txtAreaExpositor);
 
         JLabel lblNumConvites = new JLabel("Número de Convites:", JLabel.RIGHT);
+        lblNumConvites.setSize(LBL_TAMANHO);
         this.txtNumConvites = new JTextField(CAMPO_NUM_LARGURA);
         JPanel pNumConvites = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        pNumConvites.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pNumConvites.setBorder(new EmptyBorder(MARGEM_S_CAMPO, MARGEM_E_CAMPO,
+                MARGEM_I_CAMPO, MARGEM_D_CAMPO));
         pNumConvites.add(lblNumConvites);
         pNumConvites.add(txtNumConvites);
 
@@ -160,56 +159,78 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
     private JPanel criarPainelProdutos() {
 
-        JPanel pProdutos = new JPanel(new BorderLayout());
-
-        JPanel pTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        pTitulo.add(new JLabel("Lista de Produtos"));
-
-        pProdutos.add(pTitulo, BorderLayout.NORTH);
-        pProdutos.add(criarJListProdutos(), BorderLayout.CENTER);
+        JPanel painel = new JPanel(new BorderLayout());
+        painel.setBorder(PADDING_BORDER);
 
         JPanel pBotao = new JPanel(new FlowLayout(FlowLayout.CENTER));
         pBotao.add(criarBotaoAddProduto());
-
         pBotao.add(criarBotaoRemoveProduto());
-        pProdutos.add(pBotao, BorderLayout.SOUTH);
 
-        return pProdutos;
+        painel.add(criarScrollPaneProdutos(), BorderLayout.NORTH);
+        painel.add(pBotao, BorderLayout.CENTER);
+
+        return painel;
     }
 
     private JPanel criarPainelDemonstracoes() {
-        JPanel pDemonstracoes = new JPanel(new BorderLayout());
 
-        JPanel pTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        pTitulo.add(new JLabel("Selecione as demonstrações pretendidas:"));
+        JPanel painel = new JPanel(new BorderLayout());
+        painel.setBorder(PADDING_BORDER);
 
-        pDemonstracoes.add(pTitulo, BorderLayout.NORTH);
-        pDemonstracoes.add(criarScrollPaneDemonstrações(), BorderLayout.CENTER);
-        pDemonstracoes.add(criarPainelConfirmar(), BorderLayout.SOUTH);
+        painel.add(criarScrollPaneDemonstrações(), BorderLayout.NORTH);
+        painel.add(criarPainelConfirmar(), BorderLayout.SOUTH);
 
-        return pDemonstracoes;
+        return painel;
     }
 
-    private JScrollPane criarScrollPaneDemonstrações() {
+    private JPanel criarScrollPaneDemonstrações() {
+
+        JPanel painelScroll = new JPanel(new GridLayout());
+        painelScroll.setBorder(BorderFactory.createTitledBorder(PADDING_BORDER,
+                "Selecione as demonstrações pretendidas:", TitledBorder.LEFT, TitledBorder.TOP));
+
         listaDemonstracoesJTable = new JTable(new ModeloTabelaListaDemonstracao(listaDemonstracoes));
         listaDemonstracoesJTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         JScrollPane scrollPane = new JScrollPane(listaDemonstracoesJTable);
+        scrollPane.setBorder(PADDING_BORDER);
 
-        final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
-        final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
-        scrollPane.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
-                MARGEM_ESQUERDA,
-                MARGEM_INFERIOR,
-                MARGEM_DIREITA));
+        
+        painelScroll.setMinimumSize(scrollPane.getMinimumSize());
+        painelScroll.add(scrollPane);
 
-        return scrollPane;
+        return painelScroll;
+    }
+
+    private JPanel criarScrollPaneProdutos() {
+        
+        JPanel painelScroll = new JPanel(new GridLayout());
+        painelScroll.setBorder(BorderFactory.createTitledBorder(PADDING_BORDER,
+                "Lista de Produtos:", TitledBorder.LEFT, TitledBorder.TOP));
+
+        this.setModeloListProdutos(new ModeloListProdutos(controller));
+        this.jListProdutos = new JList(getModeloListProdutos());
+        this.jListProdutos.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                if (!jListProdutos.isSelectionEmpty()) {
+                    btnRemoverProduto.setEnabled(true);
+                }
+            }
+        });
+
+        JScrollPane scrollPane = new JScrollPane(jListProdutos);
+        scrollPane.setBorder(PADDING_BORDER);
+        
+        painelScroll.add(scrollPane);
+
+        return painelScroll;
     }
 
     private JPanel criarPainelConfirmar() {
         JPanel p = new JPanel();
-        setBackground(Color.RED);
-
         p.add(criarBotaoConfirmar());
 
         return p;
@@ -253,63 +274,17 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return listaDemonstracoesSelecionadas;
     }
 
-//    //ao alterar txtField não está a alterar no objeto enviado por parâmetro.
-//    private JPanel criarPainelCampo(String lblTexto, JTextField txtField, int largura) {
-//
-//        JLabel lbl = new JLabel(lblTexto, JLabel.RIGHT);
-//        lbl.setPreferredSize(LBL_TAMANHO);
-//
-//        txtField.setColumns(largura);
-//
-//        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-//
-//        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-//                MARGEM_INFERIOR, MARGEM_DIREITA));
-//        p.add(lbl);
-//        p.add(txtField);
-//
-//        return p;
-//    }
     private JPanel criarPainelMorada() {
 
         this.txtMorada = new JTextArea(4, CAMPO_TXT_LARGURA);
         JLabel lblMorada = new JLabel("Morada:", JLabel.RIGHT);
         JPanel pMorada = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        pMorada.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        pMorada.setBorder(new EmptyBorder(MARGEM_S_CAMPO, MARGEM_E_CAMPO,
+                MARGEM_I_CAMPO, MARGEM_D_CAMPO));
         pMorada.add(lblMorada);
         pMorada.add(this.txtMorada);
 
         return pMorada;
-    }
-
-    private JScrollPane criarJListProdutos() {
-
-        this.setModeloListProdutos(new ModeloListProdutos(controller));
-
-        this.jListProdutos = new JList(getModeloListProdutos());
-
-        this.jListProdutos.addListSelectionListener(new ListSelectionListener() {
-
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-
-                if (!jListProdutos.isSelectionEmpty()) {
-                    btnRemoverProduto.setEnabled(true);
-                }
-            }
-        });
-
-        JScrollPane scrollPane = new JScrollPane(jListProdutos);
-
-        final int S_MARGEM_SUPERIOR = 20, S_MARGEM_INFERIOR = 20;
-        final int S_MARGEM_ESQUERDA = 20, S_MARGEM_DIREITA = 20;
-        scrollPane.setBorder(BorderFactory.createEmptyBorder(S_MARGEM_SUPERIOR,
-                S_MARGEM_ESQUERDA,
-                S_MARGEM_INFERIOR,
-                S_MARGEM_DIREITA));
-
-        return scrollPane;
     }
 
     private JButton criarBotaoAddProduto() {
