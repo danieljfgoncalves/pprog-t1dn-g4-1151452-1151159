@@ -38,10 +38,6 @@ public class GlobalJFrame extends JFrame
         });
         
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        pack();
-        setMinimumSize(new Dimension(getWidth(), getHeight()));
-        setLocationRelativeTo(null);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     private JMenuBar criarGlobalJMenuBar() {
