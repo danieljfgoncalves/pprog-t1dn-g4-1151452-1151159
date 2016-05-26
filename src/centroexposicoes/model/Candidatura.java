@@ -101,7 +101,7 @@ public class Candidatura implements Serializable {
      * @param listaDemonstracoes lista de demonstrações que pretende participar
      * @param listaAvaliacoes lista de avaliações
      */
-    public Candidatura(String nomeEmpresa, String morada, String telemovel, float areaExpositor, int numeroConvites, List listaProdutos, List listaDemonstracoes, List listaAvaliacoes) {
+    public Candidatura(String nomeEmpresa, String morada, String telemovel, float areaExpositor, int numeroConvites, List<Produto> listaProdutos, List<Demonstracao> listaDemonstracoes, List<Avaliacao> listaAvaliacoes) {
 
         this.nomeEmpresa = nomeEmpresa;
         this.morada = morada;

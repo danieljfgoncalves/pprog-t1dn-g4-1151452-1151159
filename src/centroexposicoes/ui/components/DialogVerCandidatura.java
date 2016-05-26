@@ -8,9 +8,11 @@ import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Produto;
 import centroexposicoes.ui.AvaliarCandidaturaUI;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -88,19 +90,29 @@ public class DialogVerCandidatura extends JDialog {
      * @return painel dos campos
      */
     private JPanel criarPainelCampos() {
-        JPanel painelCampos = new JPanel();
+        JPanel painelCampos = new JPanel(new GridLayout(3, 1));
         
+        JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
         JLabel labelNomeEmpresa = new JLabel("Nome Empresa: " +  candidatura.getNomeEmpresa());
         JLabel labelTelemovel = new JLabel("Telemóvel: " + candidatura.getTelemovel());
+        p1.add(labelNomeEmpresa);
+        p1.add(labelTelemovel);
+        
+        JPanel p2 = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
         JLabel labelMorada = new JLabel("Morada: " + candidatura.getMorada());
+        p2.add(labelMorada);
+        
+        JPanel p3 = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
         JLabel labelAreaExpositor = new JLabel(String.format("Área expositor: %.2f", candidatura.getAreaExpositor()));
         JLabel labelNumeroConvites = new JLabel("Número de convites: " + candidatura.getNumeroConvites());
+        p3.add(labelAreaExpositor);
+        p3.add(labelNumeroConvites);
         
-        painelCampos.add(labelNomeEmpresa);
-        painelCampos.add(labelTelemovel);
-        painelCampos.add(labelMorada);
-        painelCampos.add(labelAreaExpositor);
-        painelCampos.add(labelNumeroConvites);
+        painelCampos.add(p1);
+        painelCampos.add(p2);
+        painelCampos.add(p3);
+        
+        painelCampos.setBorder(BorderFactory.createTitledBorder("Dados"));
         
         return painelCampos;
     }
@@ -151,8 +163,8 @@ public class DialogVerCandidatura extends JDialog {
         
         JScrollPane jScrollProdutos = new JScrollPane(jListaProdutos);
 
-        painelProdutos.add(labelTitulo);
-        painelProdutos.add(jScrollProdutos);
+        painelProdutos.add(labelTitulo, BorderLayout.NORTH);
+        painelProdutos.add(jScrollProdutos, BorderLayout.CENTER);
         
         return painelProdutos;
     }
@@ -167,8 +179,8 @@ public class DialogVerCandidatura extends JDialog {
         
         JScrollPane jScrollDemonstracoes = new JScrollPane(jListaDemonstracoes);
 
-        painelDemonstracoes.add(labelTitulo);
-        painelDemonstracoes.add(jScrollDemonstracoes);
+        painelDemonstracoes.add(labelTitulo, BorderLayout.NORTH);
+        painelDemonstracoes.add(jScrollDemonstracoes, BorderLayout.CENTER);
         
         return painelDemonstracoes;
     }
