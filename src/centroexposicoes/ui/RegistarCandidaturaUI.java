@@ -7,6 +7,7 @@ import centroexposicoes.controller.RegistarCandidaturaController;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
+import centroexposicoes.model.FicheiroCentroExposicoes;
 import centroexposicoes.model.Representante;
 import centroexposicoes.ui.components.DialogNovoProduto;
 import centroexposicoes.ui.components.DialogSelecionarExposicao;
@@ -15,6 +16,7 @@ import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModeloListProdutos;
 import centroexposicoes.ui.components.ModeloTabelaListaDemonstracao;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -59,6 +61,8 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     private List<Demonstracao> listaDemonstracoes;
 
     private final RegistarCandidaturaController controller;
+    private final CentroExposicoes centroExposicoes;
+    private final FicheiroCentroExposicoes ficheiroCentroExposicoes;
 
     private ModeloListProdutos modeloListProdutos;
     private JList jListProdutos;
@@ -80,8 +84,10 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     final static EmptyBorder PADDING_BORDER = new EmptyBorder(10, 10, 10, 10);
     final Dimension SCROLL_TAMANHO = new Dimension(300, 500);
 
-    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Representante representante) {
+    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Representante representante, FicheiroCentroExposicoes ficheiroCentroExposicoes) {
 
+        this.ficheiroCentroExposicoes = ficheiroCentroExposicoes;
+        this.centroExposicoes = centroExposicoes;
         this.controller = new RegistarCandidaturaController(centroExposicoes);
         this.repSelecionado = representante;
 
@@ -178,7 +184,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         painel.setBorder(PADDING_BORDER);
 
         painel.add(criarScrollPaneDemonstrações(), BorderLayout.NORTH);
-        painel.add(criarPainelConfirmar(), BorderLayout.SOUTH);
+        painel.add(criarPainelBotoesConfirmar(), BorderLayout.SOUTH);
 
         return painel;
     }
@@ -195,7 +201,6 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         JScrollPane scrollPane = new JScrollPane(listaDemonstracoesJTable);
         scrollPane.setBorder(PADDING_BORDER);
 
-        
         painelScroll.setMinimumSize(scrollPane.getMinimumSize());
         painelScroll.add(scrollPane);
 
@@ -203,7 +208,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     }
 
     private JPanel criarScrollPaneProdutos() {
-        
+
         JPanel painelScroll = new JPanel(new GridLayout());
         painelScroll.setBorder(BorderFactory.createTitledBorder(PADDING_BORDER,
                 "Lista de Produtos:", TitledBorder.LEFT, TitledBorder.TOP));
@@ -223,15 +228,16 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
         JScrollPane scrollPane = new JScrollPane(jListProdutos);
         scrollPane.setBorder(PADDING_BORDER);
-        
+
         painelScroll.add(scrollPane);
 
         return painelScroll;
     }
 
-    private JPanel criarPainelConfirmar() {
-        JPanel p = new JPanel();
+    private JPanel criarPainelBotoesConfirmar() {
+        JPanel p = new JPanel(new FlowLayout());
         p.add(criarBotaoConfirmar());
+        p.add(criarBotaoCancelar());
 
         return p;
     }
@@ -242,23 +248,68 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO verificações
-                String nomeEmpresa = txtNomeEmpresa.getText();
-                String morada = txtMorada.getText();
-                String telemovel = txtTelemovel.getText();
-                float areaExpositor = Float.parseFloat(txtAreaExpositor.getText());
-                int numeroConvites = Integer.parseInt(txtNumConvites.getText());
-                controller.setDados(nomeEmpresa, morada, telemovel, areaExpositor, numeroConvites);
+                try {
+                    if (txtNomeEmpresa.getText().isEmpty()
+                            || txtNomeEmpresa.getText().isEmpty()
+                            || txtMorada.getText().isEmpty()
+                            || txtTelemovel.getText().isEmpty()
+                            || txtAreaExpositor.getText().isEmpty()
+                            || txtNumConvites.getText().isEmpty()) {
+                        throw new IllegalArgumentException("Dados em falta.");
+                    }
+                    if (jListProdutos.getModel().getSize() < 1) {
+                        throw new IllegalArgumentException("Defina pelo menos um produto.");
+                    }
 
-                List<Demonstracao> listaDemonstracoesSelecionadas = getListaDemonstracoesSelecionadas();
-                controller.setListaDemonstracoes(listaDemonstracoesSelecionadas);
+                    String nomeEmpresa = txtNomeEmpresa.getText();
+                    String morada = txtMorada.getText();
+                    String telemovel = txtTelemovel.getText();
+                    float areaExpositor = Float.parseFloat(txtAreaExpositor.getText());
+                    int numeroConvites = Integer.parseInt(txtNumConvites.getText());
+                    controller.setDados(nomeEmpresa, morada, telemovel, areaExpositor, numeroConvites);
 
-                String message = String.format("%s\n\nOs seus dados estão corretos?", controller.getCandidatura());
-                int confirma = JOptionPane.showConfirmDialog(rootPane, message);
+                    List<Demonstracao> listaDemonstracoesSelecionadas = getListaDemonstracoesSelecionadas();
+                    controller.setListaDemonstracoes(listaDemonstracoesSelecionadas);
 
-                if (confirma == JOptionPane.YES_OPTION) {
-                    controller.registaCandidatura();
-                    dispose();
+                    String message = String.format("%s\n\nOs seus dados estão corretos?", controller.getCandidatura());
+                    int confirma = JOptionPane.showConfirmDialog(rootPane, message);
+
+                    if (confirma == JOptionPane.YES_OPTION) {
+                        controller.registaCandidatura();
+                        dispose();
+                        new LoginUI(centroExposicoes, ficheiroCentroExposicoes);
+                    }
+
+                } catch (NumberFormatException ex) {
+
+                    JOptionPane.showMessageDialog(
+                            rootPane,
+                            ex.getMessage(),
+                            "Número inválido",
+                            JOptionPane.WARNING_MESSAGE);
+                } catch (IllegalArgumentException ex) {
+
+                    JOptionPane.showMessageDialog(
+                            rootPane,
+                            ex.getMessage(),
+                            "Dados inválidos",
+                            JOptionPane.WARNING_MESSAGE);
                 }
+            }
+        });
+        return btn;
+    }
+
+    private JButton criarBotaoCancelar() {
+
+        JButton btn = new JButton("Cancelar");
+        btn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new LoginUI(centroExposicoes, ficheiroCentroExposicoes);
+
             }
         });
         return btn;
@@ -345,6 +396,20 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return this.modeloListProdutos.removeRow(index);
     }
 
+    /**
+     * @return the modeloListProdutos
+     */
+    public ModeloListProdutos getModeloListProdutos() {
+        return modeloListProdutos;
+    }
+
+    /**
+     * @param modeloListProdutos the modeloListProdutos to set
+     */
+    public void setModeloListProdutos(ModeloListProdutos modeloListProdutos) {
+        this.modeloListProdutos = modeloListProdutos;
+    }
+
     @Override
     public void setExposicao(Exposicao exposicao) {
         exposicaoSelecionada = exposicao;
@@ -359,28 +424,5 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
      */
     public static void main(String[] args) {
 
-        CentroExposicoes ce = new CentroExposicoes();
-
-        List<Exposicao> listaExposicoes = new ArrayList<>();
-        Exposicao e1 = new Exposicao();
-        Exposicao e2 = new Exposicao();
-        listaExposicoes.add(e1);
-        listaExposicoes.add(e2);
-
-        new RegistarCandidaturaUI(ce, new Representante());
-    }
-
-    /**
-     * @return the modeloListProdutos
-     */
-    public ModeloListProdutos getModeloListProdutos() {
-        return modeloListProdutos;
-    }
-
-    /**
-     * @param modeloListProdutos the modeloListProdutos to set
-     */
-    public void setModeloListProdutos(ModeloListProdutos modeloListProdutos) {
-        this.modeloListProdutos = modeloListProdutos;
     }
 }
