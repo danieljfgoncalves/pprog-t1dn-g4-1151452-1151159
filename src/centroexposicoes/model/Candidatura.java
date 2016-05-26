@@ -46,6 +46,10 @@ public class Candidatura implements Serializable {
      * Lista de demonstrações da exposicão que o expositor pretende participar.
      */
     private List<Demonstracao> listaDemonstracoes;
+    /**
+     * Lista de avaliações da candidatura.
+     */
+    private List<Avaliacao> listaAvaliacoes;
 
     /**
      * Nome comercial da empresa por omissão.
@@ -80,6 +84,7 @@ public class Candidatura implements Serializable {
         this.numeroConvites = NUMERO_CONVITES_POR_OMISSAO;
         this.listaProdutos = new ArrayList<>();
         this.listaDemonstracoes = new ArrayList<>();
+        this.listaAvaliacoes = new ArrayList<>();
     }
 
     /**
@@ -87,15 +92,16 @@ public class Candidatura implements Serializable {
      * paramêtros.
      *
      *
-     * @param nomeEmpresa nome comercial da empresa.
-     * @param morada morada do expositor.
-     * @param telemovel telemovel do expositor.
-     * @param areaExpositor area pretendida pelo expositor.
-     * @param numeroConvites número de convites necessário.
-     * @param listaProdutos lista de produtos que pretende expor.
-     * @param listaDemonstracoes lista de demonstrações que pretende participar.
+     * @param nomeEmpresa nome comercial da empresa
+     * @param morada morada do expositor
+     * @param telemovel telemovel do expositor
+     * @param areaExpositor area pretendida pelo expositor
+     * @param numeroConvites número de convites necessário
+     * @param listaProdutos lista de produtos que pretende expor
+     * @param listaDemonstracoes lista de demonstrações que pretende participar
+     * @param listaAvaliacoes lista de avaliações
      */
-    public Candidatura(String nomeEmpresa, String morada, String telemovel, float areaExpositor, int numeroConvites, List listaProdutos, List listaDemonstracoes) {
+    public Candidatura(String nomeEmpresa, String morada, String telemovel, float areaExpositor, int numeroConvites, List listaProdutos, List listaDemonstracoes, List listaAvaliacoes) {
 
         this.nomeEmpresa = nomeEmpresa;
         this.morada = morada;
@@ -104,6 +110,7 @@ public class Candidatura implements Serializable {
         this.numeroConvites = numeroConvites;
         this.listaProdutos = new ArrayList<>(listaProdutos);
         this.listaDemonstracoes = new ArrayList<>(listaDemonstracoes);
+        this.listaAvaliacoes = new ArrayList<>(listaAvaliacoes);
     }
 
     /**
@@ -120,6 +127,7 @@ public class Candidatura implements Serializable {
         this.numeroConvites = outraCandidatura.numeroConvites;
         this.listaProdutos = new ArrayList<>(outraCandidatura.listaProdutos);
         this.listaDemonstracoes = new ArrayList<>(outraCandidatura.listaDemonstracoes);
+        this.listaAvaliacoes = new ArrayList<>(outraCandidatura.listaAvaliacoes);
     }
 
     /**
@@ -250,6 +258,24 @@ public class Candidatura implements Serializable {
     }
 
     /**
+     * Devolve a lista de avaliações.
+     * 
+     * @return lista de avaliações
+     */
+    public List<Avaliacao> getListaAvaliacoes() {
+        return listaAvaliacoes;
+    }
+
+    /**
+     * Modifica a lista de avaliações.
+     * 
+     * @param listaAvaliacoes lista de avaliações
+     */
+    public void setListaAvaliacoes(List<Avaliacao> listaAvaliacoes) {
+        this.listaAvaliacoes = listaAvaliacoes;
+    }
+
+    /**
      * Cria um novo produto a expor.
      *
      * @param designacao designação do produto a expor.
@@ -293,6 +319,28 @@ public class Candidatura implements Serializable {
         return this.listaProdutos.add(produto);
     }
 
+    /**
+     * Cria uma nova avaliação com os parâmetros por omissão.
+     * 
+     * @return nova avaliação
+     */
+    public  Avaliacao novaAvaliacao()
+    {
+        return new Avaliacao();
+    }
+    
+    public boolean adicionarAvaliacao(Avaliacao avaliacao) {
+
+        return avaliacao.validar() && validarAvaliacao(avaliacao) ? addAvaliacao(avaliacao) : false;
+    }
+    private boolean validarAvaliacao(Avaliacao avaliacao)
+    {
+        return !this.listaAvaliacoes.contains(avaliacao);
+    }
+    private boolean addAvaliacao(Avaliacao avaliacao)
+    {
+        return this.listaAvaliacoes.add(avaliacao);
+    }
     /**
      * Verifica se a candidatura é válida.
      *
@@ -348,6 +396,7 @@ public class Candidatura implements Serializable {
                 && this.areaExpositor == outraCandidatura.areaExpositor
                 && this.numeroConvites == outraCandidatura.numeroConvites
                 && this.listaDemonstracoes.equals(outraCandidatura.listaDemonstracoes)
-                && this.listaProdutos.equals(outraCandidatura.listaProdutos);
+                && this.listaProdutos.equals(outraCandidatura.listaProdutos)
+                && this.listaAvaliacoes.equals(outraCandidatura.listaAvaliacoes);
     }
 }

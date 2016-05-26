@@ -51,7 +51,7 @@ public class ListaFaes implements Serializable {
      * @return lista de faes
      */
     public List<Fae> getListaFaes() {
-        return listaFaes;
+        return new ArrayList<>(listaFaes);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ListaFaes implements Serializable {
      * @param listaFaes lista de faes
      */
     public void setListaFaes(List<Fae> listaFaes) {
-        this.listaFaes = listaFaes;
+        this.listaFaes = new ArrayList<>(listaFaes);
     }
 
     /**

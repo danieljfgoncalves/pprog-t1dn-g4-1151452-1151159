@@ -4,6 +4,7 @@
 package centroexposicoes.controller;
 
 import centroexposicoes.model.Atribuicao;
+import centroexposicoes.model.Avaliacao;
 import centroexposicoes.model.Candidatura;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Demonstracao;
@@ -130,15 +131,20 @@ public class AtribuirCandidaturaController {
         listaDemonstracoes.add(new Demonstracao("Getting started with bootstrap."));
         listaDemonstracoes.add(new Demonstracao("Hackaton"));
 
-        Candidatura sonae = new Candidatura("SONAE", "Porto", "918765432", 42.2f, 4, lo, listaDemonstracoes);
+        Candidatura sonae = new Candidatura("SONAE", "Porto", "918765432", 42.2f, 4, lo, listaDemonstracoes, new ArrayList<>());
+        Atribuicao atribuicao = new Atribuicao(sonae, ivo);
+        Avaliacao avaliacao = new Avaliacao(Avaliacao.TipoAvaliacao.Aprovado, atribuicao, "Dentro do contexto.");
+        List<Avaliacao> listAvaliacoes = new ArrayList<>();
+        listAvaliacoes.add(avaliacao);
+        sonae.setListaAvaliacoes(listAvaliacoes);
 
         List<Candidatura> lc = new ArrayList<>();
         lc.add(new Candidatura(sonae));
-        lc.add(new Candidatura("PortoTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes));
-        lc.add(new Candidatura("LisboaTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes));
-        lc.add(new Candidatura("GaiaTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes));
-        lc.add(new Candidatura("MaiaTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes));
-        lc.add(new Candidatura("PovoaTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes));
+        lc.add(new Candidatura("PortoTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes, listAvaliacoes));
+        lc.add(new Candidatura("LisboaTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes, listAvaliacoes));
+        lc.add(new Candidatura("GaiaTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes, listAvaliacoes));
+        lc.add(new Candidatura("MaiaTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes, listAvaliacoes));
+        lc.add(new Candidatura("PovoaTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes, listAvaliacoes));
         ListaCandidaturas listaCandidaturas = new ListaCandidaturas(lc);
 
         List<Atribuicao> la = new ArrayList<>();

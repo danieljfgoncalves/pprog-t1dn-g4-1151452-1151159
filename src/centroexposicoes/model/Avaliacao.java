@@ -3,6 +3,7 @@
  */
 package centroexposicoes.model;
 
+import centroexposicoes.utils.Validar;
 import java.io.Serializable;
 
 /**
@@ -140,6 +141,16 @@ public class Avaliacao implements Serializable {
         this.txtJustificativo = txtJustificativo;
     }
 
+    /**
+     * Valida a avaliação
+     * 
+     * @return true se for válida, false caso contrário
+     */
+    public boolean validar()
+    {
+        return Validar.validaString(this.txtJustificativo) && atribuicao != null;
+    }
+    
     /**
      * Devolve a descrição textual de todos os atributos de um representante.
      *

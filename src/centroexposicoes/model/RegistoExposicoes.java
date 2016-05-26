@@ -80,6 +80,25 @@ public class RegistoExposicoes implements Serializable {
     public void setListaExposicoes(List<Exposicao> listaExposicoes) {
         this.listaExposicoes = listaExposicoes;
     }
+    
+    /**
+     * Devolve as exposicoes que o fae especificado pertence como tal.
+     * 
+     * @param fae funcionário de apoio às exposições.
+     * @return lista de exposições do fae
+     */
+    public List<Exposicao> getListaExposicoesDoFae(Fae fae)
+    {
+        List<Exposicao> listaExposicoesDoFae = new ArrayList<>();
+        
+        for (Exposicao exposicao : listaExposicoes) {
+            if (exposicao.getListaFaes().getListaFaes().contains(fae)) {
+                listaExposicoesDoFae.add(exposicao);
+            }
+        }
+        
+        return listaExposicoesDoFae;
+    }
 
     /**
      * Devolve a representação textual de todos os atributos do registo de

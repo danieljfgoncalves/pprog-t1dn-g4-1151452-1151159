@@ -174,7 +174,9 @@ public class CandidaturaTest {
         listaProdutos.add(new Produto("honda"));
         List<Demonstracao> listaDemonstracoes = new ArrayList();
         listaDemonstracoes.add(new Demonstracao("miniatura"));
-        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        List<Avaliacao> listaAvaliacoes = new ArrayList<>();
+        listaAvaliacoes.add(new Avaliacao(Avaliacao.TipoAvaliacao.Rejeitado, new Atribuicao(), "Não aplicável."));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes, listaAvaliacoes);
         List<Produto> expResult = new ArrayList<>(listaProdutos);
         List<Produto> result = instance.getListaProdutos();
         assertEquals(expResult, result);
@@ -189,7 +191,9 @@ public class CandidaturaTest {
         List<Produto> listaProdutos = new ArrayList();
         List<Demonstracao> listaDemonstracoes = new ArrayList();
         listaDemonstracoes.add(new Demonstracao("miniatura"));
-        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, new ArrayList(), listaDemonstracoes);
+        List<Avaliacao> listaAvaliacoes = new ArrayList<>();
+        listaAvaliacoes.add(new Avaliacao(Avaliacao.TipoAvaliacao.Rejeitado, new Atribuicao(), "Não aplicável."));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes, listaAvaliacoes);
         instance.setListaProdutos(listaProdutos);
         assertEquals(instance.getListaProdutos(), listaProdutos);
     }
@@ -204,7 +208,9 @@ public class CandidaturaTest {
         listaProdutos.add(new Produto("honda"));
         List<Demonstracao> listaDemonstracoes = new ArrayList();
         listaDemonstracoes.add(new Demonstracao("miniatura"));
-        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        List<Avaliacao> listaAvaliacoes = new ArrayList<>();
+        listaAvaliacoes.add(new Avaliacao(Avaliacao.TipoAvaliacao.Rejeitado, new Atribuicao(), "Não aplicável."));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes, listaAvaliacoes);
         List<Demonstracao> expResult = new ArrayList<>(listaDemonstracoes);
         List<Demonstracao> result = instance.getListaDemonstracoes();
         assertEquals(expResult, result);
@@ -220,7 +226,9 @@ public class CandidaturaTest {
         listaProdutos.add(new Produto("honda"));
         List<Demonstracao> listaDemonstracoes = new ArrayList();
         listaDemonstracoes.add(new Demonstracao("miniatura"));
-        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, new ArrayList());
+        List<Avaliacao> listaAvaliacoes = new ArrayList<>();
+        listaAvaliacoes.add(new Avaliacao(Avaliacao.TipoAvaliacao.Rejeitado, new Atribuicao(), "Não aplicável."));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes, listaAvaliacoes);
         instance.setListaDemonstracoes(listaDemonstracoes);
         assertEquals(instance.getListaDemonstracoes(), listaDemonstracoes);
     }
@@ -248,7 +256,9 @@ public class CandidaturaTest {
         Produto produto = new Produto("honda");
         List<Demonstracao> listaDemonstracoes = new ArrayList();
         listaDemonstracoes.add(new Demonstracao("miniatura"));
-        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        List<Avaliacao> listaAvaliacoes = new ArrayList<>();
+        listaAvaliacoes.add(new Avaliacao(Avaliacao.TipoAvaliacao.Rejeitado, new Atribuicao(), "Não aplicável."));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes, listaAvaliacoes);
         assertTrue(instance.adicionarProduto(produto));
     }
 
@@ -274,7 +284,9 @@ public class CandidaturaTest {
         listaProdutos.add(new Produto("honda"));
         List<Demonstracao> listaDemonstracoes = new ArrayList();
         listaDemonstracoes.add(new Demonstracao("miniatura"));
-        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        List<Avaliacao> listaAvaliacoes = new ArrayList<>();
+        listaAvaliacoes.add(new Avaliacao(Avaliacao.TipoAvaliacao.Rejeitado, new Atribuicao(), "Não aplicável."));
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes, listaAvaliacoes);
         assertTrue(instance.valida());
     }
 
@@ -288,8 +300,10 @@ public class CandidaturaTest {
         listaProdutos.add(new Produto("honda"));
         List<Demonstracao> listaDemonstracoes = new ArrayList();
         listaDemonstracoes.add(new Demonstracao("miniatura"));
-        Object outroObjeto = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
-        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes);
+        List<Avaliacao> listaAvaliacoes = new ArrayList<>();
+        listaAvaliacoes.add(new Avaliacao(Avaliacao.TipoAvaliacao.Rejeitado, new Atribuicao(), "Não aplicável."));
+        Object outroObjeto = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes, listaAvaliacoes);
+        Candidatura instance = new Candidatura("XPTO", "Rua alberto sampaio", "+351915267777", 256, 15, listaProdutos, listaDemonstracoes, listaAvaliacoes);
         assertTrue(instance.equals(outroObjeto));
     }
 

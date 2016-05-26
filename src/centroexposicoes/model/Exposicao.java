@@ -72,10 +72,10 @@ public class Exposicao implements Serializable {
     private List<Demonstracao> listaDemonstracoes;
 
     /**
-     * Lista das atribuições da exposição.
+     * Lista das atribuições.
      */
     private ListaAtribuicoes listaAtribuicoes;
-
+    
     /**
      * Titulo da exposição por omissão.
      */
@@ -385,21 +385,41 @@ public class Exposicao implements Serializable {
     }
 
     /**
-     * Devolve a lista de atribuições da exposição.
-     *
-     * @return a lista de atribuições da exposição.
+     * Devolve a lista de Atribuições.
+     * 
+     * @return listra de atribuições
      */
     public ListaAtribuicoes getListaAtribuicoes() {
-        return new ListaAtribuicoes(this.listaAtribuicoes);
+        return new ListaAtribuicoes(listaAtribuicoes);
     }
 
     /**
-     * Modifica a lista de atribuições da exposição.
-     *
-     * @param listaAtribuicoes lista de atribuições da exposição.
+     * Modifica a lista de Atribuições.
+     * 
+     * @param listaAtribuicoes lista de atribuições
      */
-    public void setListaAtribuições(ListaAtribuicoes listaAtribuicoes) {
+    public void setListaAtribuicoes(ListaAtribuicoes listaAtribuicoes) {
         this.listaAtribuicoes = new ListaAtribuicoes(listaAtribuicoes);
+    }
+    
+    /**
+     * Devolve a listra de atribuições por avaliar do fae especificado.
+     * 
+     * @param fae funcionário de apoio à exposição
+     * @return listra de atribuições por avaliar do fae especificado
+     */
+    public List<Atribuicao> getListaAtribuicoesPorAvaliar(Fae fae)
+    {
+        List<Atribuicao> listaAtribuicoesPorAvaliar = new ArrayList<>();
+        List<Atribuicao> la = this.listaAtribuicoes.getListaAtribuicoes();
+        
+        for (Atribuicao atribuicao : la) {
+            if (atribuicao.getFae().equals(fae)) {
+                listaAtribuicoesPorAvaliar.add(atribuicao);
+            }
+        }
+        
+        return listaAtribuicoesPorAvaliar;
     }
 
     /**

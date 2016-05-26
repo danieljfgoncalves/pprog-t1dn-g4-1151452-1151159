@@ -62,13 +62,19 @@ public class LoginController {
 
     private void setupListasFaesOrganizadores(RegistoExposicoes registoExposicoes) {
 
+        List<Fae> lf = this.listaFaes.getListaFaes();
+        List<Organizador> lo = this.listaOrganizadores.getListaOrganizadores();
+        
         for (Exposicao exposicao : registoExposicoes.getListaExposicoes()) {
             for (Fae fae : exposicao.getListaFaes().getListaFaes()) {
-                this.listaFaes.getListaFaes().add(fae);
+                lf.add(fae);
             }
             for (Organizador organizador : exposicao.getListaOrganizadores().getListaOrganizadores()) {
-                this.listaOrganizadores.getListaOrganizadores().add(organizador);
+                lo.add(organizador);
             }
         }
+        
+        this.listaFaes.setListaFaes(lf);
+        this.listaOrganizadores.setListaOrganizadores(lo);
     }
 }
