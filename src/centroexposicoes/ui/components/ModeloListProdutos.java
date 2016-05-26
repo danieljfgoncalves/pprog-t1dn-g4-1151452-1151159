@@ -39,23 +39,25 @@ public class ModeloListProdutos extends AbstractListModel {
 
     public boolean addRow(String designacao) {
         int rowCount = getSize();
-        
+
         boolean produtoAdicionado = this.controller.addProduto(designacao);
-        this.listaProdutos = controller.getListaProdutos();
-        
+
         if (produtoAdicionado) {
+            this.listaProdutos = this.controller.getListaProdutos();
             fireIntervalAdded(this, rowCount, rowCount);
         }
         return produtoAdicionado;
     }
 
-//    public boolean removeRow(int index) {
-//        
-//        
-//        boolean produtoRemovido = listaTelefonica.removerTelefone(telefone);
-//        if (telefoneRemovido) {
-//            fireTableRowsDeleted(row, row);
-//        }
-//        return telefoneRemovido;
-//    }
+    public boolean removeRow(int index) {
+        
+        String designacao = (String) getElementAt(index);
+        
+        boolean produtoRemovido = this.controller.removeProduto(designacao);
+        if (produtoRemovido) {
+            this.listaProdutos = this.controller.getListaProdutos();
+            fireIntervalRemoved(this, index, index);
+        }
+        return produtoRemovido;
+    }
 }

@@ -120,7 +120,6 @@ public class AtribuirCandidaturaController {
         renato.setContCandPorAvaliar(1);
         
         List<Fae> lf = new ArrayList<>();
-//        lf.add(new Fae(new Utilizador("Eric", "email", "ivo", "pass")));
         lf.add(new Fae(new Utilizador("Daniel", "email", "ivo", "pass")));
         lf.add(ivo);
         lf.add(renato);

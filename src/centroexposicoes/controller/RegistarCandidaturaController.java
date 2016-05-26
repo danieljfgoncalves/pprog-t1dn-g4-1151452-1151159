@@ -101,9 +101,27 @@ public class RegistarCandidaturaController {
      * @return true se o produto for adicionado com sucesso.
      */
     public boolean addProduto(String designacao) {
+
         produto = candidatura.novoProduto(designacao);
 
         return candidatura.adicionarProduto(produto);
+    }
+
+    public boolean removeProduto(String designacao) {
+
+        Produto produtoRemovido = candidatura.novoProduto(designacao);
+
+        return candidatura.removerProduto(produtoRemovido);
+    }
+
+    /**
+     * Devolve a candidatura.
+     *
+     * @return candidatura
+     */
+    public Candidatura getCandidatura() {
+        
+        return this.candidatura;
     }
 
     /**
@@ -138,7 +156,7 @@ public class RegistarCandidaturaController {
     /**
      * Regista a candidatura.
      */
-    public void registaCandidaturas() {
+    public void registaCandidatura() {
         exposicao.adicionarCandidatura(candidatura);
     }
 }
