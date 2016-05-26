@@ -5,6 +5,8 @@ import centroexposicoes.model.Atribuicao;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Fae;
+import centroexposicoes.ui.components.DialogNovaAvaliacao;
+import centroexposicoes.ui.components.DialogVerCandidatura;
 import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModelListAtribuicoes;
 import centroexposicoes.ui.components.ModelListExposicoes;
@@ -81,7 +83,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         jListaExposicoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jListaExposicoes.setModel(new ModelListExposicoes(listaExposicoes));
         
-        this.jListaExposicoes.addListSelectionListener(new ListSelectionListener() {
+        jListaExposicoes.addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -139,6 +141,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO abrir diálogo ver candidatura
+                new DialogVerCandidatura(AvaliarCandidaturaUI.this, listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()).getCandidatura());
             }
         });
 
@@ -153,6 +156,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO abrir diálogo nova avaliação
+                new DialogNovaAvaliacao(AvaliarCandidaturaUI.this);
             }
         });
 

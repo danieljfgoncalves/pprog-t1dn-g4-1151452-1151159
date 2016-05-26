@@ -15,7 +15,7 @@ import javax.swing.AbstractListModel;
  */
 public class ModelListExposicoes extends AbstractListModel {
 
-    private List<Exposicao> listaExposicoes;
+    private final List<Exposicao> listaExposicoes;
 
     public ModelListExposicoes(List<Exposicao> listaExposicoes) {
         this.listaExposicoes = listaExposicoes;
@@ -28,7 +28,7 @@ public class ModelListExposicoes extends AbstractListModel {
 
     @Override
     public Object getElementAt(int index) {
-        return this.listaExposicoes.get(index).getTitulo();
+        return String.format("%s (%s)", this.listaExposicoes.get(index).getTitulo(), this.listaExposicoes.get(index).getDataInicio());
     }
 
 }

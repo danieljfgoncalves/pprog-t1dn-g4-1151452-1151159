@@ -15,13 +15,12 @@ import javax.swing.AbstractListModel;
  */
 public class ModelListAtribuicoes extends AbstractListModel {
 
-    private List<Atribuicao> listaAtribuicoes;
+    private final List<Atribuicao> listaAtribuicoes;
 
-    public ModelListAtribuicoes(List<Atribuicao> listaAtribuicoes)
-    {
+    public ModelListAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.listaAtribuicoes = listaAtribuicoes;
     }
-    
+
     @Override
     public int getSize() {
         return this.listaAtribuicoes.size();
@@ -29,7 +28,8 @@ public class ModelListAtribuicoes extends AbstractListModel {
 
     @Override
     public Object getElementAt(int index) {
-        return this.listaAtribuicoes.get(index).getCandidatura().getNomeEmpresa();
+        return String.format("%s - %s", this.listaAtribuicoes.get(index).getCandidatura().getNomeEmpresa(),
+                this.listaAtribuicoes.get(index).getCandidatura().getTelemovel());
     }
 
 }
