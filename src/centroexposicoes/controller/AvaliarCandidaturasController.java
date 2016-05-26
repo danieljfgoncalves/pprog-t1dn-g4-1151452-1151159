@@ -28,6 +28,7 @@ public class AvaliarCandidaturasController {
 
     public AvaliarCandidaturasController(CentroExposicoes centroExposicoes, Fae fae) {
         registoExposicoes = centroExposicoes.getRegistoExposicoes();
+        this.fae = fae;
     }
 
     public List<Exposicao> getListaExposicoesDoFae() {
