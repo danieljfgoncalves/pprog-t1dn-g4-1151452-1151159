@@ -3,6 +3,7 @@
  */
 package centroexposicoes.ui.components;
 
+import centroexposicoes.model.Avaliacao;
 import centroexposicoes.ui.AvaliarCandidaturaUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -29,6 +30,21 @@ public class DialogNovaAvaliacao extends JDialog {
      */
     private AvaliarCandidaturaUI framePai;
 
+    /**
+     * RadioButtom aceitar.
+     */
+    private JRadioButton botaoRadioAceitar;
+    
+    /**
+     * RadioButtom recursar.
+     */
+    private JRadioButton botaoRadioRecusar;
+    
+    /**
+     * Texto justificativo.
+     */
+    private JTextArea txtJustificacao;
+    
     /**
      * Título do diálogo.
      */
@@ -69,8 +85,8 @@ public class DialogNovaAvaliacao extends JDialog {
     private JPanel criarPainelDecisao() {
         JPanel painelDecisao = new JPanel(new GridLayout(1, 2));
 
-        JRadioButton botaoRadioAceitar = new JRadioButton("Aceitar");
-        JRadioButton botaoRadioRecusar = new JRadioButton("Recusar");
+        botaoRadioAceitar = new JRadioButton("Aceitar");
+        botaoRadioRecusar = new JRadioButton("Recusar");
         ButtonGroup botaoRadioGrupo = new ButtonGroup();
         botaoRadioGrupo.add(botaoRadioAceitar);
         botaoRadioGrupo.add(botaoRadioRecusar);
@@ -90,7 +106,7 @@ public class DialogNovaAvaliacao extends JDialog {
         JPanel painelJustificao = new JPanel(new BorderLayout());
 
         JLabel labelJustificao = new JLabel("Justificação:");
-        JTextArea txtJustificacao = new JTextArea(6, 50);
+        txtJustificacao = new JTextArea(6, 50);
 
         painelJustificao.add(labelJustificao, BorderLayout.NORTH);
         painelJustificao.add(txtJustificacao, BorderLayout.CENTER);
@@ -124,6 +140,10 @@ public class DialogNovaAvaliacao extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO adicionar avaliação
+                if (botaoRadioAceitar.isSelected() || botaoRadioRecusar.isSelected()) {
+                    framePai.registaAvaliacao(botaoRadioAceitar.isSelected() ? Avaliacao.TipoAvaliacao.Aprovado : Avaliacao.TipoAvaliacao.Rejeitado, txtJustificacao.getText());
+                    dispose();
+                }
             }
         });
 

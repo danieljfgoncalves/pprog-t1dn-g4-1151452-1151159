@@ -19,6 +19,7 @@ import centroexposicoes.model.ListaOrganizadores;
 import centroexposicoes.model.Local;
 import centroexposicoes.model.MecanismoAtribuicao;
 import centroexposicoes.model.Organizador;
+import centroexposicoes.model.Produto;
 import centroexposicoes.model.RegistoExposicoes;
 import centroexposicoes.model.RegistoMecanismos;
 import centroexposicoes.model.RegistoRepresentantes;
@@ -52,7 +53,15 @@ public class InstanciadorPorDefeito {
         listaDemonstracoes.add(new Demonstracao("Getting started with bootstrap."));
         listaDemonstracoes.add(new Demonstracao("Hackaton"));
 
-        Candidatura sonae = new Candidatura("SONAE", "Porto", "918765432", 42.2f, 4, lo, listaDemonstracoes, new ArrayList<>());
+        List<Produto> listaProdutos = new ArrayList<>();
+        listaProdutos.add(new Produto("chapéu"));
+        listaProdutos.add(new Produto("bola"));
+        listaProdutos.add(new Produto("guarda chuva"));
+        listaProdutos.add(new Produto("raquete"));
+        
+        Candidatura sonae = new Candidatura("SONAE", "Porto", 
+                "918765432", 42.2f, 4, 
+                listaProdutos, listaDemonstracoes, new ArrayList<>());
         Atribuicao atribuicao = new Atribuicao(sonae, ivo);
         Avaliacao avaliacao = new Avaliacao(Avaliacao.TipoAvaliacao.Aprovado, atribuicao, "Dentro do contexto.");
         List<Avaliacao> listAvaliacoes = new ArrayList<>();
@@ -61,7 +70,7 @@ public class InstanciadorPorDefeito {
 
         List<Candidatura> lc = new ArrayList<>();
         lc.add(new Candidatura(sonae));
-        lc.add(new Candidatura("PortoTech", "Boavista", "912121212", 9100.3f, 100, lo, listaDemonstracoes, listAvaliacoes));
+        lc.add(new Candidatura("PortoTech", "Boavista", "912121212", 9100.3f, 100, listaProdutos, listaDemonstracoes, listAvaliacoes));
         ListaCandidaturas listaCandidaturas = new ListaCandidaturas(lc);
 
         List<Atribuicao> la = new ArrayList<>();

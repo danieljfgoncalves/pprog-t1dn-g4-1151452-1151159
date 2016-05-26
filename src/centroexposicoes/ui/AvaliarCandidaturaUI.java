@@ -2,6 +2,7 @@ package centroexposicoes.ui;
 
 import centroexposicoes.controller.AvaliarCandidaturasController;
 import centroexposicoes.model.Atribuicao;
+import centroexposicoes.model.Avaliacao;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Fae;
@@ -141,7 +142,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO abrir diálogo ver candidatura
-                new DialogVerCandidatura(AvaliarCandidaturaUI.this, listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()).getCandidatura());
+                new DialogVerCandidatura(AvaliarCandidaturaUI.this, controller.getCandidatura(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex())));
             }
         });
 
@@ -156,6 +157,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO abrir diálogo nova avaliação
+                controller.getCandidatura(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()));
                 new DialogNovaAvaliacao(AvaliarCandidaturaUI.this);
             }
         });
@@ -174,6 +176,12 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         });
 
         return botaoSair;
+    }
+    
+    public boolean registaAvaliacao(Avaliacao.TipoAvaliacao avaliacao, String textoJustificativo)
+    {
+        controller.setAvaliacao(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()), avaliacao, textoJustificativo);
+        return controller.registaAvaliacao();
     }
 
     public static void main(String[] args) {
