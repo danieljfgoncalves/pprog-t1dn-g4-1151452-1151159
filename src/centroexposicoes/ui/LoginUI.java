@@ -14,9 +14,11 @@ import centroexposicoes.model.Representante;
 import centroexposicoes.model.Utilizador;
 import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModelListAtor;
+import centroexposicoes.utils.InstanciadorPorDefeito;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -42,12 +46,14 @@ import javax.swing.event.ListSelectionListener;
  */
 public class LoginUI extends GlobalJFrame {
 
-    private CentroExposicoes centroExposicoes;
+    private final FicheiroCentroExposicoes ficheiroCentroExposicoes;
+    private final CentroExposicoes centroExposicoes;
     private ListaFaes listaFaes;
     private ListaOrganizadores listaOrganizadores;
     private List<Representante> listaRepresentantes;
 
     private JLabel lblLista;
+    private JPanel painelCentro;
     private JList jListAtores;
 
     private JRadioButton btnFae;
@@ -61,9 +67,11 @@ public class LoginUI extends GlobalJFrame {
     private static final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
     private static final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
     private static final Dimension DIMENSAO_JANELA = new Dimension(600, 400);
+    final static EmptyBorder PADDING_BORDER = new EmptyBorder(10, 10, 10, 10);
 
     public LoginUI(CentroExposicoes centroExposicoes, FicheiroCentroExposicoes ficheiroCE) {
 
+        this.ficheiroCentroExposicoes = ficheiroCE;
         this.centroExposicoes = centroExposicoes;
         LoginController controller = new LoginController(centroExposicoes);
         this.listaFaes = controller.getListaFaes();
@@ -90,10 +98,7 @@ public class LoginUI extends GlobalJFrame {
 
         JPanel pNorte = new JPanel(new BorderLayout());
 
-        pNorte.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
-                MARGEM_ESQUERDA,
-                MARGEM_INFERIOR,
-                MARGEM_DIREITA));
+        pNorte.setBorder(PADDING_BORDER);
 
         JLabel lbl = new JLabel("Selecione o tipo de Utilizador:", JLabel.CENTER);
 
@@ -119,10 +124,10 @@ public class LoginUI extends GlobalJFrame {
 
     private JPanel criarPainelCentro() {
 
-        JPanel pCentro = new JPanel(new BorderLayout());
+        JPanel painelCentro = new JPanel(new BorderLayout());
         
-        this.lblLista = new JLabel("", JLabel.CENTER);
-        pCentro.add(this.lblLista);
+        this.lblLista = new JLabel("", JLabel.LEFT);
+        painelCentro.add(this.lblLista);
         
         this.jListAtores = new JList();
         this.jListAtores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -138,16 +143,15 @@ public class LoginUI extends GlobalJFrame {
             }
         });
 
+        JPanel painelScroll = new JPanel(new GridLayout());
         JScrollPane jScroll = new JScrollPane(this.jListAtores);
+        painelScroll.add(jScroll);
         
-        pCentro.add(jScroll, BorderLayout.SOUTH);
+        painelCentro.add(painelScroll, BorderLayout.SOUTH);
 
-        pCentro.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
-                MARGEM_ESQUERDA,
-                MARGEM_INFERIOR,
-                MARGEM_DIREITA));
+        painelCentro.setBorder(PADDING_BORDER);
 
-        return pCentro;
+        return painelCentro;
     }
 
     private JPanel criarPainelSul() {
@@ -247,7 +251,8 @@ public class LoginUI extends GlobalJFrame {
                 Organizador org = listaOrganizadores.getListaOrganizadores().get(jListAtores.getSelectedIndex());
 
                 // TODO
-//                new AtribuirCandidaturaUI(centroExposicoes, org);
+                dispose();
+                new AtribuirCandidaturaUI();
             }
         });
 
@@ -269,6 +274,8 @@ public class LoginUI extends GlobalJFrame {
 
                 // TODO
 //                new AvaliarCandidaturaUI(centroExposicoes, fae);
+                dispose();
+                new AvaliarCandidaturaUI(centroExposicoes, fae);
             }
         });
 
@@ -288,7 +295,7 @@ public class LoginUI extends GlobalJFrame {
 
                 Representante rep = listaRepresentantes.get(jListAtores.getSelectedIndex());
 
-                new RegistarCandidaturaUI(centroExposicoes, rep);
+                new RegistarCandidaturaUI(centroExposicoes, rep, ficheiroCentroExposicoes);
             }
         });
 
@@ -303,22 +310,8 @@ public class LoginUI extends GlobalJFrame {
 
     public static void main(String[] args) {
 
-//        List<Fae> lf = new ArrayList<Fae>();
-//        lf.add(new Fae(new Utilizador("Ivo", "email", "ivo", "pass")));
-//        lf.add(new Fae(new Utilizador("Daniel", "email", "ivo", "pass")));
-//        ListaFaes lFae = new ListaFaes(lf);
-//
-//        List<Organizador> lo = new ArrayList<>();
-//        lo.add(new Organizador(new Utilizador("Eric", "email", "ivo", "pass")));
-//        lo.add(new Organizador(new Utilizador("Ricardo", "email", "ivo", "pass")));
-//        lo.add(new Organizador(new Utilizador("Renato", "email", "ivo", "pass")));
-//        ListaOrganizadores lOrg = new ListaOrganizadores(lo);
-//
-//        List<Representante> lr = new ArrayList<>();
-//        lr.add(new Representante(new Utilizador("Bob", "email", "ivo", "pass")));
-//
-//        CentroExposicoes ce = new CentroExposicoes();
-//
-//        new LoginUI(ce, lFae, lOrg, lr);
+        CentroExposicoes ce = InstanciadorPorDefeito.getCentroExposicoesPorDefeito();
+        
+        new LoginUI(ce, new FicheiroCentroExposicoes());
     }
 }

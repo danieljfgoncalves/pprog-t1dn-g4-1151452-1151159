@@ -171,16 +171,6 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
      * @param args argumentos da linha de comandos
      */
     public static void main(String[] args) {
-        List<Exposicao> listaExposicoes = new ArrayList<>();
-        Exposicao e1 = new Exposicao();
-        Exposicao e2 = new Exposicao();
-        listaExposicoes.add(e1);
-        listaExposicoes.add(e2);
-        
-        CentroExposicoes ce =new CentroExposicoes();
-        
-        RegistarCandidaturaUI framePai = new RegistarCandidaturaUI(ce, new Representante());
-        
-        new DialogSelecionarExposicao(framePai, listaExposicoes);
+
     }
 }

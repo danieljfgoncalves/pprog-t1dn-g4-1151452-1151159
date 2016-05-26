@@ -375,13 +375,29 @@ public class Candidatura implements Serializable {
     @Override
     public String toString() {
 
-        return "Candidatura{"
-                + "nomeEmpresa=" + nomeEmpresa
-                + ", morada=" + morada
-                + ", telemovel=" + telemovel
-                + ", areaExpositor=" + areaExpositor
-                + ", numeroConvites=" + numeroConvites
-                + '}';
+        StringBuilder string = new StringBuilder();
+        
+        String dados = String.format("Nome de Empresa: %s\nMorada: %s\nTelemovel: %s\nArea de Expositor: %.2f\nNúmero de Convites: %d\n\n",
+                nomeEmpresa, morada, telemovel, areaExpositor, numeroConvites);
+        
+        string.append("Dados Candidatura:\n\n").append(dados).append("Lista de Produtos a expor:\n");
+        for (Produto p : listaProdutos) {
+            string.append(String.format("%s%n", p.getDesignacao()));
+        }
+        string.append("\n\nLista de demonstrações que pretende participar:\n");
+        for (Demonstracao demo : listaDemonstracoes) {
+            string.append(String.format("%s%n", demo.getDesignacao()));
+        }
+        return string.toString();
+        
+        
+//        return "Candidatura{"
+//                + "nomeEmpresa=" + nomeEmpresa
+//                + ", morada=" + morada
+//                + ", telemovel=" + telemovel
+//                + ", areaExpositor=" + areaExpositor
+//                + ", numeroConvites=" + numeroConvites
+//                + '}';
     }
 
     /**
