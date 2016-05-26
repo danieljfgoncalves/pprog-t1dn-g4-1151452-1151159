@@ -126,12 +126,20 @@ public class DialogNovoProduto extends JDialog {
                         throw new IllegalArgumentException("Designção não é válida! Introduza novamente.");
                     }
 
-                    framePai.novoProduto(designacao);
+                    boolean produtoAdicionado = framePai.novoProduto(designacao);
+
+                    if (!produtoAdicionado) {
+                        throw new IllegalArgumentException("O produto ja existe! Introduza outro.");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Produto adicionado com exito!",
+                                "Adicionar Produto",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    }
                     dispose();
-                    
-                    
+
                 } catch (IllegalArgumentException ex) {
-                    
+
                     JOptionPane.showMessageDialog(
                             framePai,
                             ex.getMessage(),
@@ -140,7 +148,8 @@ public class DialogNovoProduto extends JDialog {
                     txtDesignacao.requestFocusInWindow();
                 }
             }
-        });
+        }
+        );
 
         return btn;
     }
@@ -172,6 +181,5 @@ public class DialogNovoProduto extends JDialog {
     public static void main(String[] args) {
 
 //        DialogNovoProduto dialog = new DialogNovoProduto(new RegistarCandidaturaUI());
-
     }
 }

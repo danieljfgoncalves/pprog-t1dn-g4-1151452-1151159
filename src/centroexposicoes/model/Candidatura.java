@@ -297,6 +297,11 @@ public class Candidatura implements Serializable {
 
         return produto.valida() && validarProduto(produto) ? addProduto(produto) : false;
     }
+    
+    public boolean removerProduto(Produto produto) {
+        
+        return produto.valida() && !validarProduto(produto) ? removeProduto(produto) : false;
+    }
 
     /**
      * Verifica se já existe o produto na lista de produtos.
@@ -317,6 +322,11 @@ public class Candidatura implements Serializable {
     private boolean addProduto(Produto produto) {
 
         return this.listaProdutos.add(produto);
+    }
+    
+    private boolean removeProduto(Produto produto) {
+        
+        return this.listaProdutos.remove(produto);
     }
 
     /**

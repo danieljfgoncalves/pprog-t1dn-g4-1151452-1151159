@@ -64,7 +64,7 @@ public class RegistoMecanismos implements Serializable {
     public void setListaExposicoes(List<MecanismoAtribuicao> listaMecanismos) {
         this.listaMecanismos = listaMecanismos;
     }
-
+    
     /**
      * Devolve a descrição textual de todos os atributos de um registo de
      * mecanismos.
