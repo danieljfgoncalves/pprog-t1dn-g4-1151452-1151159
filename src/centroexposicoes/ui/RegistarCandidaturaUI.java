@@ -103,7 +103,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
             setLayout(new GridLayout(1, 3));
             criarComponentes();
-            
+
             pack();
             setSize(JANELA_TAMANHO);
             setMinimumSize(new Dimension(getWidth(), getHeight()));
@@ -417,7 +417,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
     @Override
     public void setExposicao(Exposicao exposicao) {
-        
+
         exposicaoSelecionada = exposicao;
     }
 

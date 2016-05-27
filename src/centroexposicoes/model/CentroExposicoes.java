@@ -3,7 +3,17 @@
  */
 package centroexposicoes.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import static java.nio.file.Files.delete;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import javax.tools.JavaCompiler;
+import javax.tools.ToolProvider;
 
 /**
  * Representa um centro de exposições.
@@ -26,14 +36,16 @@ public class CentroExposicoes implements Serializable {
      */
     private RegistoRepresentantes registoRepresentantes;
 
+    private static final String DIR_MECANISMOS = "src/centroexposicoes/model/mecanismos/";
+
     /**
      * Constrói uma instância de centro de exposições com os valores por
      * oimissão.
      */
     public CentroExposicoes() {
         registoExposicoes = new RegistoExposicoes();
-        registoMecanismos = new RegistoMecanismos();
         registoRepresentantes = new RegistoRepresentantes();
+        registoMecanismos = new RegistoMecanismos(lerMecanismos());
     }
 
     /**
@@ -41,12 +53,11 @@ public class CentroExposicoes implements Serializable {
      * exposições, o registo de mecanismos e registo de representantes.
      *
      * @param registoExposicoes registo de exposições
-     * @param registoMecanismos registo de mecanismos
      * @param registoRepresentantes registo de representantes
      */
-    public CentroExposicoes(RegistoExposicoes registoExposicoes, RegistoMecanismos registoMecanismos, RegistoRepresentantes registoRepresentantes) {
+    public CentroExposicoes(RegistoExposicoes registoExposicoes, RegistoRepresentantes registoRepresentantes) {
         this.registoExposicoes = new RegistoExposicoes(registoExposicoes);
-        this.registoMecanismos = new RegistoMecanismos(registoMecanismos);
+        this.registoMecanismos = new RegistoMecanismos(lerMecanismos());
         this.registoRepresentantes = new RegistoRepresentantes(registoRepresentantes);
     }
 
@@ -116,6 +127,54 @@ public class CentroExposicoes implements Serializable {
         this.registoRepresentantes = new RegistoRepresentantes(registoRepresentantes);
     }
 
+    private List<MecanismoAtribuicao> lerMecanismos() {
+
+        List<MecanismoAtribuicao> listaMecanismos = new ArrayList<>();
+
+        JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
+
+        try {
+
+            Files.walk(Paths.get(DIR_MECANISMOS)).forEach(filePath -> {
+
+                if (Files.isRegularFile(filePath)) {
+                    System.out.println(filePath);
+                    
+                    String extension = filePath.toString().substring(filePath.toString().indexOf('.'));
+                    
+                    if (extension.equals(".java")) {
+                        int isCompiled = javac.run(null, null, null, filePath.toString());
+                        if (isCompiled == 0) {
+                            System.out.println("Compilado com sucesso");
+
+                            String caminhoSemExtensao = filePath.toString().substring(0, filePath.toString().indexOf('.'));
+                            String caminho = caminhoSemExtensao.substring(4).replace('/', '.');
+
+                            try {
+
+                                Class cls = Class.forName(caminho);
+                                Object objeto = (Object) cls.newInstance();
+                                listaMecanismos.add((MecanismoAtribuicao) objeto);
+                                
+                                File classFile = new File(caminhoSemExtensao.concat(".class"));
+                                
+                                Files.delete(classFile.toPath());
+
+                            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException ex) {
+                                // TODO
+                                System.out.println(ex.getMessage());
+                            }
+                        }
+                    }
+                }
+            });
+        } catch (IOException ex) {
+            // TODO
+            System.out.println(ex.getMessage());
+        }
+        return listaMecanismos;
+    }
+
     /**
      * Gera uma representação textual do centro de exposições.
      *
@@ -143,5 +202,4 @@ public class CentroExposicoes implements Serializable {
 
         return registoExposicoes.equals(outroCentroExposicoes.registoExposicoes) && registoMecanismos.equals(outroCentroExposicoes.registoMecanismos);
     }
-
 }

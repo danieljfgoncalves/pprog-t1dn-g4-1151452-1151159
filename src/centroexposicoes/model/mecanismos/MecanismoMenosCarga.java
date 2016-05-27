@@ -23,9 +23,9 @@ import javafx.util.Pair;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Mecanismo2 implements MecanismoAtribuicao {
+public class MecanismoMenosCarga implements MecanismoAtribuicao {
 
-    public Mecanismo2() {
+    public MecanismoMenosCarga() {
     }
 
     private void definirAtribuicoes(List<Pair<Fae, Integer>> listaFaesEcarga) {

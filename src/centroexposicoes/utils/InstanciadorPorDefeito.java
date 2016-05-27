@@ -96,17 +96,15 @@ public class InstanciadorPorDefeito {
         listaExposicoes.add(e1);
         listaExposicoes.add(e2);
 
-        List<MecanismoAtribuicao> listaMecanismos = new ArrayList();
-        listaMecanismos.add(null);
-        RegistoMecanismos registoMecanismos = new RegistoMecanismos(listaMecanismos);
-
         RegistoExposicoes registoExposicoes = new RegistoExposicoes(listaExposicoes);
 
         List<Representante> lr = new ArrayList<>();
         lr.add(new Representante(new Utilizador("Bob", "email", "ivo", "pass")));
         RegistoRepresentantes registoRepresentantes = new RegistoRepresentantes(lr);
 
-        return new CentroExposicoes(registoExposicoes, registoMecanismos, registoRepresentantes);
+        CentroExposicoes centroExposicoes = new CentroExposicoes(registoExposicoes, registoRepresentantes);
+        
+        return centroExposicoes;
 
     }
 }

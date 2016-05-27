@@ -22,7 +22,7 @@ import centroexposicoes.model.RegistoMecanismos;
 import centroexposicoes.model.RegistoRepresentantes;
 import centroexposicoes.model.Representante;
 import centroexposicoes.model.Utilizador;
-import centroexposicoes.model.mecanismos.Mecanismo2;
+import centroexposicoes.model.mecanismos.MecanismoMenosCarga;
 import centroexposicoes.utils.Data;
 import centroexposicoes.utils.InstanciadorPorDefeito;
 import java.util.ArrayList;
