@@ -68,7 +68,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     private JTextField txtAreaExpositor;
     private JTextField txtNumConvites;
 
-    private static final Dimension LBL_TAMANHO = new Dimension(94, 16);
+    final Dimension LBL_TAMANHO = new Dimension(94, 16);
 
     final Dimension JANELA_TAMANHO = new Dimension(1200, 600);
     final int MARGEM_S_CAMPO = 0, MARGEM_I_CAMPO = 0,
