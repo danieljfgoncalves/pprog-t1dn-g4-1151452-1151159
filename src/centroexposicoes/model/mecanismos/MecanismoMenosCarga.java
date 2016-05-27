@@ -27,9 +27,6 @@ import javafx.util.Pair;
 public class MecanismoMenosCarga implements MecanismoAtribuicao, Serializable {
 
     private static final String DESCRICAO_MECANISMO = "Atribuição por menos carga";
-    
-    public MecanismoMenosCarga() {
-    }
 
     private void definirAtribuicoes(List<Pair<Fae, Integer>> listaFaesEcarga) {
 
