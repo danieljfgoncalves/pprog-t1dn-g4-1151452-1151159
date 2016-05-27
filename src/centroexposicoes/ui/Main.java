@@ -4,7 +4,7 @@
 package centroexposicoes.ui;
 
 import centroexposicoes.model.CentroExposicoes;
-import centroexposicoes.model.FicheiroCentroExposicoes;
+import centroexposicoes.utils.FicheiroCentroExposicoes;
 
 /**
  * Classe para o arranque da aplicação.
@@ -20,21 +20,20 @@ public class Main {
      * @param args argumentos da linha de comandos
      */
     public static void main(String[] args) {
-        FicheiroCentroExposicoes ficheiroCentroExposicoes = new FicheiroCentroExposicoes();
 
-        CentroExposicoes centroExposicoes = ficheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
+        CentroExposicoes centroExposicoes = FicheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
 
         if (centroExposicoes == null) {
             //TODO se não for possível ler a partir do ficheiro binário, ler apartir do ficheiro de texto.
             if (false) { //se lido com sucesso do ficheiro txt.
                 //TODO ler apartir do ficheiro de texto
             } else {
-                System.out.printf("Guardou? %s%n%n", ficheiroCentroExposicoes.guardarCentroDefault(FicheiroCentroExposicoes.NOME));
-                centroExposicoes = ficheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
+                System.out.printf("Guardou? %s%n%n", FicheiroCentroExposicoes.guardarCentroDefault(FicheiroCentroExposicoes.NOME));
+                centroExposicoes = FicheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
             }
         }
 
-        new LoginUI(centroExposicoes, ficheiroCentroExposicoes);
+        new LoginUI(centroExposicoes);
     }
 
 }

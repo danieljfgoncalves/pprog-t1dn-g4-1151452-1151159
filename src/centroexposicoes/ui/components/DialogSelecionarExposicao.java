@@ -5,15 +5,10 @@ package centroexposicoes.ui.components;
 
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
-import centroexposicoes.model.FicheiroCentroExposicoes;
-import centroexposicoes.model.Representante;
-import centroexposicoes.ui.LoginUI;
-import centroexposicoes.ui.RegistarCandidaturaUI;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -37,7 +32,6 @@ import javax.swing.event.ListSelectionListener;
 public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecionavel> extends JDialog {
 
     private CentroExposicoes centroExposicoes;
-    private FicheiroCentroExposicoes ficheiroCE;
     
     /**
      * Janela que instância o diálogo.
@@ -65,11 +59,10 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
     /**
      * Constrói um diálogo para selecionar uma exposição.
      */
-    public DialogSelecionarExposicao(T framePai, List<Exposicao> listaExposicoes, CentroExposicoes centroExposicoes, FicheiroCentroExposicoes ficheiroCE) {
+    public DialogSelecionarExposicao(T framePai, List<Exposicao> listaExposicoes, CentroExposicoes centroExposicoes) {
         super(framePai, TITULO, true);
 
         this.centroExposicoes = centroExposicoes;
-        this.ficheiroCE = ficheiroCE;
         
         this.framePai = framePai;
         this.listaExposicoes = listaExposicoes;
@@ -181,7 +174,6 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
             public void actionPerformed(ActionEvent e) {
                 
                 dispose();
-                new LoginUI(centroExposicoes, ficheiroCE);
             }
         });
         return btn;

@@ -1,8 +1,9 @@
 /*
  * Fornece as classes que contém o modelo logístico de um centro de exposições.
  */
-package centroexposicoes.model;
+package centroexposicoes.utils;
 
+import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.utils.InstanciadorPorDefeito;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,19 +25,13 @@ public class FicheiroCentroExposicoes {
     public static final String NOME = "CentroExposicoes.bin";
 
     /**
-     * Constrói uma instância de FicheiroCentroExposicoes por defeito.
-     */
-    public FicheiroCentroExposicoes() {
-    }
-
-    /**
      * Lê um ficheiro binário com o centro de exposições e devolve o centro de
      * exposições.
      *
      * @param nomeFicheiro nome do ficheiro a ler
      * @return centro de exposições
      */
-    public CentroExposicoes ler(String nomeFicheiro) {
+    public static CentroExposicoes ler(String nomeFicheiro) {
         CentroExposicoes centroExposicoes;
         try {
             ObjectInputStream in = new ObjectInputStream(
@@ -59,7 +54,7 @@ public class FicheiroCentroExposicoes {
      * @param centroExposicoes centro de exposições
      * @return true se for guardado com êxito, false caso contrário
      */
-    public boolean guardar(String nomeFicheiro, CentroExposicoes centroExposicoes) {
+    public static boolean guardar(String nomeFicheiro, CentroExposicoes centroExposicoes) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(
                     new FileOutputStream(nomeFicheiro));
@@ -81,7 +76,7 @@ public class FicheiroCentroExposicoes {
      * @param nomeFicheiro nome do ficheiro binário
      * @return true se foi gerado com sucesso, false caso contrário.
      */
-    public boolean guardarCentroDefault(String nomeFicheiro) {
+    public static boolean guardarCentroDefault(String nomeFicheiro) {
 
         CentroExposicoes centroExposicoes = InstanciadorPorDefeito.getCentroExposicoesPorDefeito();
 

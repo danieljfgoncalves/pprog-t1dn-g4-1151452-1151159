@@ -46,10 +46,12 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
 
     private JButton botaoVerCandidatura;
     private JButton botaoAvaliarCandidatura;
-    
+
     private static final Dimension DIMENSAO_JANELA = new Dimension(600, 400);
 
     public AvaliarCandidaturaUI(CentroExposicoes centroExposicoes, Fae fae) {
+        super(centroExposicoes);
+
         this.controller = new AvaliarCandidaturasController(centroExposicoes, fae);
         this.listaExposicoes = controller.getListaExposicoesDoFae();
 
@@ -83,7 +85,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         jListaExposicoes = new JList();
         jListaExposicoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jListaExposicoes.setModel(new ModelListExposicoes(listaExposicoes));
-        
+
         jListaExposicoes.addListSelectionListener(new ListSelectionListener() {
 
             @Override
@@ -92,7 +94,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
                 jListaAtribuicoes.setModel(new ModelListAtribuicoes(listaAtribuicoes));
             }
         });
-        
+
         JScrollPane jScrollExposicoes = new JScrollPane(jListaExposicoes);
 
         painelExposicoes.add(labelTitulo, BorderLayout.NORTH);
@@ -107,7 +109,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         JLabel labelTitulo = new JLabel("Selecione uma atribuição:", SwingConstants.CENTER);
         jListaAtribuicoes = new JList();
         jListaAtribuicoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
         jListaAtribuicoes.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -115,7 +117,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
                 botaoAvaliarCandidatura.setEnabled(!jListaAtribuicoes.isSelectionEmpty());
             }
         });
-        
+
         JScrollPane jScrollAtribuicoes = new JScrollPane(jListaAtribuicoes);
 
         painelAtribuicoes.add(labelTitulo, BorderLayout.NORTH);
@@ -177,9 +179,8 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
 
         return botaoSair;
     }
-    
-    public boolean registaAvaliacao(Avaliacao.TipoAvaliacao avaliacao, String textoJustificativo)
-    {
+
+    public boolean registaAvaliacao(Avaliacao.TipoAvaliacao avaliacao, String textoJustificativo) {
         controller.setAvaliacao(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()), avaliacao, textoJustificativo);
         return controller.registaAvaliacao();
     }

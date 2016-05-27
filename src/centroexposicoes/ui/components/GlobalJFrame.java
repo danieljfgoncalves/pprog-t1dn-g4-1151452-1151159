@@ -3,7 +3,8 @@
  */
 package centroexposicoes.ui.components;
 
-import java.awt.Dimension;
+import centroexposicoes.model.CentroExposicoes;
+import centroexposicoes.utils.FicheiroCentroExposicoes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -24,8 +25,15 @@ public class GlobalJFrame extends JFrame {
      */
     private static final String APPLICATION_WINDOW_TITLE = "Centro de Exposições ISEP v0.1";
 
-    public GlobalJFrame() {
+    /**
+     * Centro de Exposições.
+     */
+    private CentroExposicoes centroExposicoes;
+
+    public GlobalJFrame(CentroExposicoes centroExposicoes) {
         super(APPLICATION_WINDOW_TITLE);
+
+        this.centroExposicoes = centroExposicoes;
 
         setJMenuBar(criarGlobalJMenuBar());
 
@@ -53,5 +61,6 @@ public class GlobalJFrame extends JFrame {
     private void sair() {
         //TODO guardar ficheiro bin. Possível diálogo?
         dispose();
+        FicheiroCentroExposicoes.guardar(FicheiroCentroExposicoes.NOME, centroExposicoes);
     }
 }

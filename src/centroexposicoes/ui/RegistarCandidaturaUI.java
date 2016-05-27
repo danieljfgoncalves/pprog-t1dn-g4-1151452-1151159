@@ -7,7 +7,6 @@ import centroexposicoes.controller.RegistarCandidaturaController;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
-import centroexposicoes.model.FicheiroCentroExposicoes;
 import centroexposicoes.model.Representante;
 import centroexposicoes.ui.components.DialogNovoProduto;
 import centroexposicoes.ui.components.DialogSelecionarExposicao;
@@ -16,19 +15,14 @@ import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModeloListProdutos;
 import centroexposicoes.ui.components.ModeloTabelaListaDemonstracao;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.ScrollPane;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -62,7 +56,6 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
     private final RegistarCandidaturaController controller;
     private final CentroExposicoes centroExposicoes;
-    private final FicheiroCentroExposicoes ficheiroCentroExposicoes;
 
     private ModeloListProdutos modeloListProdutos;
     private JList jListProdutos;
@@ -84,16 +77,16 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     final static EmptyBorder PADDING_BORDER = new EmptyBorder(10, 10, 10, 10);
     final Dimension SCROLL_TAMANHO = new Dimension(300, 500);
 
-    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Representante representante, FicheiroCentroExposicoes ficheiroCentroExposicoes) {
+    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Representante representante) {
+        super(centroExposicoes);
 
-        this.ficheiroCentroExposicoes = ficheiroCentroExposicoes;
         this.centroExposicoes = centroExposicoes;
         this.controller = new RegistarCandidaturaController(centroExposicoes);
         this.repSelecionado = representante;
 
         this.listaExposicoes = controller.getExposições();
 
-        new DialogSelecionarExposicao<>(this, this.listaExposicoes, centroExposicoes, ficheiroCentroExposicoes);
+        new DialogSelecionarExposicao<>(this, this.listaExposicoes, centroExposicoes);
         if (this.exposicaoSelecionada == null) {
             dispose();
         } else {
@@ -282,7 +275,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
                     if (confirma == JOptionPane.YES_OPTION) {
                         controller.registaCandidatura();
                         dispose();
-                        new LoginUI(centroExposicoes, ficheiroCentroExposicoes);
+                        new LoginUI(centroExposicoes);
                     }
 
                 } catch (NumberFormatException ex) {
@@ -313,7 +306,7 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new LoginUI(centroExposicoes, ficheiroCentroExposicoes);
+                new LoginUI(centroExposicoes);
 
             }
         });

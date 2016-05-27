@@ -6,7 +6,6 @@ package centroexposicoes.ui;
 import centroexposicoes.controller.AtribuirCandidaturaController;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
-import centroexposicoes.model.FicheiroCentroExposicoes;
 import centroexposicoes.model.MecanismoAtribuicao;
 import centroexposicoes.model.Organizador;
 import centroexposicoes.ui.components.DialogSelecionarExposicao;
@@ -24,18 +23,17 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
     private CentroExposicoes centroExposicoes;
     private AtribuirCandidaturaController controller;
-    private FicheiroCentroExposicoes ficheiroCE;
     private Exposicao exposicaoSelecionada;
     private List<MecanismoAtribuicao> listaMecanismos;
 
-    public AtribuirCandidaturaUI(CentroExposicoes centroExposicoes, Organizador organizador, FicheiroCentroExposicoes ficheiroCE) {
+    public AtribuirCandidaturaUI(CentroExposicoes centroExposicoes, Organizador organizador) {
+        super(centroExposicoes);
 
         this.centroExposicoes = centroExposicoes;
-        this.ficheiroCE = ficheiroCE;
         this.controller = new AtribuirCandidaturaController(centroExposicoes, organizador);
 
         List<Exposicao> listaExposicoes = this.controller.getListaExposicoes(organizador);
-        new DialogSelecionarExposicao<>(this, listaExposicoes, centroExposicoes, ficheiroCE);
+        new DialogSelecionarExposicao<>(this, listaExposicoes, centroExposicoes);
         if (this.exposicaoSelecionada == null) {
             dispose();
         } else {
@@ -55,6 +53,6 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     public static void main(String[] args) {
 
         CentroExposicoes ce = InstanciadorPorDefeito.getCentroExposicoesPorDefeito();
-        new LoginUI(ce, new FicheiroCentroExposicoes());
+        new LoginUI(ce);
     }
 }
