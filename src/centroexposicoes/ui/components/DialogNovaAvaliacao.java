@@ -13,6 +13,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -141,8 +142,16 @@ public class DialogNovaAvaliacao extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 //TODO adicionar avaliação
                 if (botaoRadioAceitar.isSelected() || botaoRadioRecusar.isSelected()) {
-                    framePai.registaAvaliacao(botaoRadioAceitar.isSelected() ? Avaliacao.TipoAvaliacao.Aprovado : Avaliacao.TipoAvaliacao.Rejeitado, txtJustificacao.getText());
-                    dispose();
+                    boolean registaAvaliacao = framePai.registaAvaliacao(botaoRadioAceitar.isSelected() ? Avaliacao.TipoAvaliacao.Aprovado : Avaliacao.TipoAvaliacao.Rejeitado, txtJustificacao.getText());
+                    if (registaAvaliacao) {
+                        dispose();
+                        JOptionPane.showMessageDialog(rootPane, "Candidatura avaliada com sucesso!", 
+                                TITULO, JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Avaliação inválida!", 
+                                TITULO, JOptionPane.WARNING_MESSAGE);
+                    }
+                    
                 }
             }
         });

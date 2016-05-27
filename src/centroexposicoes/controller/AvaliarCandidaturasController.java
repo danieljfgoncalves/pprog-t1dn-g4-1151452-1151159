@@ -54,9 +54,12 @@ public class AvaliarCandidaturasController {
 
     public boolean registaAvaliacao() {
         
-        // CONFIRMAR: Retirar no fae candidatura por avaliar
-        fae.reduzirContCandPorAvaliar();
+        boolean registarAvaliacao = candidatura.adicionarAvaliacao(avaliacao); 
         
-        return candidatura.adicionarAvaliacao(avaliacao);
+        if (registarAvaliacao) {
+            fae.reduzirContCandPorAvaliar();
+        }
+        
+        return registarAvaliacao;
     }
 }

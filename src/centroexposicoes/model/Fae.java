@@ -24,11 +24,28 @@ public class Fae implements Ator, Serializable {
     private int contCandPorAvaliar;
 
     /**
+     * Contador de candidaturas avaliadas.
+     */
+    private int contCandAvaliadas;
+
+    /**
+     * Contador de candidaturas por avaliar por omissão.
+     */
+    private static final int CONT_POR_AVALIAR_POR_OMISSAO = 0;
+
+    /**
+     * Contador de candidaturas avaliadas por omissão.
+     */
+    private static final int CONT_AVALIADAS_POR_OMISSAO = 0;
+
+    /**
      * Constrói uma instância de funcionário de apoio à exposição com os valores
      * por omissão.
      */
     public Fae() {
         utilizadorFae = new Utilizador();
+        contCandPorAvaliar = CONT_POR_AVALIAR_POR_OMISSAO;
+        contCandAvaliadas = CONT_AVALIADAS_POR_OMISSAO;
     }
 
     /**
@@ -39,6 +56,8 @@ public class Fae implements Ator, Serializable {
      */
     public Fae(Utilizador utilizador) {
         utilizadorFae = utilizador;
+        contCandPorAvaliar = CONT_POR_AVALIAR_POR_OMISSAO;
+        contCandAvaliadas = CONT_AVALIADAS_POR_OMISSAO;
     }
 
     /**
@@ -49,6 +68,8 @@ public class Fae implements Ator, Serializable {
      */
     public Fae(Fae fae) {
         utilizadorFae = new Utilizador(fae.utilizadorFae);
+        contCandPorAvaliar = fae.contCandAvaliadas;
+        contCandAvaliadas = fae.contCandPorAvaliar;
     }
 
     /**
@@ -82,19 +103,34 @@ public class Fae implements Ator, Serializable {
     public void setContCandPorAvaliar(int contCandPorAvaliar) {
         this.contCandPorAvaliar = contCandPorAvaliar;
     }
-    
+
+    /**
+     * @return the contCandAvaliadas
+     */
+    public int getContCandAvaliadas() {
+        return contCandAvaliadas;
+    }
+
+    /**
+     * @param contCandAvaliadas the contCandAvaliadas to set
+     */
+    public void setContCandAvaliadas(int contCandAvaliadas) {
+        this.contCandAvaliadas = contCandAvaliadas;
+    }
+
     @Override
     public String getNome() {
 
         return this.utilizadorFae.getNome();
     }
-    
+
     public void aumentarContCandPorAvaliar() {
         this.setContCandPorAvaliar(this.getContCandPorAvaliar() + 1);
-    }   
-    
+    }
+
     public void reduzirContCandPorAvaliar() {
         this.setContCandPorAvaliar(this.getContCandPorAvaliar() - 1);
+        this.setContCandAvaliadas(this.getContCandAvaliadas() + 1);
     }
 
     /**

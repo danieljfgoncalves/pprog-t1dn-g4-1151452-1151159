@@ -9,6 +9,7 @@ import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Fae;
 import centroexposicoes.model.ListaAtribuicoes;
 import centroexposicoes.model.MecanismoAtribuicao;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,8 +24,10 @@ import javafx.util.Pair;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class MecanismoMenosCarga implements MecanismoAtribuicao {
+public class MecanismoMenosCarga implements MecanismoAtribuicao, Serializable {
 
+    private static final String DESCRICAO_MECANISMO = "Atribuição por menos carga";
+    
     public MecanismoMenosCarga() {
     }
 
@@ -88,6 +91,11 @@ public class MecanismoMenosCarga implements MecanismoAtribuicao {
         }
 
         return listaAtribuicoes;
+    }
+
+    @Override
+    public String getDescricao() {
+        return DESCRICAO_MECANISMO;
     }
      
 }

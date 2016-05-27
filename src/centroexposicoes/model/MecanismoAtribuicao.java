@@ -21,4 +21,11 @@ public interface MecanismoAtribuicao
      * @return Atribuições
      */
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao);
+    
+    /**
+     * Devolve a descrição do mecanismo.
+     * 
+     * @return a descrição do mecanismo
+     */
+    public String getDescricao();
 }
