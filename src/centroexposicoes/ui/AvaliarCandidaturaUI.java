@@ -111,8 +111,8 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         jListaAtribuicoes.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                botaoVerCandidatura.setEnabled(true);
-                botaoAvaliarCandidatura.setEnabled(true);
+                botaoVerCandidatura.setEnabled(!jListaAtribuicoes.isSelectionEmpty());
+                botaoAvaliarCandidatura.setEnabled(!jListaAtribuicoes.isSelectionEmpty());
             }
         });
         
