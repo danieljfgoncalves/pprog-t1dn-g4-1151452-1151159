@@ -9,6 +9,7 @@ import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Fae;
 import centroexposicoes.model.ListaAtribuicoes;
 import centroexposicoes.model.MecanismoAtribuicao;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,15 +23,12 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao {
+public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao, Serializable {
 
     /**
      * Descrição reduzida do mecanismo.
      */
-    private static final String DESCRICAO_MECANISMO = "Atribuição quantidade produtos por  experiência";
-
-    public MecanismoProdutosPorExperiencia() {
-    }
+    private static final String DESCRICAO_MECANISMO = "Atribuição quantidade produtos por experiência";
 
     @Override
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao) {
@@ -45,19 +43,17 @@ public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao {
 
         int countAtribuidos = 0;
         for (Candidatura candidatura : listaCandidaturas) {
-
-            if (countAtribuidos > listaFaes.size() - 1) {
-                countAtribuidos = 0;
+            
+            for (int i = 0; i < 2; i++) {
+                if (countAtribuidos > listaFaes.size() - 1) {
+                    countAtribuidos = 0;
+                }
+                Atribuicao atribuicao = registoAtribuicoes.novaAtribuicao(candidatura, listaFaes.get(countAtribuidos));
+                countAtribuidos++;
+                
+                listaAtribuicoes.add(atribuicao);
             }
-            Atribuicao atribuicao1 = registoAtribuicoes.novaAtribuicao(candidatura, listaFaes.get(countAtribuidos));
-            countAtribuidos++;
-
-            //A contagem vai alterar, temos que verificar novamente se o último FAE já passou
-            if (countAtribuidos > listaFaes.size() - 1) {
-                countAtribuidos = 0;
-            }
-            Atribuicao atribuicao2 = registoAtribuicoes.novaAtribuicao(candidatura, listaFaes.get(countAtribuidos));
-            countAtribuidos++;
+            
         }
 
         return listaAtribuicoes;
