@@ -107,18 +107,6 @@ public class AtribuirCandidaturaController {
     }
 
     public static void main(String[] args) {
-
-        
-        CentroExposicoes centroExposicoes = InstanciadorPorDefeito.getCentroExposicoesPorDefeito();
-        
-        AtribuirCandidaturaController controller = new AtribuirCandidaturaController(centroExposicoes, new Organizador());
-        
-        controller.setExposicao(centroExposicoes.getRegistoExposicoes().getListaExposicoes().get(0));
-        controller.setMecanismo(centroExposicoes.getRegistoMecanismos().getListaMecanismos().get(0));
-        
-        List<Atribuicao> laTeste = controller.getListaAtribuicoes();
-        
-        
         
     }
 }

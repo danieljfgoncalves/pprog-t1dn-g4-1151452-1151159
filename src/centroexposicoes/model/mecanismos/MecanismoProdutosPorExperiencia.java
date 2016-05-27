@@ -9,6 +9,7 @@ import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.Fae;
 import centroexposicoes.model.ListaAtribuicoes;
 import centroexposicoes.model.MecanismoAtribuicao;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao {
+public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao, Serializable {
 
     /**
      * Descrição reduzida do mecanismo.
