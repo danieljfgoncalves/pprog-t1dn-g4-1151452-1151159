@@ -51,6 +51,7 @@ public class GlobalJFrame extends JFrame {
     }
 
     private void sair() {
+        //TODO guardar ficheiro bin. Possível diálogo?
         dispose();
     }
 }

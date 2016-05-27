@@ -12,31 +12,29 @@ import centroexposicoes.model.FicheiroCentroExposicoes;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public class Main
-{
+public class Main {
 
     /**
      * Método de arranque.
-     * 
+     *
      * @param args argumentos da linha de comandos
      */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         FicheiroCentroExposicoes ficheiroCentroExposicoes = new FicheiroCentroExposicoes();
-        
+
         CentroExposicoes centroExposicoes = ficheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
-        
+
         if (centroExposicoes == null) {
             //TODO se não for possível ler a partir do ficheiro binário, ler apartir do ficheiro de texto.
-            if (false)  { //se lido com sucesso do ficheiro txt.
+            if (false) { //se lido com sucesso do ficheiro txt.
                 //TODO ler apartir do ficheiro de texto
-            }
-            else{
+            } else {
                 System.out.printf("Guardou? %s%n%n", ficheiroCentroExposicoes.guardarCentroDefault(FicheiroCentroExposicoes.NOME));
+                centroExposicoes = ficheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
             }
         }
-        
+
         new LoginUI(centroExposicoes, ficheiroCentroExposicoes);
     }
-    
+
 }
