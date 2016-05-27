@@ -4,28 +4,12 @@
 package centroexposicoes.controller;
 
 import centroexposicoes.model.Atribuicao;
-import centroexposicoes.model.Avaliacao;
-import centroexposicoes.model.Candidatura;
 import centroexposicoes.model.CentroExposicoes;
-import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
-import centroexposicoes.model.Fae;
 import centroexposicoes.model.ListaAtribuicoes;
-import centroexposicoes.model.ListaCandidaturas;
-import centroexposicoes.model.ListaFaes;
-import centroexposicoes.model.ListaOrganizadores;
-import centroexposicoes.model.Local;
 import centroexposicoes.model.MecanismoAtribuicao;
 import centroexposicoes.model.Organizador;
 import centroexposicoes.model.RegistoExposicoes;
-import centroexposicoes.model.RegistoMecanismos;
-import centroexposicoes.model.RegistoRepresentantes;
-import centroexposicoes.model.Representante;
-import centroexposicoes.model.Utilizador;
-import centroexposicoes.model.mecanismos.MecanismoMenosCarga;
-import centroexposicoes.utils.Data;
-import centroexposicoes.utils.InstanciadorPorDefeito;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -104,9 +88,5 @@ public class AtribuirCandidaturaController {
 
     public void registarAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.registoAtribuicoes.setListaAtribuicoes(listaAtribuicoes);
-    }
-
-    public static void main(String[] args) {
-        
     }
 }

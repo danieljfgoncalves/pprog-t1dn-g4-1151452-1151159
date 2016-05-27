@@ -11,7 +11,6 @@ import centroexposicoes.model.Produto;
 import centroexposicoes.model.RegistoExposicoes;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  * Comunicador entre o UI e Model acerca do registo de candidaturas.
@@ -56,9 +55,6 @@ public class RegistarCandidaturaController {
         registoExposicoes = centroExposicoes.getRegistoExposicoes();
         listaProdutos = new ArrayList<>();
         listaDemonstracoes = new ArrayList<>();
-        
-        String i = JOptionPane.showInputDialog("Numero?");
-        System.out.println(i);
     }
 
     /**
@@ -124,7 +120,7 @@ public class RegistarCandidaturaController {
      * @return candidatura
      */
     public Candidatura getCandidatura() {
-        
+
         return this.candidatura;
     }
 

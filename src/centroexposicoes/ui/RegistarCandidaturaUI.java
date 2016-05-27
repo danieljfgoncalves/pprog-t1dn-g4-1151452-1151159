@@ -413,13 +413,4 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
         exposicaoSelecionada = exposicao;
     }
-
-    /**
-     * Método para testar o UI.
-     *
-     * @param args argumentos da linha de comandos
-     */
-    public static void main(String[] args) {
-
-    }
 }

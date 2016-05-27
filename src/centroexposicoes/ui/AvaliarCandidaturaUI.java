@@ -11,7 +11,6 @@ import centroexposicoes.ui.components.DialogVerCandidatura;
 import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModelListAtribuicoes;
 import centroexposicoes.ui.components.ModelListExposicoes;
-import centroexposicoes.utils.InstanciadorPorDefeito;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -37,6 +36,7 @@ import javax.swing.event.ListSelectionListener;
 public class AvaliarCandidaturaUI extends GlobalJFrame {
 
     private AvaliarCandidaturasController controller;
+    private CentroExposicoes centroExposicoes;
 
     private List<Exposicao> listaExposicoes;
     private JList<Exposicao> jListaExposicoes;
@@ -52,6 +52,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
     public AvaliarCandidaturaUI(CentroExposicoes centroExposicoes, Fae fae) {
         super(centroExposicoes);
 
+        this.centroExposicoes = centroExposicoes;
         this.controller = new AvaliarCandidaturasController(centroExposicoes, fae);
         this.listaExposicoes = controller.getListaExposicoesDoFae();
 
@@ -174,6 +175,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                new LoginUI(centroExposicoes);
             }
         });
 
@@ -183,11 +185,5 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
     public boolean registaAvaliacao(Avaliacao.TipoAvaliacao avaliacao, String textoJustificativo) {
         controller.setAvaliacao(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()), avaliacao, textoJustificativo);
         return controller.registaAvaliacao();
-    }
-
-    public static void main(String[] args) {
-        CentroExposicoes ce = InstanciadorPorDefeito.getCentroExposicoesPorDefeito();
-        Fae f = ce.getRegistoExposicoes().getListaExposicoes().get(0).getListaFaes().getListaFaes().get(0);
-        new AvaliarCandidaturaUI(ce, f);
     }
 }

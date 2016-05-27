@@ -5,6 +5,7 @@ package centroexposicoes.ui.components;
 
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Exposicao;
+import centroexposicoes.ui.LoginUI;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -32,7 +33,7 @@ import javax.swing.event.ListSelectionListener;
 public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecionavel> extends JDialog {
 
     private CentroExposicoes centroExposicoes;
-    
+
     /**
      * Janela que instância o diálogo.
      */
@@ -63,7 +64,7 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
         super(framePai, TITULO, true);
 
         this.centroExposicoes = centroExposicoes;
-        
+
         this.framePai = framePai;
         this.listaExposicoes = listaExposicoes;
 
@@ -146,7 +147,7 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
     private JPanel criarPainelBotoes() {
         this.btnSelExpo = criarBotaoSelecionarExposicao();
         getRootPane().setDefaultButton(this.btnSelExpo);
-        
+
         JButton btnCancelar = criarBotaoCancelar();
 
         JPanel p = new JPanel(new FlowLayout());
@@ -172,8 +173,9 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 dispose();
+                new LoginUI(centroExposicoes);
             }
         });
         return btn;
@@ -195,14 +197,5 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
             }
         });
         return btn;
-    }
-
-    /**
-     * Método para testar o UI.
-     *
-     * @param args argumentos da linha de comandos
-     */
-    public static void main(String[] args) {
-
     }
 }

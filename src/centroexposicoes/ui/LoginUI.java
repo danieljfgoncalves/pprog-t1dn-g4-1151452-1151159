@@ -12,7 +12,6 @@ import centroexposicoes.model.Organizador;
 import centroexposicoes.model.Representante;
 import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModelListAtor;
-import centroexposicoes.utils.InstanciadorPorDefeito;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -300,12 +299,5 @@ public class LoginUI extends GlobalJFrame {
         btnUC5.setEnabled(false);
         btnUC3.setEnabled(false);
         btnUC4.setEnabled(false);
-    }
-
-    public static void main(String[] args) {
-
-        CentroExposicoes ce = InstanciadorPorDefeito.getCentroExposicoesPorDefeito();
-
-        new LoginUI(ce);
     }
 }

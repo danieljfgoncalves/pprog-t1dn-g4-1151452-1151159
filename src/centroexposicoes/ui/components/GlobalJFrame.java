@@ -4,6 +4,7 @@
 package centroexposicoes.ui.components;
 
 import centroexposicoes.model.CentroExposicoes;
+import centroexposicoes.ui.LoginUI;
 import centroexposicoes.utils.FicheiroCentroExposicoes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,12 +56,22 @@ public class GlobalJFrame extends JFrame {
                 sair();
             }
         });
+        menuBar.getMenuItemTerminarSessao().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                terminarSessao();
+            }
+        });
         return menuBar;
     }
 
     private void sair() {
-        //TODO guardar ficheiro bin. Possível diálogo?
         dispose();
         FicheiroCentroExposicoes.guardar(FicheiroCentroExposicoes.NOME, centroExposicoes);
+    }
+
+    private void terminarSessao() {
+        dispose();
+        new LoginUI(centroExposicoes);
     }
 }

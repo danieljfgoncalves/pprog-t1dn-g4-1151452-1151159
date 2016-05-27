@@ -6,23 +6,17 @@ package centroexposicoes.ui;
 import centroexposicoes.controller.AtribuirCandidaturaController;
 import centroexposicoes.model.Atribuicao;
 import centroexposicoes.model.CentroExposicoes;
-import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
 import centroexposicoes.model.MecanismoAtribuicao;
 import centroexposicoes.model.Organizador;
-import static centroexposicoes.ui.RegistarCandidaturaUI.PADDING_BORDER;
 import centroexposicoes.ui.components.DialogSelecionarExposicao;
 import centroexposicoes.ui.components.ExposicaoSelecionavel;
 import centroexposicoes.ui.components.GlobalJFrame;
 import centroexposicoes.ui.components.ModelListMecanismos;
-import centroexposicoes.ui.components.ModeloListProdutos;
 import centroexposicoes.ui.components.ModeloTabelaAtribuicoes;
-import centroexposicoes.utils.InstanciadorPorDefeito;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -238,11 +232,5 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
     public void setExposicao(Exposicao exposicao) {
 
         this.exposicaoSelecionada = exposicao;
-    }
-
-    public static void main(String[] args) {
-
-        CentroExposicoes ce = InstanciadorPorDefeito.getCentroExposicoesPorDefeito();
-        new LoginUI(ce);
     }
 }
