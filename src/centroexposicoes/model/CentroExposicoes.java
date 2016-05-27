@@ -131,39 +131,29 @@ public class CentroExposicoes implements Serializable {
 
         List<MecanismoAtribuicao> listaMecanismos = new ArrayList<>();
 
-        JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
-
         try {
-
             Files.walk(Paths.get(DIR_MECANISMOS)).forEach(filePath -> {
 
                 if (Files.isRegularFile(filePath)) {
                     System.out.println(filePath);
-                    
+
                     String extension = filePath.toString().substring(filePath.toString().indexOf('.'));
-                    
+
                     if (extension.equals(".java")) {
-                        int isCompiled = javac.run(null, null, null, filePath.toString());
-                        if (isCompiled == 0) {
-                            System.out.println("Compilado com sucesso");
+                        String caminhoSemExtensao = filePath.toString().substring(
+                                filePath.toString().indexOf('/') + 1, filePath.toString().indexOf('.'));
 
-                            String caminhoSemExtensao = filePath.toString().substring(0, filePath.toString().indexOf('.'));
-                            String caminho = caminhoSemExtensao.substring(4).replace('/', '.');
+                        String caminho = caminhoSemExtensao.replace('/', '.');
 
-                            try {
+                        try {
 
-                                Class cls = Class.forName(caminho);
-                                Object objeto = (Object) cls.newInstance();
-                                listaMecanismos.add((MecanismoAtribuicao) objeto);
-                                
-                                File classFile = new File(caminhoSemExtensao.concat(".class"));
-                                
-                                Files.delete(classFile.toPath());
+                            Class cls = Class.forName(caminho);
+                            Object objeto = (Object) cls.newInstance();
+                            listaMecanismos.add((MecanismoAtribuicao) objeto);
 
-                            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException ex) {
-                                // TODO
-                                System.out.println(ex.getMessage());
-                            }
+                        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                            // TODO
+                            System.out.println(ex.getMessage());
                         }
                     }
                 }
