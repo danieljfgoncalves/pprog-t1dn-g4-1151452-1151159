@@ -41,12 +41,11 @@ import javax.swing.event.ListSelectionListener;
 public class LoginUI extends GlobalJFrame {
 
     private final CentroExposicoes centroExposicoes;
-    private ListaFaes listaFaes;
-    private ListaOrganizadores listaOrganizadores;
-    private List<Representante> listaRepresentantes;
+    private final ListaFaes listaFaes;
+    private final ListaOrganizadores listaOrganizadores;
+    private final List<Representante> listaRepresentantes;
 
     private JLabel lblLista;
-    private JPanel painelCentro;
     private JList jListAtores;
 
     private JRadioButton btnFae;
@@ -130,9 +129,15 @@ public class LoginUI extends GlobalJFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
-                btnUC4.setEnabled((btnFae.isSelected()));
-                btnUC3.setEnabled((btnOrg.isSelected()));
-                btnUC5.setEnabled((btnRep.isSelected()));
+                if (jListAtores.getSelectedIndex() >= 0) {
+                    btnUC4.setEnabled((btnFae.isSelected()));
+                    btnUC3.setEnabled((btnOrg.isSelected()));
+                    btnUC5.setEnabled((btnRep.isSelected()));
+                } else {
+                    btnUC4.setEnabled(false);
+                    btnUC3.setEnabled(false);
+                    btnUC5.setEnabled(false);
+                }
             }
         });
 
@@ -176,13 +181,8 @@ public class LoginUI extends GlobalJFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 lblLista.setText("Selecione um FAE da lista:");
-
                 jListAtores.setModel(new ModelListAtor(listaFaes.getListaFaes()));
-
-                boolean t = (!jListAtores.isSelectionEmpty());
-
                 disableBotoesUCs();
             }
         });
@@ -238,13 +238,8 @@ public class LoginUI extends GlobalJFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 dispose();
-
                 Organizador org = listaOrganizadores.getListaOrganizadores().get(jListAtores.getSelectedIndex());
-
-                // TODO
-                dispose();
                 new AtribuirCandidaturaUI(centroExposicoes, org);
             }
         });
@@ -260,14 +255,8 @@ public class LoginUI extends GlobalJFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 dispose();
-
                 Fae fae = listaFaes.getListaFaes().get(jListAtores.getSelectedIndex());
-
-                // TODO
-//                new AvaliarCandidaturaUI(centroExposicoes, fae);
-                dispose();
                 new AvaliarCandidaturaUI(centroExposicoes, fae);
             }
         });
@@ -283,11 +272,8 @@ public class LoginUI extends GlobalJFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 dispose();
-
                 Representante rep = listaRepresentantes.get(jListAtores.getSelectedIndex());
-
                 new RegistarCandidaturaUI(centroExposicoes, rep);
             }
         });

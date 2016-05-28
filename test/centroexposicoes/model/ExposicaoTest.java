@@ -282,33 +282,4 @@ public class ExposicaoTest {
         assertTrue(exposicao.adicionarCandidatura(candidatura));
     }
 
-//    /**
-//     * Test of toString method, of class Exposicao.
-//     */
-//    @Test
-//    public void testToString() {
-//        System.out.println("toString");
-//        Exposicao instance = new Exposicao();
-//        String expResult = "";
-//        String result = instance.toString();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of equals method, of class Exposicao.
-//     */
-//    @Test
-//    public void testEquals() {
-//        System.out.println("equals");
-//        Object outroObjeto = null;
-//        Exposicao instance = new Exposicao();
-//        boolean expResult = false;
-//        boolean result = instance.equals(outroObjeto);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
 }

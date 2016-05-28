@@ -46,7 +46,9 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
      * Tabela cmo as exposições.
      */
     private JTable listaExposicoesJTable;
-
+    /**
+     * Botão selecionar exposição.
+     */
     private JButton btnSelExpo;
     /**
      * Título da janela.
@@ -59,6 +61,10 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
 
     /**
      * Constrói um diálogo para selecionar uma exposição.
+     *
+     * @param framePai frame pai
+     * @param listaExposicoes lista de exposições
+     * @param centroExposicoes centro de exposições
      */
     public DialogSelecionarExposicao(T framePai, List<Exposicao> listaExposicoes, CentroExposicoes centroExposicoes) {
         super(framePai, TITULO, true);
@@ -122,8 +128,11 @@ public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecio
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
-
-                btnSelExpo.setEnabled(true);
+                if (listaExposicoesJTable.getSelectedRow() >= 0) {
+                    btnSelExpo.setEnabled(true);
+                } else {
+                    btnSelExpo.setEnabled(false);
+                }
             }
         });
 

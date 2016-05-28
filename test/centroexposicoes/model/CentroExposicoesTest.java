@@ -19,25 +19,25 @@ import static org.junit.Assert.*;
  * @author Ivo Ferro 1151159
  */
 public class CentroExposicoesTest {
-    
+
     private CentroExposicoes centroExposicoes;
-    
+
     public CentroExposicoesTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         centroExposicoes = new CentroExposicoes();
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -99,7 +99,7 @@ public class CentroExposicoesTest {
         CentroExposicoes instance = centroExposicoes;
         RegistoExposicoes registoExposicoes = new RegistoExposicoes();
         RegistoMecanismos registoMecanismos = new RegistoMecanismos();
-        String expResult = String.format("CentroExposicoes{registoExposicoes=%s, registoMecanismos=%s}", registoExposicoes, registoMecanismos); 
+        String expResult = String.format("CentroExposicoes{registoExposicoes=%s, registoMecanismos=%s}", registoExposicoes, registoMecanismos);
         String result = instance.toString();
         assertEquals(expResult, result);
     }
@@ -115,31 +115,4 @@ public class CentroExposicoesTest {
         assertTrue(instance.equals(outroObjeto));
     }
 
-    /**
-     * Test of getRegistoRepresentantes method, of class CentroExposicoes.
-     */
-    @Test
-    public void testGetRegistoRepresentantes() {
-        System.out.println("getRegistoRepresentantes");
-        CentroExposicoes instance = new CentroExposicoes();
-        RegistoRepresentantes expResult = null;
-        RegistoRepresentantes result = instance.getRegistoRepresentantes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setRegistoRepresentantes method, of class CentroExposicoes.
-     */
-    @Test
-    public void testSetRegistoRepresentantes() {
-        System.out.println("setRegistoRepresentantes");
-        RegistoRepresentantes registoRepresentantes = null;
-        CentroExposicoes instance = new CentroExposicoes();
-        instance.setRegistoRepresentantes(registoRepresentantes);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

@@ -28,11 +28,15 @@ public class Main {
             if (false) { //se lido com sucesso do ficheiro txt.
                 //TODO ler apartir do ficheiro de texto
             } else {
-                System.out.printf("Guardou? %s%n%n", FicheiroCentroExposicoes.guardarCentroDefault(FicheiroCentroExposicoes.NOME));
+                //Caso não consiga ler nem pelo ficheiro binário 
+                //e nem pelo ficheiro de texto, gerar um novo 
+                //ficheiro binário com dados pré-definidos e ler
+                //apartir desse novo ficheiro gerado.
+                FicheiroCentroExposicoes.guardarCentroDefault(FicheiroCentroExposicoes.NOME);
                 centroExposicoes = FicheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
             }
         }
-        
+
         centroExposicoes.setRegistoMecanismos();
         new LoginUI(centroExposicoes);
     }
