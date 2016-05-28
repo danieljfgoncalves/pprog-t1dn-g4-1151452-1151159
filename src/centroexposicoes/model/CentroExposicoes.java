@@ -3,17 +3,12 @@
  */
 package centroexposicoes.model;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
-import static java.nio.file.Files.delete;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import javax.tools.JavaCompiler;
-import javax.tools.ToolProvider;
 
 /**
  * Representa um centro de exposições.
