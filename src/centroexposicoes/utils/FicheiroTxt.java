@@ -149,13 +149,17 @@ public class FicheiroTxt {
 
         String[] listaFaesString = string.split(",");
         for (String faeString : listaFaesString) {
+
             faeString = faeString.replace("u", "").trim();
+            String[] faeAtributos = faeString.split(">");
             try {
 
-                int i = Integer.parseInt(faeString) - 1;
+                int i = Integer.parseInt(faeAtributos[0].trim()) - 1;
                 if (i < listaFuncionarios.size()) {
 
-                    listaFaes.add(new Fae(listaFuncionarios.get(i)));
+                    Fae fae = new Fae(listaFuncionarios.get(i));
+                    fae.setContCandAvaliadas(Integer.parseInt(faeAtributos[1].trim()));
+                    listaFaes.add(fae);
                 }
 
             } catch (Exception ex) {

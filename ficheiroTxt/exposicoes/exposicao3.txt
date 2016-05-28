@@ -7,6 +7,6 @@ SubInicio:2016/6/01,
 SubFim:2016/6/15,
 Porto;
 
-listaFaes=u2,u4,u6,u8,u10,u12,u11,u16,u20;
+listaFaes=u2>10,u4>3,u6>87,u8>340,u10>39,u12>21,u13>122,u16>54,u20>3;
 listaOrganizadores=u15,u9,u19;
 listaDemos=Motas Assim, Motas Assado, Motas Grelhado, Motocross;
