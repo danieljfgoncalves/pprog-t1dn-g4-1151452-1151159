@@ -1,5 +1,5 @@
-/*
- * Fornece as classes que contém o modelo logístico de um centro de exposições.
+/**
+ * Fornece as classes utilitárias para o centro de exposições.
  */
 package centroexposicoes.utils;
 

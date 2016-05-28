@@ -59,6 +59,7 @@ public class DialogVerCandidatura extends JDialog {
      * Constrói um diálogo ver candidatura recebendo o frame pai.
      *
      * @param framePai frame pai
+     * @param candidatura candidatura a visualizar
      */
     public DialogVerCandidatura(AvaliarCandidaturaUI framePai, Candidatura candidatura) {
         super(framePai, TITULO, true);
@@ -92,29 +93,29 @@ public class DialogVerCandidatura extends JDialog {
      */
     private JPanel criarPainelCampos() {
         JPanel painelCampos = new JPanel(new GridLayout(3, 1));
-        
+
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
-        JLabel labelNomeEmpresa = new JLabel("Nome Empresa: " +  candidatura.getNomeEmpresa());
+        JLabel labelNomeEmpresa = new JLabel("Nome Empresa: " + candidatura.getNomeEmpresa());
         JLabel labelTelemovel = new JLabel("Telemóvel: " + candidatura.getTelemovel());
         p1.add(labelNomeEmpresa);
         p1.add(labelTelemovel);
-        
+
         JPanel p2 = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
         JLabel labelMorada = new JLabel("Morada: " + candidatura.getMorada());
         p2.add(labelMorada);
-        
+
         JPanel p3 = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
         JLabel labelAreaExpositor = new JLabel(String.format("Área expositor: %.2f", candidatura.getAreaExpositor()));
         JLabel labelNumeroConvites = new JLabel("Número de convites: " + candidatura.getNumeroConvites());
         p3.add(labelAreaExpositor);
         p3.add(labelNumeroConvites);
-        
+
         painelCampos.add(p1);
         painelCampos.add(p2);
         painelCampos.add(p3);
-        
+
         painelCampos.setBorder(BorderFactory.createTitledBorder("Dados"));
-        
+
         return painelCampos;
     }
 
@@ -132,6 +133,11 @@ public class DialogVerCandidatura extends JDialog {
         return painelTabelasBotoes;
     }
 
+    /**
+     * Criar o painel para as tabelas.
+     *
+     * @return painel das tabelas
+     */
     private JPanel criarPainelTabelas() {
         JPanel painelTabelas = new JPanel(new GridLayout(1, 2, 10, 0));
 
@@ -141,6 +147,11 @@ public class DialogVerCandidatura extends JDialog {
         return painelTabelas;
     }
 
+    /**
+     * Criar o botão regressar.
+     *
+     * @return botão regressar.
+     */
     private JButton criarBotãoRegressar() {
         JButton botaoRegressar = new JButton("Regressar");
 
@@ -154,6 +165,11 @@ public class DialogVerCandidatura extends JDialog {
         return botaoRegressar;
     }
 
+    /**
+     * Criar o painel para a tabela produtos.
+     *
+     * @return painel para a tabela produtos.
+     */
     private JPanel criarPainelTabelaProdutos() {
         JPanel painelProdutos = new JPanel(new BorderLayout(0, 5));
 
@@ -161,15 +177,20 @@ public class DialogVerCandidatura extends JDialog {
         jListaProdutos = new JList();
         jListaProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jListaProdutos.setModel(new ModelListProdutosSimples(candidatura.getListaProdutos()));
-        
+
         JScrollPane jScrollProdutos = new JScrollPane(jListaProdutos);
 
         painelProdutos.add(labelTitulo, BorderLayout.NORTH);
         painelProdutos.add(jScrollProdutos, BorderLayout.CENTER);
-        
+
         return painelProdutos;
     }
 
+    /**
+     * Cria o painel para a tabela demonstrações.
+     *
+     * @return painel para a tabela demonstrações
+     */
     private JPanel criarPainelTabelaDemonstracoes() {
         JPanel painelDemonstracoes = new JPanel(new BorderLayout(0, 5));
 
@@ -177,12 +198,12 @@ public class DialogVerCandidatura extends JDialog {
         jListaDemonstracoes = new JList();
         jListaDemonstracoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jListaDemonstracoes.setModel(new ModelListDemonstracoes(candidatura.getListaDemonstracoes()));
-        
+
         JScrollPane jScrollDemonstracoes = new JScrollPane(jListaDemonstracoes);
 
         painelDemonstracoes.add(labelTitulo, BorderLayout.NORTH);
         painelDemonstracoes.add(jScrollDemonstracoes, BorderLayout.CENTER);
-        
+
         return painelDemonstracoes;
     }
 

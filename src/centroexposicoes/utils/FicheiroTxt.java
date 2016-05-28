@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Fornece as classes utilitárias para o centro de exposições.
  */
 package centroexposicoes.utils;
 
@@ -34,13 +32,33 @@ import java.util.Scanner;
  */
 public class FicheiroTxt {
 
+    /**
+     * Pasta onde os ficheiros de texto estão guardados.
+     */
     private static final String PASTA_FICHEIROS = "ficheiroTxt/";
+    /**
+     * Ficheiro onde os utilizadores funcionários estão guardados.
+     */
     private static final String FICHEIRO_USERS_FUNCIONARIOS = "registoUtilizadoresFuncionarios.txt";
+    /**
+     * Ficheiro onde os representantes estão guardados.
+     */
     private static final String FICHEIRO_REPS = "registoRepresentantes.txt";
+    /**
+     * Pasta das exposições.
+     */
     private static final String PASTA_EXPOS = "exposicoes/";
 
+    /**
+     * Scanner para o input.
+     */
     private static Scanner input;
 
+    /**
+     * Carega o centro de exposições a partir de ficheiros de texto.
+     *
+     * @return centro de exposições
+     */
     public static CentroExposicoes carregarCentroExposicoes() {
 
         List<Representante> registoReps = carregarReps();
@@ -62,6 +80,11 @@ public class FicheiroTxt {
         return ce;
     }
 
+    /**
+     * Carrega os representantes.
+     *
+     * @return lista de representantes
+     */
     private static List<Representante> carregarReps() {
 
         List<Representante> listaReps = new ArrayList<>();
@@ -96,6 +119,11 @@ public class FicheiroTxt {
         return listaReps;
     }
 
+    /**
+     * Carrega os utilizadores funcionários.
+     *
+     * @return lista de utlizadores
+     */
     private static List<Utilizador> carregarUsersFuncionarios() {
 
         List<Utilizador> listaUtilizadores = new ArrayList<>();
@@ -129,6 +157,12 @@ public class FicheiroTxt {
         return listaUtilizadores;
     }
 
+    /**
+     * Criar o objeto data apartir da sua representação textual.
+     *
+     * @param dataString representação textual da data
+     * @return objeto data
+     */
     private static Data criarData(String dataString) {
 
         String[] dataElementos = dataString.substring(dataString.indexOf(':') + 1).trim().split("/");
@@ -143,6 +177,13 @@ public class FicheiroTxt {
         return data;
     }
 
+    /**
+     * Cria o objecto ListaFaes da lista de utilizadores.
+     *
+     * @param listaFuncionarios lista de utilizadores
+     * @param string texto do ficheiro
+     * @return lista de faes
+     */
     private static ListaFaes criarListaFaes(List<Utilizador> listaFuncionarios, String string) {
 
         List<Fae> listaFaes = new ArrayList<>();
@@ -170,6 +211,13 @@ public class FicheiroTxt {
         return new ListaFaes(listaFaes);
     }
 
+    /**
+     * Cria o objecto ListaOrganizadores da lista de utilizadores.
+     *
+     * @param listaFuncionarios lista de utilizadores
+     * @param string texto do ficheiro
+     * @return lista de organizadores
+     */
     private static ListaOrganizadores criarListaOrganizadores(List<Utilizador> listaFuncionarios, String string) {
 
         List<Organizador> listaOrgs = new ArrayList<>();
@@ -193,6 +241,13 @@ public class FicheiroTxt {
         return new ListaOrganizadores(listaOrgs);
     }
 
+    /**
+     * Cria a candidatura
+     *
+     * @param candidaturaString representação textual da candidatura
+     * @param expo exposição
+     * @return candidatura
+     */
     private static Candidatura criarCandidatura(String candidaturaString, Exposicao expo) {
 
         Candidatura candidatura = new Candidatura();
@@ -225,6 +280,13 @@ public class FicheiroTxt {
         return candidatura;
     }
 
+    /**
+     * Carrega a exposição.
+     *
+     * @param listaFuncionarios lista de utilizadores
+     * @param ficheiro ficheiro da exposição
+     * @return exposição
+     */
     private static Exposicao carregarExposicao(List<Utilizador> listaFuncionarios, File ficheiro) {
 
         Exposicao expo = new Exposicao();

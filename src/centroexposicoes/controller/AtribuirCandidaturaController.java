@@ -44,8 +44,8 @@ public class AtribuirCandidaturaController {
      * Cria uma instância do controller para a atribuição de candidaturas,
      * recebendo o centro de exposições e o organizador.
      *
-     * @param centroExposicoes Centro de Exposições
-     * @param organizador Organizador que iniciou a sessão
+     * @param centroExposicoes centro de exposições
+     * @param organizador organizador que iniciou a sessão
      */
     public AtribuirCandidaturaController(CentroExposicoes centroExposicoes, Organizador organizador) {
 
@@ -53,6 +53,11 @@ public class AtribuirCandidaturaController {
         this.centroExposicoes = centroExposicoes;
     }
 
+    /**
+     * Devolve a lista de exposições do organizador com sessão iniciada.
+     *
+     * @return lista de exposições do organizador
+     */
     public List<Exposicao> getListaExposicoes() {
 
         RegistoExposicoes registoExposicoes = this.centroExposicoes.getRegistoExposicoes();
@@ -60,26 +65,51 @@ public class AtribuirCandidaturaController {
         return registoExposicoes.getListaExposicoesPorOrganizador(this.organizador);
     }
 
+    /**
+     * Define a exposição.
+     *
+     * @param exposicao exposição
+     */
     public void setExposicao(Exposicao exposicao) {
 
         this.exposicao = exposicao;
     }
 
+    /**
+     * Devolve a lista de mecanismos.
+     *
+     * @return lista de mecanismos.
+     */
     public List<MecanismoAtribuicao> getListaMecanismos() {
 
         return this.centroExposicoes.getRegistoMecanismos().getListaMecanismos();
     }
 
+    /**
+     * Define o mecanismo.
+     *
+     * @param mecanismo mecanismo
+     */
     public void setMecanismo(MecanismoAtribuicao mecanismo) {
 
         this.mecanismoSelecionado = mecanismo;
     }
 
+    /**
+     * Devolve a lista de atribuições.
+     *
+     * @return lista de atribuições
+     */
     public List<Atribuicao> getListaAtribuicoes() {
 
         return this.mecanismoSelecionado.getListaAtribuicoes(this.exposicao);
     }
 
+    /**
+     * Regista a lista de atribuições.
+     *
+     * @param listaAtribuicoes lista de atribuições
+     */
     public void registarAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.exposicao.setListaAtribuicoes(new ListaAtribuicoes(listaAtribuicoes));
     }

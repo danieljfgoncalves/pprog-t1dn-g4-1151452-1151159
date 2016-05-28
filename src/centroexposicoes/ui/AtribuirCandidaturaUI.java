@@ -36,27 +36,67 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
+ * Interface gráfica para atribuir candidatura.
  *
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
 public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSelecionavel {
 
-    private CentroExposicoes centroExposicoes;
-    private AtribuirCandidaturaController controller;
+    /**
+     * Centro de exposições.
+     */
+    private final CentroExposicoes centroExposicoes;
+    /**
+     * Controller para atribuir candidatura.
+     */
+    private final AtribuirCandidaturaController controller;
+    /**
+     * Exposição selecionada no UI.
+     */
     private Exposicao exposicaoSelecionada;
+    /**
+     * Lista de mecanismos de atribuição.
+     */
     private List<MecanismoAtribuicao> listaMecanismos;
+    /**
+     * Lista de atribuições.
+     */
     private List<Atribuicao> listaAtribuicoes;
 
+    /**
+     * Lista para os mecanismos.
+     */
     private JList listaMecanismosUI;
+    /**
+     * Botão para gerar.
+     */
     private JButton btnGerar;
+    /**
+     * Tabela de atribuições.
+     */
     private JTable tabelaAtribuicoesUI;
 
+    /**
+     * Dimensão da janela
+     */
     final Dimension JANELA_TAMANHO = new Dimension(800, 600);
+    /**
+     * Margens para o UI.
+     */
     final int MARGEM_S_CAMPO = 0, MARGEM_I_CAMPO = 0,
             MARGEM_E_CAMPO = 10, MARGEM_D_CAMPO = 0;
+    /**
+     * Border para o UI.
+     */
     final static EmptyBorder PADDING_BORDER = new EmptyBorder(10, 10, 10, 10);
 
+    /**
+     * Inicia o UI de atribuir candidaturas.
+     *
+     * @param centroExposicoes centro de exposições
+     * @param organizador organizador
+     */
     public AtribuirCandidaturaUI(CentroExposicoes centroExposicoes, Organizador organizador) {
         super(centroExposicoes);
 
@@ -84,6 +124,9 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
 
     }
 
+    /**
+     * Cria os componentes para o UI.
+     */
     private void criarComponentes() {
 
         setLayout(new BorderLayout(10, 20));
@@ -92,6 +135,11 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         add(criarPainelBotoesConfirmar(), BorderLayout.SOUTH);
     }
 
+    /**
+     * Cria o painel oeste.
+     *
+     * @return painel oeste
+     */
     private JPanel criarPainelOeste() {
 
         JPanel painel = new JPanel(new BorderLayout(10, 10));
@@ -106,6 +154,11 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painel;
     }
 
+    /**
+     * Cria o painel este.
+     *
+     * @return painel este
+     */
     private JPanel criarPainelEste() {
 
         JPanel painel = new JPanel(new GridLayout());
@@ -115,6 +168,11 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painel;
     }
 
+    /**
+     * Criar o painel de mecanismos.
+     *
+     * @return painle de mecanismos
+     */
     private JPanel criarScrollPaneMecanismos() {
 
         JPanel painelScroll = new JPanel(new GridLayout());
@@ -140,6 +198,11 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painelScroll;
     }
 
+    /**
+     * Cria o painel para as atribuições.
+     *
+     * @return painel de atribuições
+     */
     private JPanel criarScrollPaneAtribuicoes() {
 
         JPanel painelScroll = new JPanel(new GridLayout());
@@ -157,14 +220,17 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painelScroll;
     }
 
+    /**
+     * Criar o botão gerar.
+     *
+     * @return botão gerar
+     */
     private JButton criarBotaoGerar() {
         this.btnGerar = new JButton("Gerar Atribuições");
         this.btnGerar.setEnabled(false);
         this.btnGerar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO verificações
-
                 int row = listaMecanismosUI.getSelectedIndex();
                 controller.setMecanismo(listaMecanismos.get(row));
                 listaAtribuicoes = controller.getListaAtribuicoes();
@@ -175,6 +241,11 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return this.btnGerar;
     }
 
+    /**
+     * Criar o painel para o botão confirmar.
+     *
+     * @return panel para o botão confirmar
+     */
     private JPanel criarPainelBotoesConfirmar() {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER));
         p.add(criarBotaoConfirmar());
@@ -183,12 +254,16 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return p;
     }
 
+    /**
+     * Criar o botão confirmar.
+     *
+     * @return botão confirmar
+     */
     private JButton criarBotaoConfirmar() {
         JButton btn = new JButton("Confirmar");
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO verificações
                 try {
                     if (listaAtribuicoes.size() < 1) {
                         throw new IllegalArgumentException("Tem de gerar as atribuições primeiro.");
@@ -216,6 +291,11 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return btn;
     }
 
+    /**
+     * Criar o botão cancelar.
+     *
+     * @return botão cancelar
+     */
     private JButton criarBotaoCancelar() {
 
         JButton btn = new JButton("Cancelar");
@@ -230,6 +310,11 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return btn;
     }
 
+    /**
+     * Define uma exposição.
+     *
+     * @param exposicao exposição
+     */
     @Override
     public void setExposicao(Exposicao exposicao) {
 

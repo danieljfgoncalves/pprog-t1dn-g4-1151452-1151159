@@ -41,27 +41,88 @@ import javax.swing.event.ListSelectionListener;
  */
 public class LoginUI extends GlobalJFrame {
 
+    /**
+     * Centro de exposições.
+     */
     private final CentroExposicoes centroExposicoes;
+    /**
+     * Lista de funcionários de apoio à exposição.
+     */
     private final ListaFaes listaFaes;
+    /**
+     * Lista de organizadores.
+     */
     private final ListaOrganizadores listaOrganizadores;
+    /**
+     * Lista de representantes.
+     */
     private final List<Representante> listaRepresentantes;
 
+    /**
+     * Label da lista de atores.
+     */
     private JLabel lblLista;
+    /**
+     * Lista de atores.
+     */
     private JList jListAtores;
 
+    /**
+     * Botão FAE.
+     */
     private JRadioButton btnFae;
+    /**
+     * Botão organizadores.
+     */
     private JRadioButton btnOrg;
+    /**
+     * Botão representante.
+     */
     private JRadioButton btnRep;
 
+    /**
+     * Botão UC3 - Atribuir exposição.
+     */
     private JButton btnUC3;
+    /**
+     * Botão UC4 - Avaliar candidatura.
+     */
     private JButton btnUC4;
+    /**
+     * Botão UC5 - Criar candidatura.
+     */
     private JButton btnUC5;
 
-    private static final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
-    private static final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
+    /**
+     * Margem superior.
+     */
+    private static final int MARGEM_SUPERIOR = 20;
+    /**
+     * Margem inferior.
+     */
+    private static final int MARGEM_INFERIOR = 20;
+    /**
+     * Margem esquerda.
+     */
+    private static final int MARGEM_ESQUERDA = 20;
+    /**
+     * Margem direita.
+     */
+    private static final int MARGEM_DIREITA = 20;
+    /**
+     * Dimensão da janela.
+     */
     private static final Dimension DIMENSAO_JANELA = new Dimension(600, 400);
+    /**
+     * Border para o UI.
+     */
     final static EmptyBorder PADDING_BORDER = new EmptyBorder(10, 10, 10, 10);
 
+    /**
+     * Inicia o UI de login.
+     *
+     * @param centroExposicoes centro de exposições
+     */
     public LoginUI(CentroExposicoes centroExposicoes) {
         super(centroExposicoes);
 
@@ -84,6 +145,9 @@ public class LoginUI extends GlobalJFrame {
         setVisible(true);
     }
 
+    /**
+     * Criar os componentes para o UI.
+     */
     private void criarComponentes() {
 
         add(criarPainelNorte(), BorderLayout.NORTH);
@@ -91,6 +155,11 @@ public class LoginUI extends GlobalJFrame {
         add(criarPainelSul(), BorderLayout.SOUTH);
     }
 
+    /**
+     * Criar o painel norte.
+     *
+     * @return painel norte
+     */
     private JPanel criarPainelNorte() {
 
         JPanel pNorte = new JPanel(new BorderLayout());
@@ -119,6 +188,11 @@ public class LoginUI extends GlobalJFrame {
         return pNorte;
     }
 
+    /**
+     * Criar o painel centro.
+     *
+     * @return painel centro
+     */
     private JPanel criarPainelCentro() {
 
         JPanel painelCentro = new JPanel(new BorderLayout());
@@ -157,6 +231,11 @@ public class LoginUI extends GlobalJFrame {
         return painelCentro;
     }
 
+    /**
+     * Criar o painel sul.
+     *
+     * @return painel sul
+     */
     private JPanel criarPainelSul() {
 
         JPanel pSul = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -178,6 +257,11 @@ public class LoginUI extends GlobalJFrame {
         return pSul;
     }
 
+    /**
+     * Criar o botão radio para o FAE.
+     *
+     * @return botão radio para o FAE
+     */
     private JRadioButton criarRadioBtnFae() {
 
         JRadioButton rBtnFAE = new JRadioButton("FAE");
@@ -195,6 +279,11 @@ public class LoginUI extends GlobalJFrame {
         return rBtnFAE;
     }
 
+    /**
+     * Criar o botão radio para o organizador.
+     *
+     * @return botão radio para o organizador
+     */
     private JRadioButton criarRadioBtnOrg() {
 
         JRadioButton rBtnOrganizador = new JRadioButton("Organizador");
@@ -215,6 +304,11 @@ public class LoginUI extends GlobalJFrame {
         return rBtnOrganizador;
     }
 
+    /**
+     * Criar o botão radio para o representante.
+     *
+     * @return botão radio para o representante
+     */
     private JRadioButton criarRadioBtnRep() {
 
         JRadioButton rBtnRepresentante = new JRadioButton("Representante");
@@ -235,6 +329,11 @@ public class LoginUI extends GlobalJFrame {
         return rBtnRepresentante;
     }
 
+    /**
+     * Criar o botão para o UC3.
+     *
+     * @return botão para o UC3
+     */
     private JButton criarBtnUC3() {
 
         JButton btn = new JButton("UC3 - Atribuir");
@@ -252,6 +351,11 @@ public class LoginUI extends GlobalJFrame {
         return btn;
     }
 
+    /**
+     * Criar o botão para o UC4.
+     *
+     * @return botão para o UC4
+     */
     private JButton criarBtnUC4() {
 
         JButton btn = new JButton("UC4 - Avaliar");
@@ -269,6 +373,11 @@ public class LoginUI extends GlobalJFrame {
         return btn;
     }
 
+    /**
+     * Cria o botão para o UC5.
+     *
+     * @return botão para o UC5
+     */
     private JButton criarBtnUC5() {
 
         JButton btn = new JButton("UC5 - Registar");
@@ -286,6 +395,9 @@ public class LoginUI extends GlobalJFrame {
         return btn;
     }
 
+    /**
+     * Desativa os botões.
+     */
     private void disableBotoesUCs() {
         btnUC5.setEnabled(false);
         btnUC3.setEnabled(false);

@@ -32,17 +32,17 @@ public class ListaOrganizadores implements Serializable {
      * Constrói uma instância de lista de Organizadores recebendo uma lista de
      * Organizadores.
      *
-     * @param listaOrganizadores lista de Organizadores.
+     * @param listaOrganizadores lista de organizadores
      */
     public ListaOrganizadores(List<Organizador> listaOrganizadores) {
         this.listaOrganizadores = new ArrayList<>(listaOrganizadores);
     }
 
     /**
-     * Constrói uma instância de lista de Organizadores copiando uma lista de
+     * Constrói uma instância de lista de organizadores copiando uma lista de
      * Organizadores.
      *
-     * @param listaOrganizadores lista de Organizadores.
+     * @param listaOrganizadores lista de organizadores
      */
     public ListaOrganizadores(ListaOrganizadores listaOrganizadores) {
         this.listaOrganizadores = new ArrayList<>(listaOrganizadores.listaOrganizadores);
@@ -51,7 +51,7 @@ public class ListaOrganizadores implements Serializable {
     /**
      * Devolve a lista de Organizadores.
      *
-     * @return lista de Organizadores.
+     * @return lista de organizadores
      */
     public List<Organizador> getListaOrganizadores() {
         return new ArrayList<>(this.listaOrganizadores);
@@ -60,7 +60,7 @@ public class ListaOrganizadores implements Serializable {
     /**
      * Modifica a lista de Organizadores.
      *
-     * @param listaOrganizadores lista de Organizadores.
+     * @param listaOrganizadores lista de organizadores
      */
     public void setListaOrganizadores(List<Organizador> listaOrganizadores) {
         this.listaOrganizadores = listaOrganizadores;
@@ -71,7 +71,7 @@ public class ListaOrganizadores implements Serializable {
      * Organizadores.
      *
      * @return representação textual de todos os atributos da lista de
-     * Organizadores.
+     * Organizadores
      */
     @Override
     public String toString() {
@@ -88,7 +88,7 @@ public class ListaOrganizadores implements Serializable {
      * Compara se outro objeto é igual a esta ListaOrganizadores.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário
+     * @return true se forem iguais, false caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {

@@ -165,7 +165,7 @@ public class Utilizador implements Serializable {
     /**
      * Gera uma representação textual do utilizador.
      *
-     * @return representação textual do utilizador.
+     * @return representação textual do utilizador
      */
     @Override
     public String toString() {
@@ -176,7 +176,7 @@ public class Utilizador implements Serializable {
      * Compara se outro objeto é igual a este utilizador.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário.
+     * @return true se forem iguais, false caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {

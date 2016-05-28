@@ -12,9 +12,10 @@ import centroexposicoes.model.Exposicao;
  * @author Ivo Ferro 1151159
  */
 public interface ExposicaoSelecionavel {
+
     /**
      * Modifica a exposição selecionada.
-     * 
+     *
      * @param exposicao exposição selecionada.
      */
     public void setExposicao(Exposicao exposicao);

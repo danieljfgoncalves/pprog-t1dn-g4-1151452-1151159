@@ -34,7 +34,7 @@ public class Organizador implements Ator, Serializable {
      * Constroi uma instância de organizador com os valores por recebidos por
      * paramêtros.
      *
-     * @param utilizador dados de utilizador do organizador.
+     * @param utilizador dados de utilizador do organizador
      */
     public Organizador(Utilizador utilizador) {
         this.utilizador = utilizador;
@@ -44,7 +44,7 @@ public class Organizador implements Ator, Serializable {
      * Constroi uma instância de organizador com os valores copiados de outro
      * organizador.
      *
-     * @param outroOrganizador outro organizador que pretende copiar.
+     * @param outroOrganizador outro organizador que pretende copiar
      */
     public Organizador(Organizador outroOrganizador) {
         this.utilizador = outroOrganizador.utilizador;
@@ -53,7 +53,7 @@ public class Organizador implements Ator, Serializable {
     /**
      * Devolve o objeto utilizador do organizador.
      *
-     * @return o objeto utilizador do organizador.
+     * @return o objeto utilizador do organizador
      */
     public Utilizador getUtilizador() {
         return utilizador;
@@ -62,7 +62,7 @@ public class Organizador implements Ator, Serializable {
     /**
      * Modifica o objeto utilizador do organizador.
      *
-     * @param utilizador o objeto utilizador do organizador.
+     * @param utilizador o objeto utilizador do organizador
      */
     public void setUtilizador(Utilizador utilizador) {
         this.utilizador = utilizador;
@@ -71,7 +71,7 @@ public class Organizador implements Ator, Serializable {
     /**
      * Devolve a descrição textual de todos os atributos de um organizador.
      *
-     * @return caraterísticas da candidatura.
+     * @return caraterísticas da candidatura
      */
     @Override
     public String toString() {
@@ -82,7 +82,7 @@ public class Organizador implements Ator, Serializable {
      * Compara se outro objeto é igual a este organzidor.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário.
+     * @return true se forem iguais, false caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {
@@ -98,9 +98,14 @@ public class Organizador implements Ator, Serializable {
         return this.utilizador.equals(outroOrganizador.utilizador);
     }
 
+    /**
+     * Obtém o nome do organizador.
+     *
+     * @return nomde do organizador
+     */
     @Override
     public String getNome() {
-        
+
         return this.utilizador.getNome();
     }
 }

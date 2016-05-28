@@ -26,8 +26,16 @@ import javafx.util.Pair;
  */
 public class MecanismoMenosCarga implements MecanismoAtribuicao, Serializable {
 
+    /**
+     * Curta descrição do mecanismo.
+     */
     private static final String DESCRICAO_MECANISMO = "Atribuição por menos carga";
 
+    /**
+     * Define as atribuições.
+     *
+     * @param listaFaesEcarga lista de faes e carga
+     */
     private void definirAtribuicoes(List<Pair<Fae, Integer>> listaFaesEcarga) {
 
         Comparator criterio = (Comparator<Pair>) (Pair p1, Pair p2) -> {
@@ -47,7 +55,13 @@ public class MecanismoMenosCarga implements MecanismoAtribuicao, Serializable {
         Collections.sort(listaFaesEcarga, criterio);
     }
 
-    private  List<Pair<Fae, Integer>> criarRelacaoFaeCarga(List<Fae> listaFaes) {
+    /**
+     * Cria a relação entre FAE e Carga.
+     *
+     * @param listaFaes lista de faes
+     * @return lista de relação
+     */
+    private List<Pair<Fae, Integer>> criarRelacaoFaeCarga(List<Fae> listaFaes) {
 
         List<Pair<Fae, Integer>> listaFaeCarga = new ArrayList<>();
 
@@ -57,6 +71,12 @@ public class MecanismoMenosCarga implements MecanismoAtribuicao, Serializable {
         return listaFaeCarga;
     }
 
+    /**
+     * Gera uma lista de atribuições.
+     *
+     * @param exposicao exposição
+     * @return atribuições
+     */
     @Override
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao) {
 
@@ -77,11 +97,11 @@ public class MecanismoMenosCarga implements MecanismoAtribuicao, Serializable {
 
             Atribuicao atribuicao = registoAtribuicoes.novaAtribuicao(candidatura, fae);
             if (registoAtribuicoes.validarAtribuicoes(atribuicao)) {
-                
+
                 listaAtribuicoes.add(atribuicao);
                 fae.aumentarContCandPorAvaliar();
                 carga++;
-                
+
                 par = new Pair<>(fae, carga);
                 listaFaesEcarga.set(0, par);
             }
@@ -90,9 +110,14 @@ public class MecanismoMenosCarga implements MecanismoAtribuicao, Serializable {
         return listaAtribuicoes;
     }
 
+    /**
+     * Devolve uma curta descrição do mecanismo.
+     *
+     * @return descrição do mecanismo
+     */
     @Override
     public String getDescricao() {
         return DESCRICAO_MECANISMO;
     }
-     
+
 }
