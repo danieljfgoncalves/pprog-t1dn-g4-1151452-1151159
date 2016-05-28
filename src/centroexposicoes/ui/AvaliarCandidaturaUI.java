@@ -155,7 +155,6 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         botaoVerCandidatura.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO abrir diálogo ver candidatura
                 new DialogVerCandidatura(AvaliarCandidaturaUI.this, controller.getCandidatura(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex())));
             }
         });
@@ -170,7 +169,6 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         botaoAvaliarCandidatura.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO abrir diálogo nova avaliação
                 controller.getCandidatura(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()));
                 new DialogNovaAvaliacao(AvaliarCandidaturaUI.this);
             }
@@ -202,7 +200,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
             jListaAtribuicoes.setModel(new ModelListAtribuicoes(listaAtribuicoes));
             if (removidoComSucesso) {
                 JOptionPane.showMessageDialog(rootPane, "Candidatura avaliada com sucesso!",
-                                "Avaliação concluída", JOptionPane.INFORMATION_MESSAGE);
+                        "Avaliação concluída", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         return registadaComSucesso;

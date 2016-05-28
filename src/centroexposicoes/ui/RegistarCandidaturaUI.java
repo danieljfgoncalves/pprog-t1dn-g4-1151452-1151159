@@ -245,7 +245,6 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO verificações
                 try {
                     if (txtNomeEmpresa.getText().isEmpty()
                             || txtNomeEmpresa.getText().isEmpty()

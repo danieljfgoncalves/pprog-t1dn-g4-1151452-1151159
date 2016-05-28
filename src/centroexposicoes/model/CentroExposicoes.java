@@ -4,7 +4,6 @@
 package centroexposicoes.model;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -136,7 +135,7 @@ public class CentroExposicoes implements Serializable {
                     String caminho = filePath.toString().replaceAll("\\/|\\\\", ".");
                     caminho = caminho.replace("src.", "");
                     caminho = caminho.replace(".java", "");
-                    
+
                     try {
                         Class cls = Class.forName(caminho.trim());
                         Object objeto = (Object) cls.newInstance();

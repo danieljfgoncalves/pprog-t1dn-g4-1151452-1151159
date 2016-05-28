@@ -4,7 +4,6 @@
 package centroexposicoes.utils;
 
 import centroexposicoes.model.CentroExposicoes;
-import centroexposicoes.utils.InstanciadorPorDefeito;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

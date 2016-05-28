@@ -29,6 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -121,6 +122,7 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
                 "Escolha o mecanismo pretendido:", TitledBorder.LEFT, TitledBorder.TOP));
 
         this.listaMecanismosUI = new JList(new ModelListMecanismos(this.listaMecanismos));
+        this.listaMecanismosUI.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.listaMecanismosUI.addListSelectionListener(new ListSelectionListener() {
 
             @Override
