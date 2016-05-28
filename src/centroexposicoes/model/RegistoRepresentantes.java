@@ -38,8 +38,8 @@ public class RegistoRepresentantes implements Serializable {
     }
 
     /**
-     * Constrói uma instância de registo de representantes copiando outro registo de
-     * representantes.
+     * Constrói uma instância de registo de representantes copiando outro
+     * registo de representantes.
      *
      * @param registoRepresentantes registo de representantes a ser copiado
      */
@@ -87,7 +87,7 @@ public class RegistoRepresentantes implements Serializable {
      * Compara se outro objeto é igual a este RegistoRepresentantes.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário
+     * @return true se forem iguais, false caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {

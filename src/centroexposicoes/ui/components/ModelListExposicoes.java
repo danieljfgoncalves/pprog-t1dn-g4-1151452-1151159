@@ -15,17 +15,36 @@ import javax.swing.AbstractListModel;
  */
 public class ModelListExposicoes extends AbstractListModel {
 
+    /**
+     * Lista de exposições.
+     */
     private final List<Exposicao> listaExposicoes;
 
+    /**
+     * Cria uma instância de ModelListExposicoes.
+     *
+     * @param listaExposicoes lista de exposições
+     */
     public ModelListExposicoes(List<Exposicao> listaExposicoes) {
         this.listaExposicoes = listaExposicoes;
     }
 
+    /**
+     * Obtém o número de elementos da lista.
+     *
+     * @return número de elementos
+     */
     @Override
     public int getSize() {
         return this.listaExposicoes.size();
     }
 
+    /**
+     * Obtém o elemento da lista no índice indicado.
+     *
+     * @param index índice da lista
+     * @return elemento da lista.
+     */
     @Override
     public Object getElementAt(int index) {
         return String.format("%s (%s)", this.listaExposicoes.get(index).getTitulo(), this.listaExposicoes.get(index).getDataInicio());

@@ -44,8 +44,8 @@ public class AtribuirCandidaturaController {
      * Cria uma instância do controller para a atribuição de candidaturas,
      * recebendo o centro de exposições e o organizador.
      *
-     * @param centroExposicoes Centro de Exposições
-     * @param organizador Organizador que iniciou a sessão
+     * @param centroExposicoes centro de exposições
+     * @param organizador organizador que iniciou a sessão
      */
     public AtribuirCandidaturaController(CentroExposicoes centroExposicoes, Organizador organizador) {
 
@@ -54,9 +54,9 @@ public class AtribuirCandidaturaController {
     }
 
     /**
-     * Devolve a lista de exposições.
+     * Devolve a lista de exposições do organizador com sessão iniciada.
      *
-     * @return a lista de exposições
+     * @return lista de exposições do organizador
      */
     public List<Exposicao> getListaExposicoes() {
 
@@ -66,9 +66,9 @@ public class AtribuirCandidaturaController {
     }
 
     /**
-     * Modifica a exposicão.
+     * Define a exposição.
      *
-     * @param exposicao a exposição
+     * @param exposicao exposição
      */
     public void setExposicao(Exposicao exposicao) {
 
@@ -78,7 +78,7 @@ public class AtribuirCandidaturaController {
     /**
      * Devolve a lista de mecanismos.
      *
-     * @return a lista de mecanismos
+     * @return lista de mecanismos.
      */
     public List<MecanismoAtribuicao> getListaMecanismos() {
 
@@ -86,9 +86,9 @@ public class AtribuirCandidaturaController {
     }
 
     /**
-     * Modifica o mecanismo.
+     * Define o mecanismo.
      *
-     * @param mecanismo o mecanismo
+     * @param mecanismo mecanismo
      */
     public void setMecanismo(MecanismoAtribuicao mecanismo) {
 
@@ -98,7 +98,7 @@ public class AtribuirCandidaturaController {
     /**
      * Devolve a lista de atribuições.
      *
-     * @return a lista de atribuições
+     * @return lista de atribuições
      */
     public List<Atribuicao> getListaAtribuicoes() {
 
@@ -106,9 +106,9 @@ public class AtribuirCandidaturaController {
     }
 
     /**
-     * Regista a lista de atribuições na exposição em causa.
+     * Regista a lista de atribuições.
      *
-     * @param listaAtribuicoes a lista de atribuições
+     * @param listaAtribuicoes lista de atribuições
      */
     public void registarAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.exposicao.setListaAtribuicoes(new ListaAtribuicoes(listaAtribuicoes));

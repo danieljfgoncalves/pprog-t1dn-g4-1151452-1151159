@@ -1,3 +1,6 @@
+/**
+ * Fornece as classes utilitárias para o centro de exposições.
+ */
 package centroexposicoes.utils;
 
 import java.io.Serializable;

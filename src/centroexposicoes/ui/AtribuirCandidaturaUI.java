@@ -56,7 +56,7 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
      */
     private Exposicao exposicaoSelecionada;
     /**
-     * Lista de mecanismos.
+     * Lista de mecanismos de atribuição.
      */
     private List<MecanismoAtribuicao> listaMecanismos;
     /**
@@ -231,8 +231,6 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         this.btnGerar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO verificações
-
                 int row = listaMecanismosUI.getSelectedIndex();
                 controller.setMecanismo(listaMecanismos.get(row));
                 listaAtribuicoes = controller.getListaAtribuicoes();
@@ -266,7 +264,6 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO verificações
                 try {
                     if (listaAtribuicoes.size() < 1) {
                         throw new IllegalArgumentException("Tem de gerar as atribuições primeiro.");

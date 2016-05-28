@@ -13,7 +13,6 @@ import java.io.Serializable;
  */
 public class Representante implements Ator, Serializable {
 
-
     /**
      * Dados de utilizador do representante.
      */
@@ -35,7 +34,7 @@ public class Representante implements Ator, Serializable {
      * Constroi uma instância de representante com os valores por recebidos por
      * paramêtros.
      *
-     * @param utilizador dados de utilizador do representante.
+     * @param utilizador dados de utilizador do representante
      */
     public Representante(Utilizador utilizador) {
         this.utilizador = utilizador;
@@ -45,7 +44,7 @@ public class Representante implements Ator, Serializable {
      * Constroi uma instância de representante com os valores copiados de outro
      * representante.
      *
-     * @param outroRepresentante outro representante que pretende copiar.
+     * @param outroRepresentante outro representante que pretende copiar
      */
     public Representante(Representante outroRepresentante) {
         this.utilizador = outroRepresentante.utilizador;
@@ -54,7 +53,7 @@ public class Representante implements Ator, Serializable {
     /**
      * Devolve o objeto utilizador do representante.
      *
-     * @return o objeto utilizador do representante.
+     * @return o objeto utilizador do representante
      */
     public Utilizador getUtilizador() {
         return utilizador;
@@ -63,7 +62,7 @@ public class Representante implements Ator, Serializable {
     /**
      * Modifica o objeto utilizador do representante.
      *
-     * @param utilizador o objeto utilizador do representante.
+     * @param utilizador o objeto utilizador do representante
      */
     public void setUtilizador(Utilizador utilizador) {
         this.utilizador = utilizador;
@@ -72,7 +71,7 @@ public class Representante implements Ator, Serializable {
     /**
      * Devolve a descrição textual de todos os atributos de um representante.
      *
-     * @return caraterísticas da candidatura.
+     * @return caraterísticas da candidatura
      */
     @Override
     public String toString() {
@@ -83,7 +82,7 @@ public class Representante implements Ator, Serializable {
      * Compara se outro objeto é igual a este organzidor.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário.
+     * @return true se forem iguais, false caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {
@@ -99,9 +98,14 @@ public class Representante implements Ator, Serializable {
         return this.utilizador.equals(outroRepresentante.utilizador);
     }
 
+    /**
+     * Devolve o nome do representante.
+     *
+     * @return nomde do representante
+     */
     @Override
     public String getNome() {
-        
+
         return this.utilizador.getNome();
     }
 }

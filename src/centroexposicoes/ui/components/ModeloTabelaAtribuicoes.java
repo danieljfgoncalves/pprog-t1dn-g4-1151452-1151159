@@ -15,28 +15,62 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeloTabelaAtribuicoes extends AbstractTableModel {
 
+    /**
+     * Nome das colunas da tabela.
+     */
     private static final String[] nomesColunas = {"Nome de Empresa", "FAE"};
-    private List<Atribuicao> listaAtribuicoes;
+    /**
+     * Lista de atribuições
+     */
+    private final List<Atribuicao> listaAtribuicoes;
 
+    /**
+     * Cria uma instâncida de ModeloTabelaAtribuicoes.
+     *
+     * @param listaAtribuicoes lista de atribuições
+     */
     public ModeloTabelaAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.listaAtribuicoes = listaAtribuicoes;
     }
 
+    /**
+     * Devolve o número de linhas da tabela.
+     *
+     * @return número de linhas
+     */
     @Override
     public int getRowCount() {
         return listaAtribuicoes.size();
     }
 
+    /**
+     * Devolve o número de colunas da tabela.
+     *
+     * @return número de colunas da tabela
+     */
     @Override
     public int getColumnCount() {
         return nomesColunas.length;
     }
 
+    /**
+     * Devolve o nome da coluna a partir do seu índice.
+     *
+     * @param column índica da coluna
+     * @return nome da coluna
+     */
     @Override
     public String getColumnName(int column) {
         return nomesColunas[column];
     }
 
+    /**
+     * Devolve a descrição do elemento especificado.
+     *
+     * @param rowIndex índice da linha
+     * @param columnIndex índice da coluna
+     * @return descrição do elemento
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 

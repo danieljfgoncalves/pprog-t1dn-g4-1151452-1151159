@@ -15,17 +15,36 @@ import javax.swing.AbstractListModel;
  */
 public class ModelListAtribuicoes extends AbstractListModel {
 
+    /**
+     * Lista de atribuições.
+     */
     private final List<Atribuicao> listaAtribuicoes;
 
+    /**
+     * Cria uma instância de ModelListAtribuicoes.
+     *
+     * @param listaAtribuicoes lista de atribuições
+     */
     public ModelListAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.listaAtribuicoes = listaAtribuicoes;
     }
 
+    /**
+     * Obtém o número de elementos da lista.
+     *
+     * @return número de elementos
+     */
     @Override
     public int getSize() {
         return this.listaAtribuicoes.size();
     }
 
+    /**
+     * Obtém o elemento da lista no índice indicado.
+     *
+     * @param index índice da lista
+     * @return elemento da lista.
+     */
     @Override
     public Object getElementAt(int index) {
         return String.format("%s - %s", this.listaAtribuicoes.get(index).getCandidatura().getNomeEmpresa(),

@@ -50,7 +50,7 @@ public class RegistoMecanismos implements Serializable {
     /**
      * Devolve a lista de mecanismos.
      *
-     * @return lista de mecanismos.
+     * @return lista de mecanismos
      */
     public List<MecanismoAtribuicao> getListaMecanismos() {
         return new ArrayList<>(this.listaMecanismos);
@@ -59,17 +59,17 @@ public class RegistoMecanismos implements Serializable {
     /**
      * Modifica a lista de mecanismos.
      *
-     * @param listaMecanismos lista de mecanismos.
+     * @param listaMecanismos lista de mecanismos
      */
     public void setListaExposicoes(List<MecanismoAtribuicao> listaMecanismos) {
         this.listaMecanismos = listaMecanismos;
     }
-    
+
     /**
      * Devolve a descrição textual de todos os atributos de um registo de
      * mecanismos.
      *
-     * @return caraterísticas do registo de mecanismos.
+     * @return caraterísticas do registo de mecanismos
      */
     @Override
     public String toString() {
@@ -87,7 +87,7 @@ public class RegistoMecanismos implements Serializable {
      * Compara se outro objeto é igual a este Registo de mecanismos.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário
+     * @return true se forem iguais, false caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {
