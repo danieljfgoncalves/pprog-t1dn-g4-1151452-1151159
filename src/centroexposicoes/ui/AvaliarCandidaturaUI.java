@@ -38,20 +38,53 @@ import javax.swing.event.ListSelectionListener;
  */
 public class AvaliarCandidaturaUI extends GlobalJFrame {
 
-    private AvaliarCandidaturasController controller;
-    private CentroExposicoes centroExposicoes;
+    /**
+     * Controlador para avaliar candidatura.
+     */
+    private final AvaliarCandidaturasController controller;
+    /**
+     * Centro de exposições.
+     */
+    private final CentroExposicoes centroExposicoes;
 
-    private List<Exposicao> listaExposicoes;
+    /**
+     * Lista de exposições.
+     */
+    private final List<Exposicao> listaExposicoes;
+    /**
+     * Lista para as exposições.
+     */
     private JList<Exposicao> jListaExposicoes;
 
+    /**
+     * Lista de atribuições.
+     */
     private List<Atribuicao> listaAtribuicoes;
+    /**
+     * Lista de atribuições.
+     */
     private JList<Atribuicao> jListaAtribuicoes;
 
+    /**
+     * Botão ver candidatura.
+     */
     private JButton botaoVerCandidatura;
+    /**
+     * Botõ avaliar candidatura.
+     */
     private JButton botaoAvaliarCandidatura;
 
+    /**
+     * Dimensão da janela.
+     */
     private static final Dimension DIMENSAO_JANELA = new Dimension(600, 400);
 
+    /**
+     * Cria uma instância de candidatura UI.
+     * 
+     * @param centroExposicoes centro de exposições
+     * @param fae Funcionário de apoio à exposição
+     */
     public AvaliarCandidaturaUI(CentroExposicoes centroExposicoes, Fae fae) {
         super(centroExposicoes);
 
@@ -68,6 +101,9 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         setVisible(true);
     }
 
+    /**
+     * Cria os componentes para a UI.
+     */
     private void criarComponentes() {
         JPanel panelComponents = new JPanel(new BorderLayout(10, 10));
         panelComponents.add(criarPainelListas(), BorderLayout.CENTER);
@@ -76,6 +112,11 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         add(panelComponents);
     }
 
+    /**
+     * Criar o painel das listas.
+     * 
+     * @return painel das listas
+     */
     private JPanel criarPainelListas() {
         JPanel painelListas = new JPanel(new GridLayout(1, 2, 10, 0));
 
@@ -85,6 +126,11 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         return painelListas;
     }
 
+    /**
+     * Cria o painel das exposições.
+     * 
+     * @return painel das exposições
+     */
     private JPanel criarPainelExposicoes() {
         JPanel painelExposicoes = new JPanel(new BorderLayout(10, 10));
 
@@ -115,6 +161,11 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         return painelExposicoes;
     }
 
+    /**
+     * Cria o painel das atribuições.
+     * 
+     * @return painel das atribuições
+     */
     private JPanel criarPainelAtribuicoes() {
         JPanel painelAtribuicoes = new JPanel(new BorderLayout(10, 10));
 
@@ -138,6 +189,11 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         return painelAtribuicoes;
     }
 
+    /**
+     * Cria o painel dos botões.
+     * 
+     * @return painel dos botões
+     */
     private JPanel criarPainelBotoes() {
         JPanel painelBotoes = new JPanel(new GridLayout(1, 3, 10, 0));
 
@@ -148,6 +204,11 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         return painelBotoes;
     }
 
+    /**
+     * Cria o painel de ver candidatura.
+     * 
+     * @return painel de ver candidatura
+     */
     private JButton criarBotaoVerCandidatura() {
         botaoVerCandidatura = new JButton("Ver Candidatura");
         botaoVerCandidatura.setEnabled(false);
@@ -162,6 +223,11 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         return botaoVerCandidatura;
     }
 
+    /**
+     * Cria o botão de avaliar candidatura.
+     * 
+     * @return botão de avaliar candidatura
+     */
     private JButton criarBotaoAvaliarCandidatura() {
         botaoAvaliarCandidatura = new JButton("Avaliar Candidatura");
         botaoAvaliarCandidatura.setEnabled(false);
@@ -177,6 +243,10 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         return botaoAvaliarCandidatura;
     }
 
+    /**
+     * Cria o botão sair.
+     * @return botão sair
+     */
     private JButton criarBotaoSair() {
         JButton botaoSair = new JButton("Sair");
 
@@ -191,6 +261,13 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
         return botaoSair;
     }
 
+    /**
+     * Regista a avaliação.
+     * 
+     * @param avaliacao avaliação
+     * @param textoJustificativo texto justificativo
+     * @return true se for gerado com sucesso, false caso contrário
+     */
     public boolean registaAvaliacao(Avaliacao.TipoAvaliacao avaliacao, String textoJustificativo) {
         controller.setAvaliacao(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()), avaliacao, textoJustificativo);
         boolean registadaComSucesso = controller.registaAvaliacao();
