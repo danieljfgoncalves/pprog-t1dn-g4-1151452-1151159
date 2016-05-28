@@ -54,13 +54,6 @@ public class GlobalJMenuBar extends JMenuBar
         menuItemSair = new JMenuItem(SAIR, 'S');
         menuItemSair.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
         
-        menuItemTerminarSessao.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO ir para a janela principal de selecionar utilizador.
-            }
-        });
-        
         menuOpcoes.add(menuItemTerminarSessao);
         menuOpcoes.add(menuItemSair);
         

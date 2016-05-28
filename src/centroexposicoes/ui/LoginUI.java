@@ -11,6 +11,7 @@ import centroexposicoes.model.ListaOrganizadores;
 import centroexposicoes.model.Organizador;
 import centroexposicoes.model.Representante;
 import centroexposicoes.ui.components.GlobalJFrame;
+import centroexposicoes.ui.components.GlobalJMenuBar;
 import centroexposicoes.ui.components.ModelListAtor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -71,6 +72,10 @@ public class LoginUI extends GlobalJFrame {
         this.listaRepresentantes = controller.getListaRepresentantes();
 
         criarComponentes();
+
+        // Desativar terminar sessão
+        GlobalJMenuBar menuBar = (GlobalJMenuBar) getJMenuBar();
+        menuBar.getMenuItemTerminarSessao().setEnabled(false);
 
         pack();
         setMinimumSize(new Dimension(getWidth(), getHeight()));
