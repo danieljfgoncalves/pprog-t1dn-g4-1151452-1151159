@@ -86,7 +86,7 @@ public class CentroExposicoesTest {
         System.out.println("setRegistoMecanismos");
         RegistoMecanismos registoMecanismos = new RegistoMecanismos();
         CentroExposicoes instance = centroExposicoes;
-        instance.setRegistoMecanismos(registoMecanismos);
+        instance.setRegistoMecanismos();
         assertEquals(instance.getRegistoMecanismos(), registoMecanismos);
     }
 
@@ -113,6 +113,33 @@ public class CentroExposicoesTest {
         Object outroObjeto = new CentroExposicoes();
         CentroExposicoes instance = centroExposicoes;
         assertTrue(instance.equals(outroObjeto));
+    }
+
+    /**
+     * Test of getRegistoRepresentantes method, of class CentroExposicoes.
+     */
+    @Test
+    public void testGetRegistoRepresentantes() {
+        System.out.println("getRegistoRepresentantes");
+        CentroExposicoes instance = new CentroExposicoes();
+        RegistoRepresentantes expResult = null;
+        RegistoRepresentantes result = instance.getRegistoRepresentantes();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRegistoRepresentantes method, of class CentroExposicoes.
+     */
+    @Test
+    public void testSetRegistoRepresentantes() {
+        System.out.println("setRegistoRepresentantes");
+        RegistoRepresentantes registoRepresentantes = null;
+        CentroExposicoes instance = new CentroExposicoes();
+        instance.setRegistoRepresentantes(registoRepresentantes);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }

@@ -32,7 +32,8 @@ public class Main {
                 centroExposicoes = FicheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
             }
         }
-
+        
+        centroExposicoes.setRegistoMecanismos();
         new LoginUI(centroExposicoes);
     }
 
