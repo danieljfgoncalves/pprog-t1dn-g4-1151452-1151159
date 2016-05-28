@@ -36,12 +36,10 @@ public class Candidatura implements Serializable {
      * Quantidade de convites a adquirir.
      */
     private int numeroConvites;
-
     /**
      * Lista de produtos que o expositor pretende expor.
      */
     private List<Produto> listaProdutos;
-
     /**
      * Lista de demonstrações da exposicão que o expositor pretende participar.
      */
@@ -116,7 +114,7 @@ public class Candidatura implements Serializable {
     /**
      * Constrói uma instância da candidatura a partir de outra candidatura.
      *
-     * @param outraCandidatura candidatura que pretende copiar.
+     * @param outraCandidatura candidatura que pretende copiar
      */
     public Candidatura(Candidatura outraCandidatura) {
 
@@ -133,7 +131,7 @@ public class Candidatura implements Serializable {
     /**
      * Devolve o nome comercial da empresa.
      *
-     * @return o nome comercial da empresa.
+     * @return o nome comercial da empresa
      */
     public String getNomeEmpresa() {
         return nomeEmpresa;
@@ -142,7 +140,7 @@ public class Candidatura implements Serializable {
     /**
      * Modifica o nome comercial da empresa.
      *
-     * @param nomeEmpresa o nome comercial da empresa.
+     * @param nomeEmpresa o nome comercial da empresa
      */
     public void setNomeEmpresa(String nomeEmpresa) {
         this.nomeEmpresa = nomeEmpresa;
@@ -151,7 +149,7 @@ public class Candidatura implements Serializable {
     /**
      * Devolve a morada do expositor.
      *
-     * @return a morada do expositor.
+     * @return a morada do expositor
      */
     public String getMorada() {
         return morada;
@@ -160,7 +158,7 @@ public class Candidatura implements Serializable {
     /**
      * Modifica a morada do expositor.
      *
-     * @param morada a morada do expositor.
+     * @param morada a morada do expositor
      */
     public void setMorada(String morada) {
         this.morada = morada;
@@ -169,7 +167,7 @@ public class Candidatura implements Serializable {
     /**
      * Devolve o número de telemovel.
      *
-     * @return o número de telemovel.
+     * @return o número de telemovel
      */
     public String getTelemovel() {
         return telemovel;
@@ -178,7 +176,7 @@ public class Candidatura implements Serializable {
     /**
      * Modifica o número de telemovel.
      *
-     * @param telemovel o número de telemovel.
+     * @param telemovel o número de telemovel
      */
     public void setTelemovel(String telemovel) {
         this.telemovel = telemovel;
@@ -187,7 +185,7 @@ public class Candidatura implements Serializable {
     /**
      * Devolve a area pretendida do expositor.
      *
-     * @return a area pretendida do expositor.
+     * @return a area pretendida do expositor
      */
     public float getAreaExpositor() {
         return areaExpositor;
@@ -196,7 +194,7 @@ public class Candidatura implements Serializable {
     /**
      * Modifica a area pretendida do expositor.
      *
-     * @param areaExpositor a area pretendida do expositor.
+     * @param areaExpositor a area pretendida do expositor
      */
     public void setAreaExpositor(float areaExpositor) {
         this.areaExpositor = areaExpositor;
@@ -205,7 +203,7 @@ public class Candidatura implements Serializable {
     /**
      * Devolve o número de convites pretendidos pelo expositor.
      *
-     * @return o número de convites pretendidos pelo expositor.
+     * @return o número de convites pretendidos pelo expositor
      */
     public int getNumeroConvites() {
         return numeroConvites;
@@ -214,7 +212,7 @@ public class Candidatura implements Serializable {
     /**
      * Modifica o número de convites pretendidos pelo expositor.
      *
-     * @param numeroConvites o número de convites pretendidos pelo expositor.
+     * @param numeroConvites o número de convites pretendidos pelo expositor
      */
     public void setNumeroConvites(int numeroConvites) {
         this.numeroConvites = numeroConvites;
@@ -223,7 +221,7 @@ public class Candidatura implements Serializable {
     /**
      * Devolve a lista de produtos da candidatura (Composição).
      *
-     * @return a lista de produtos da candidatura (Composição).
+     * @return a lista de produtos da candidatura (Composição)
      */
     public List<Produto> getListaProdutos() {
         return new ArrayList<>(this.listaProdutos);
@@ -232,7 +230,7 @@ public class Candidatura implements Serializable {
     /**
      * Modifica a lista de produtos da candidatura.
      *
-     * @param listaProdutos a lista de produtos da candidatura.
+     * @param listaProdutos a lista de produtos da candidatura
      */
     public void setListaProdutos(List<Produto> listaProdutos) {
         this.listaProdutos = new ArrayList<>(listaProdutos);
@@ -241,7 +239,7 @@ public class Candidatura implements Serializable {
     /**
      * Devolve a lista de demonstrações em que pretende participar (Composição).
      *
-     * @return a lista de demonstrações em que pretende participar (Composição).
+     * @return a lista de demonstrações em que pretende participar (Composição)
      */
     public List<Demonstracao> getListaDemonstracoes() {
         return new ArrayList<>(this.listaDemonstracoes);
@@ -251,7 +249,7 @@ public class Candidatura implements Serializable {
      * Modifica a lista de demonstrações em que pretende participar.
      *
      * @param listaDemonstracoes a lista de demonstrações em que pretende
-     * participar.
+     * participar
      */
     public void setListaDemonstracoes(List<Demonstracao> listaDemonstracoes) {
         this.listaDemonstracoes = new ArrayList<>(listaDemonstracoes);
@@ -259,7 +257,7 @@ public class Candidatura implements Serializable {
 
     /**
      * Devolve a lista de avaliações.
-     * 
+     *
      * @return lista de avaliações
      */
     public List<Avaliacao> getListaAvaliacoes() {
@@ -268,7 +266,7 @@ public class Candidatura implements Serializable {
 
     /**
      * Modifica a lista de avaliações.
-     * 
+     *
      * @param listaAvaliacoes lista de avaliações
      */
     public void setListaAvaliacoes(List<Avaliacao> listaAvaliacoes) {
@@ -278,8 +276,8 @@ public class Candidatura implements Serializable {
     /**
      * Cria um novo produto a expor.
      *
-     * @param designacao designação do produto a expor.
-     * @return um produto a expor.
+     * @param designacao designação do produto a expor
+     * @return um produto a expor
      */
     public Produto novoProduto(String designacao) {
 
@@ -289,25 +287,32 @@ public class Candidatura implements Serializable {
     /**
      * Valida e adiciona o produto a lista de produtos da candidatura.
      *
-     * @param produto produto a expor.
+     * @param produto produto a expor
      *
-     * @return true se adicionar o produto a lista ou false se não adicionar.
+     * @return true se adicionar o produto a lista ou false se não adicionar
      */
     public boolean adicionarProduto(Produto produto) {
 
         return produto.valida() && validarProduto(produto) ? addProduto(produto) : false;
     }
-    
+
+    /**
+     * Valida e remove o produto a lista de produtos da candidatura.
+     *
+     * @param produto produto a expor
+     *
+     * @return true se remover o produto a lista
+     */
     public boolean removerProduto(Produto produto) {
-        
+
         return produto.valida() && !validarProduto(produto) ? removeProduto(produto) : false;
     }
 
     /**
      * Verifica se já existe o produto na lista de produtos.
      *
-     * @param produto produto a expor.
-     * @return true se não existe na lista de produtos e false se já existir.
+     * @param produto produto a expor
+     * @return true se não existe na lista de produtos e false se já existir
      */
     private boolean validarProduto(Produto produto) {
 
@@ -317,44 +322,67 @@ public class Candidatura implements Serializable {
     /**
      * Adiciona um produto a lista de produtos.
      *
-     * @param produto produto a expor.
+     * @param produto produto a expor
      */
     private boolean addProduto(Produto produto) {
 
         return this.listaProdutos.add(produto);
     }
-    
+
+    /**
+     * Remove um produto a lista de produtos.
+     *
+     * @param produto produto a expor
+     */
     private boolean removeProduto(Produto produto) {
-        
+
         return this.listaProdutos.remove(produto);
     }
 
     /**
      * Cria uma nova avaliação com os parâmetros por omissão.
-     * 
+     *
      * @return nova avaliação
      */
-    public  Avaliacao novaAvaliacao()
-    {
+    public Avaliacao novaAvaliacao() {
         return new Avaliacao();
     }
-    
+
+    /**
+     * Valida e adiciona uma avaliação a lista de avaliações da candidatura.
+     *
+     * @param avaliacao avaliacao da candidatura
+     *
+     * @return true se adicionar a avaliação a lista
+     */
     public boolean adicionarAvaliacao(Avaliacao avaliacao) {
 
         return avaliacao.validar() && validarAvaliacao(avaliacao) ? addAvaliacao(avaliacao) : false;
     }
-    private boolean validarAvaliacao(Avaliacao avaliacao)
-    {
+
+    /**
+     * Verifica se já existe a avaliação na lista de avaliações.
+     *
+     * @param avaliacao avaliação da candidatura
+     * @return true se não existe na lista de avaliações e false se já existir
+     */
+    private boolean validarAvaliacao(Avaliacao avaliacao) {
         return !this.listaAvaliacoes.contains(avaliacao);
     }
-    private boolean addAvaliacao(Avaliacao avaliacao)
-    {
+
+    /**
+     * Adiciona uma avaliação a lista de avaliações.
+     *
+     * @param avaliacao avaliação da candidatura
+     */
+    private boolean addAvaliacao(Avaliacao avaliacao) {
         return this.listaAvaliacoes.add(avaliacao);
     }
+
     /**
      * Verifica se a candidatura é válida.
      *
-     * @return true se for válida ou false se for inválida.
+     * @return true se for válida ou false se for inválida
      */
     public boolean valida() {
 
@@ -376,10 +404,10 @@ public class Candidatura implements Serializable {
     public String toString() {
 
         StringBuilder string = new StringBuilder();
-        
+
         String dados = String.format("Nome de Empresa: %s\nMorada: %s\nTelemovel: %s\nArea de Expositor: %.2f\nNúmero de Convites: %d\n\n",
                 nomeEmpresa, morada, telemovel, areaExpositor, numeroConvites);
-        
+
         string.append("Dados Candidatura:\n\n").append(dados).append("Lista de Produtos a expor:\n");
         for (Produto p : listaProdutos) {
             string.append(String.format("%s%n", p.getDesignacao()));
@@ -389,15 +417,6 @@ public class Candidatura implements Serializable {
             string.append(String.format("%s%n", demo.getDesignacao()));
         }
         return string.toString();
-        
-        
-//        return "Candidatura{"
-//                + "nomeEmpresa=" + nomeEmpresa
-//                + ", morada=" + morada
-//                + ", telemovel=" + telemovel
-//                + ", areaExpositor=" + areaExpositor
-//                + ", numeroConvites=" + numeroConvites
-//                + '}';
     }
 
     /**

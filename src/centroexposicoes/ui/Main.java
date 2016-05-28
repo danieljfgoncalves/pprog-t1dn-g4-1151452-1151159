@@ -16,7 +16,7 @@ import centroexposicoes.utils.FicheiroTxt;
 public class Main {
 
     /**
-     * Método de arranque.
+     * Método (main) de arranque.
      *
      * @param args argumentos da linha de comandos
      */
@@ -27,10 +27,11 @@ public class Main {
         if (centroExposicoes == null) {
             //TODO se não for possível ler a partir do ficheiro binário, ler apartir do ficheiro de texto.
             centroExposicoes = FicheiroTxt.carregarCentroExposicoes();
-            
-            if (centroExposicoes == null) { 
+
+            if (centroExposicoes == null) {
                 //se não for lido com sucesso do ficheiro txt.
-                System.out.printf("Carregou o instanciador por defeito? %s%n%n", FicheiroCentroExposicoes.guardarCentroDefault(FicheiroCentroExposicoes.NOME));
+                System.out.printf("Carregou o instanciador por defeito? %s%n%n",
+                        FicheiroCentroExposicoes.guardarCentroDefault(FicheiroCentroExposicoes.NOME));
                 centroExposicoes = FicheiroCentroExposicoes.ler(FicheiroCentroExposicoes.NOME);
             }
         }

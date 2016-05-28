@@ -7,7 +7,6 @@ import centroexposicoes.controller.RegistarCandidaturaController;
 import centroexposicoes.model.CentroExposicoes;
 import centroexposicoes.model.Demonstracao;
 import centroexposicoes.model.Exposicao;
-import centroexposicoes.model.Representante;
 import centroexposicoes.ui.components.DialogNovoProduto;
 import centroexposicoes.ui.components.DialogSelecionarExposicao;
 import centroexposicoes.ui.components.ExposicaoSelecionavel;
@@ -50,39 +49,97 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
      * Exposição selecionada pelo UI.
      */
     private Exposicao exposicaoSelecionada;
-    private Representante repSelecionado;
-    private List<Exposicao> listaExposicoes;
+    /**
+     * Lista de exposições.
+     */
+    private final List<Exposicao> listaExposicoes;
+    /**
+     * Lista de demonstrações.
+     */
     private List<Demonstracao> listaDemonstracoes;
-
+    /**
+     * Controller do Registar candidaturas.
+     */
     private final RegistarCandidaturaController controller;
+    /**
+     * Centro de exposições.
+     */
     private final CentroExposicoes centroExposicoes;
 
+    /**
+     * ModelList para expor a lista de produtos.
+     */
     private ModeloListProdutos modeloListProdutos;
+    /**
+     * lista UI da lista dos produtos.
+     */
     private JList jListProdutos;
+    /**
+     * tabela UI da lista dos produtos.
+     */
     private JTable listaDemonstracoesJTable;
+    /**
+     * Botão remover produto.
+     */
     private JButton btnRemoverProduto;
 
+    /**
+     * Campo de texto para o nome da empresa.
+     */
     private JTextField txtNomeEmpresa;
+    /**
+     * Campo de texto para a morada.
+     */
     private JTextArea txtMorada;
+    /**
+     * Campo de texto para o nome da empresa.
+     */
     private JTextField txtTelemovel;
+    /**
+     * Campo de texto para a area do expositor.
+     */
     private JTextField txtAreaExpositor;
+    /**
+     * Campo de texto para o número de convites.
+     */
     private JTextField txtNumConvites;
 
+    /**
+     * Dimensão standard de um label.
+     */
     final Dimension LBL_TAMANHO = new Dimension(94, 16);
-
+    /**
+     * Dimensão da janela.
+     */
     final Dimension JANELA_TAMANHO = new Dimension(1200, 600);
+    /**
+     * Margens de um campo.
+     */
     final int MARGEM_S_CAMPO = 0, MARGEM_I_CAMPO = 0,
             MARGEM_E_CAMPO = 10, MARGEM_D_CAMPO = 0;
+    /**
+     * Largura dos campos.
+     */
     final int CAMPO_TXT_LARGURA = 20, CAMPO_NUM_LARGURA = 6;
+    /**
+     * Border vazio para criar insets.
+     */
     final static EmptyBorder PADDING_BORDER = new EmptyBorder(10, 10, 10, 10);
+    /**
+     * Dimensão de um scroll.
+     */
     final Dimension SCROLL_TAMANHO = new Dimension(300, 500);
 
-    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Representante representante) {
+    /**
+     * Constroi uma instância de RegistarCandidaturasUI.
+     *
+     * @param centroExposicoes centro de exposições
+     */
+    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes) {
         super(centroExposicoes);
 
         this.centroExposicoes = centroExposicoes;
         this.controller = new RegistarCandidaturaController(centroExposicoes);
-        this.repSelecionado = representante;
 
         this.listaExposicoes = controller.getExposições();
 
@@ -105,6 +162,9 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         }
     }
 
+    /**
+     * Cria os componentes da janela.
+     */
     private void criarComponentes() {
 
         add(criarPainelDados());
@@ -112,6 +172,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         add(criarPainelDemonstracoes());
     }
 
+    /**
+     * Devolve o painel com os campos para colocar os dados.
+     *
+     * @return o painel com os campos para colocar os dados
+     */
     private JPanel criarPainelDados() {
 
         JPanel painelDados = new JPanel(new FlowLayout(FlowLayout.TRAILING, 10, 10));
@@ -161,6 +226,13 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painelDados;
     }
 
+    /**
+     * Devolve o painel com os produtos e os botões para adicionar/remover
+     * produtos.
+     *
+     * @return o painel com os produtos e os botões para adicionar/remover
+     * produtos
+     */
     private JPanel criarPainelProdutos() {
 
         JPanel painel = new JPanel(new BorderLayout());
@@ -176,6 +248,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painel;
     }
 
+    /**
+     * Devolve o painel com as demonstrações.
+     *
+     * @return o painel com as demonstrações
+     */
     private JPanel criarPainelDemonstracoes() {
 
         JPanel painel = new JPanel(new BorderLayout());
@@ -187,6 +264,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painel;
     }
 
+    /**
+     * Devolve o scroll qie incorpora a lista de demonstrações
+     *
+     * @return o scroll qie incorpora a lista de demonstrações
+     */
     private JPanel criarScrollPaneDemonstrações() {
 
         JPanel painelScroll = new JPanel(new GridLayout());
@@ -205,6 +287,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painelScroll;
     }
 
+    /**
+     * Devolve o scroll que incorpora a lista de produtos
+     *
+     * @return o scroll que incorpora a lista de produtos
+     */
     private JPanel criarScrollPaneProdutos() {
 
         JPanel painelScroll = new JPanel(new GridLayout());
@@ -232,6 +319,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return painelScroll;
     }
 
+    /**
+     * Cria o painel com os botões confirmar e cancelar.
+     *
+     * @return o painel com os botões confirmar e cancelar
+     */
     private JPanel criarPainelBotoesConfirmar() {
         JPanel p = new JPanel(new FlowLayout());
         p.add(criarBotaoConfirmar());
@@ -240,6 +332,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return p;
     }
 
+    /**
+     * Cria o botão confirmar.
+     *
+     * @return o botão confirmar
+     */
     private JButton criarBotaoConfirmar() {
         JButton btn = new JButton("Confirmar Dados");
         btn.addActionListener(new ActionListener() {
@@ -297,6 +394,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return btn;
     }
 
+    /**
+     * Cria o botão cancelar.
+     *
+     * @return o botão cancelar
+     */
     private JButton criarBotaoCancelar() {
 
         JButton btn = new JButton("Cancelar");
@@ -312,6 +414,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return btn;
     }
 
+    /**
+     * Devolve a lista demonstracões selecionadas.
+     *
+     * @return a lista demonstracões selecionadas
+     */
     private List<Demonstracao> getListaDemonstracoesSelecionadas() {
         List<Demonstracao> listaDemonstracoesSelecionadas = new ArrayList<>();
 
@@ -322,6 +429,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return listaDemonstracoesSelecionadas;
     }
 
+    /**
+     * Cria o painel com a morada.
+     *
+     * @return o painel com a morada
+     */
     private JPanel criarPainelMorada() {
 
         this.txtMorada = new JTextArea(4, CAMPO_TXT_LARGURA);
@@ -335,6 +447,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return pMorada;
     }
 
+    /**
+     * Cria o Botão para adicionar um produto.
+     *
+     * @return o Botão para adicionar um produto
+     */
     private JButton criarBotaoAddProduto() {
 
         JButton btn = new JButton("Adiciona Produto");
@@ -349,6 +466,11 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return btn;
     }
 
+    /**
+     * Cria o Botão para remover um produto.
+     *
+     * @return o Botão para remover um produto
+     */
     private JButton criarBotaoRemoveProduto() {
 
         this.btnRemoverProduto = new JButton("Eliminar Produto");
@@ -383,30 +505,51 @@ public class RegistarCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         return this.btnRemoverProduto;
     }
 
+    /**
+     * Cria um novo produto.
+     *
+     * @param designacao designação do produto
+     * @return um novo produto
+     */
     public boolean novoProduto(String designacao) {
 
         return this.modeloListProdutos.addRow(designacao);
     }
 
+    /**
+     * Remove um produto.
+     *
+     * @param index index do produto na lista de produtos.
+     * @return um produto
+     */
     public boolean removerProduto(int index) {
 
         return this.modeloListProdutos.removeRow(index);
     }
 
     /**
-     * @return the modeloListProdutos
+     * Devolve o modelo da lista de produtos.
+     *
+     * @return o modelo da lista de produtos
      */
     public ModeloListProdutos getModeloListProdutos() {
         return modeloListProdutos;
     }
 
     /**
-     * @param modeloListProdutos the modeloListProdutos to set
+     * Modifica o modelo da lista de produtos.
+     *
+     * @param modeloListProdutos o modelo da lista de produtos
      */
     public void setModeloListProdutos(ModeloListProdutos modeloListProdutos) {
         this.modeloListProdutos = modeloListProdutos;
     }
 
+    /**
+     * Modifica a exposição selecionada.
+     *
+     * @param exposicao exposição selecionada.
+     */
     @Override
     public void setExposicao(Exposicao exposicao) {
 

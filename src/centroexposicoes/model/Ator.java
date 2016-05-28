@@ -10,10 +10,10 @@ package centroexposicoes.model;
  * @author Ivo Ferro 1151159
  */
 public interface Ator {
-    
+
     /**
      * Devolve o nome do utilizador.
-     * 
+     *
      * @return o nome do utilizador
      */
     public String getNome();

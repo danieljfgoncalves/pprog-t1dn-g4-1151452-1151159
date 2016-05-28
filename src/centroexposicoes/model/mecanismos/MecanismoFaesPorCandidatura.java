@@ -28,6 +28,12 @@ public class MecanismoFaesPorCandidatura implements MecanismoAtribuicao, Seriali
      */
     private static final String DESCRICAO_MECANISMO = "Atribuicao para quantidade definida de FAEs";
 
+    /**
+     * Gera uma lista de atribuições.
+     *
+     * @param exposicao Exposição
+     * @return Atribuições
+     */
     @Override
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao) {
         //registo atribuições para criar as atribuições (high-cohesion)
@@ -52,26 +58,31 @@ public class MecanismoFaesPorCandidatura implements MecanismoAtribuicao, Seriali
             }
 
         } while (numeroFaesPorCandidatura > listaFaes.size() || numeroFaesPorCandidatura < 1);
-        
+
         int countAtribuidos = 0;
         for (Candidatura candidatura : listaCandidaturas) {
 
             for (int i = 0; i < numeroFaesPorCandidatura; i++) {
-                
+
                 if (countAtribuidos > listaFaes.size() - 1) {
                     countAtribuidos = 0;
                 }
                 Atribuicao atribuicao = registoAtribuicoes.novaAtribuicao(candidatura, listaFaes.get(countAtribuidos));
                 listaAtribuicoes.add(atribuicao);
-                
+
                 countAtribuidos++;
-                
+
             }
         }
-        
+
         return listaAtribuicoes;
     }
 
+    /**
+     * Devolve a descrição do mecanismo.
+     *
+     * @return a descrição do mecanismo
+     */
     @Override
     public String getDescricao() {
         return DESCRICAO_MECANISMO;

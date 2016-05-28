@@ -24,22 +24,27 @@ public class RegistarCandidaturaController {
      * Registo de exposições. Contém a lista de exposições.
      */
     private final RegistoExposicoes registoExposicoes;
+
     /**
      * Lista de produtos.
      */
     private List<Produto> listaProdutos;
+
     /**
      * Lista de demonstrações.
      */
     private List<Demonstracao> listaDemonstracoes;
+
     /**
-     * Exposição.
+     * Exposição selecionada.
      */
     private Exposicao exposicao;
+
     /**
      * Candidatura.
      */
     private Candidatura candidatura;
+
     /**
      * Produto.
      */
@@ -98,7 +103,7 @@ public class RegistarCandidaturaController {
      *
      * @param designacao Designação do produto
      *
-     * @return true se o produto for adicionado com sucesso.
+     * @return true se o produto for adicionado com sucesso
      */
     public boolean addProduto(String designacao) {
 
@@ -107,6 +112,13 @@ public class RegistarCandidaturaController {
         return candidatura.adicionarProduto(produto);
     }
 
+    /**
+     * Remove um produto.
+     *
+     * @param designacao Designação do produto
+     *
+     * @return true se o produto for removido com sucesso
+     */
     public boolean removeProduto(String designacao) {
 
         Produto produtoRemovido = candidatura.novoProduto(designacao);

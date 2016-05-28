@@ -11,6 +11,7 @@ import centroexposicoes.model.ListaOrganizadores;
 import centroexposicoes.model.Organizador;
 import centroexposicoes.model.Representante;
 import centroexposicoes.ui.components.GlobalJFrame;
+import centroexposicoes.ui.components.GlobalJMenuBar;
 import centroexposicoes.ui.components.ModelListAtor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -24,6 +25,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -71,7 +73,10 @@ public class LoginUI extends GlobalJFrame {
         this.listaRepresentantes = controller.getListaRepresentantes();
 
         criarComponentes();
-
+ 
+        GlobalJMenuBar menuBar = (GlobalJMenuBar) getJMenuBar();
+        menuBar.getMenuItemTerminarSessao().setEnabled(false);
+        
         pack();
         setMinimumSize(new Dimension(getWidth(), getHeight()));
         setSize(DIMENSAO_JANELA);
@@ -273,8 +278,7 @@ public class LoginUI extends GlobalJFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Representante rep = listaRepresentantes.get(jListAtores.getSelectedIndex());
-                new RegistarCandidaturaUI(centroExposicoes, rep);
+                new RegistarCandidaturaUI(centroExposicoes);
             }
         });
 

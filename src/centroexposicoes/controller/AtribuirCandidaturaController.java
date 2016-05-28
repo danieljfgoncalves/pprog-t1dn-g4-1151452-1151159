@@ -53,6 +53,11 @@ public class AtribuirCandidaturaController {
         this.centroExposicoes = centroExposicoes;
     }
 
+    /**
+     * Devolve a lista de exposições.
+     *
+     * @return a lista de exposições
+     */
     public List<Exposicao> getListaExposicoes() {
 
         RegistoExposicoes registoExposicoes = this.centroExposicoes.getRegistoExposicoes();
@@ -60,26 +65,51 @@ public class AtribuirCandidaturaController {
         return registoExposicoes.getListaExposicoesPorOrganizador(this.organizador);
     }
 
+    /**
+     * Modifica a exposicão.
+     *
+     * @param exposicao a exposição
+     */
     public void setExposicao(Exposicao exposicao) {
 
         this.exposicao = exposicao;
     }
 
+    /**
+     * Devolve a lista de mecanismos.
+     *
+     * @return a lista de mecanismos
+     */
     public List<MecanismoAtribuicao> getListaMecanismos() {
 
         return this.centroExposicoes.getRegistoMecanismos().getListaMecanismos();
     }
 
+    /**
+     * Modifica o mecanismo.
+     *
+     * @param mecanismo o mecanismo
+     */
     public void setMecanismo(MecanismoAtribuicao mecanismo) {
 
         this.mecanismoSelecionado = mecanismo;
     }
 
+    /**
+     * Devolve a lista de atribuições.
+     *
+     * @return a lista de atribuições
+     */
     public List<Atribuicao> getListaAtribuicoes() {
 
         return this.mecanismoSelecionado.getListaAtribuicoes(this.exposicao);
     }
 
+    /**
+     * Regista a lista de atribuições na exposição em causa.
+     *
+     * @param listaAtribuicoes a lista de atribuições
+     */
     public void registarAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.exposicao.setListaAtribuicoes(new ListaAtribuicoes(listaAtribuicoes));
     }
