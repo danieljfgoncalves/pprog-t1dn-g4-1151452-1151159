@@ -133,12 +133,14 @@ public class CentroExposicoes implements Serializable {
 
                 String extension = filePath.toString().substring(filePath.toString().indexOf('.'));
                 if (extension.equals(".java")) {
-                    String caminhoSemExtensao = filePath.toString().substring(
-                            filePath.toString().indexOf('/') + 1, filePath.toString().indexOf('.'));
-
-                    String caminho = caminhoSemExtensao.replaceAll("\\/|\\\\", ".");
+                    String caminho = filePath.toString().replaceAll("\\/|\\\\", ".");
+                    caminho = caminho.replace("src.", "");
+                    caminho = caminho.replace(".java", "");
+                    
+                    
+                    
                     try {
-                        Class cls = Class.forName(caminho);
+                        Class cls = Class.forName(caminho.trim());
                         Object objeto = (Object) cls.newInstance();
                         listaMecanismos.add((MecanismoAtribuicao) objeto);
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
