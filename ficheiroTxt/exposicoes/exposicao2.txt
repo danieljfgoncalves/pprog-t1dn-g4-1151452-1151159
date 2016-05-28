@@ -1,0 +1,22 @@
+dados=
+Barcus,
+Exposição de barcos,
+DataInicio:2016/10/2,
+DataFim:2016/11/2,
+SubInicio:2016/8/01,
+SubFim:2016/9/15,
+Lisboa;
+
+listaFaes=u2,u3,u14,u6,u7,u9,u13,u20;
+listaOrganizadores=u1,u5,u17;
+listaDemos=Caravelas, Naus, Torpedos;
+listaCandidaturas=
+Barcomania,
+Rua sem nome 9,
+913456525,
+50,
+100,
+Demos:1#3,
+Produtos:
+Caravela Dumbo#
+Nau do Passado#;

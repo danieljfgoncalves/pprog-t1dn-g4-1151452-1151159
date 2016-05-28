@@ -1,13 +1,33 @@
-dados:CarLuxo,Exposição de carros de luxo,2016/08/24,2016/09/24,2016/06/01,2016/08/15,Porto;
-listaFaes:u1,u3,u5,u7,u9,u13,u20;
-listaOrganizadores:u2,u18;
-listaDemos:Ferraris Vermelhos,Austin Martin’s Antigos,Porsches 911,Rolls Royce;
-Candidaturas:
-*
-StandLux,Rua Alberto Paiva 89,913456555,30,450;
-Produtos:Ferrari California;,Rolls Royce Phantom,Bentley Continental GT;
-#
-*
-Golden Stand,Rua Jose Pires 189,913436555,35,150;
-Produtos:Ferrari F599,Porsche 911,Porsche 918 Spyder,Porsche Carrera 4S,Austin Martin DB11,Austin Martin Rapide;
-#
+dados=
+CarLuxo,
+Exposição de carros de luxo,
+DataInicio:2016/8/24,
+DataFim:2016/9/24,
+SubInicio:2016/6/01,
+SubFim:2016/8/15,
+Porto;
+
+listaFaes=u1,u3,u5,u7,u9,u13,u20;
+listaOrganizadores=u2,u18;
+listaDemos=Ferraris Vermelhos,Austin Martin’s Antigos,Porsches 911,Rolls Royce;
+listaCandidaturas=
+StandLux,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Golden Stand,Rua Jose Pires 189,913436555,35,150,
+Demos:1#2#3,
+Produtos:
+Ferrari F599#
+Porsche 9113
+Porsche 918 Spyder#
+Porsche Carrera 4S#
+Austin Martin DB11#
+Austin Martin Rapide;

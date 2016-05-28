@@ -1,0 +1,12 @@
+dados=
+Nice Motas,
+Exposição de motas nice,
+DataInicio:2016/6/21,
+DataFim:2016/7/21,
+SubInicio:2016/6/01,
+SubFim:2016/6/15,
+Porto;
+
+listaFaes=u2,u4,u6,u8,u10,u12,u11,u16,u20;
+listaOrganizadores=u15,u9,u19;
+listaDemos=Motas Assim, Motas Assado, Motas Grelhado, Motocross;
