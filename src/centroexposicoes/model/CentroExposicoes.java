@@ -52,7 +52,7 @@ public class CentroExposicoes implements Serializable {
      */
     public CentroExposicoes(RegistoExposicoes registoExposicoes, RegistoRepresentantes registoRepresentantes) {
         this.registoExposicoes = new RegistoExposicoes(registoExposicoes);
-        this.registoMecanismos = new RegistoMecanismos(lerMecanismos());
+        this.registoMecanismos = new RegistoMecanismos();
         this.registoRepresentantes = new RegistoRepresentantes(registoRepresentantes);
     }
 
@@ -98,10 +98,9 @@ public class CentroExposicoes implements Serializable {
     /**
      * Modifica o registo de mecanismos.
      *
-     * @param registoMecanismos registo de mecanismos
      */
-    public void setRegistoMecanismos(RegistoMecanismos registoMecanismos) {
-        this.registoMecanismos = new RegistoMecanismos(registoMecanismos);
+    public void setRegistoMecanismos() {
+        this.registoMecanismos = new RegistoMecanismos(lerMecanismos());
     }
 
     /**
