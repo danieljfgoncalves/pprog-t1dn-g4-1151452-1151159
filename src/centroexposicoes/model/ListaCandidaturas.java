@@ -75,6 +75,12 @@ public class ListaCandidaturas implements Serializable {
         return candidatura.valida() && validarCandidatura(candidatura) ? addCandidatura(candidatura) : false;
     }
 
+    /**
+     * Remove uma candidatura à lista de candidaturas, validando ao detalhe.
+     *
+     * @param candidatura Candidatura a ser removida
+     * @return True se for removida com sucesso
+     */
     public boolean removerCandidatura(Candidatura candidatura) {
         return candidatura.valida() && validarCandidatura(candidatura) ? false : removeCandidatura(candidatura);
     }
@@ -99,6 +105,12 @@ public class ListaCandidaturas implements Serializable {
         return listaCandidaturas.add(candidatura);
     }
 
+    /**
+     * Remove uma candidatura à lista de candidaturas.
+     *
+     * @param candidatura Candidatura a ser removida
+     * @return True se for removida com sucesso
+     */
     private boolean removeCandidatura(Candidatura candidatura) {
         return listaCandidaturas.remove(candidatura);
     }

@@ -127,6 +127,7 @@ public class Exposicao implements Serializable {
         this.listaCandidaturas = new ListaCandidaturas();
         this.listaDemonstracoes = new ArrayList<>();
         this.listaAtribuicoes = new ListaAtribuicoes();
+        this.local = LOCAL_POR_OMISSAO;
     }
 
     /**
@@ -434,6 +435,7 @@ public class Exposicao implements Serializable {
      * Adiciona uma candidatura.
      *
      * @param candidatura Candidatura a ser adicionada
+     *
      * @return True se for adicionada com sucesso
      */
     public boolean adicionarCandidatura(Candidatura candidatura) {
@@ -444,6 +446,7 @@ public class Exposicao implements Serializable {
      * Remove uma atribuição da lista.
      *
      * @param atribuicao atribuição a ser removida
+     *
      * @return true se for removido com sucesso
      */
     public boolean removerAtribuicao(Atribuicao atribuicao) {

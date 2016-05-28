@@ -29,7 +29,9 @@ public class CentroExposicoes implements Serializable {
      * Representantes de Expositor do centro de exposições.
      */
     private RegistoRepresentantes registoRepresentantes;
-
+    /**
+     * Caminho onde estão guardados os mecanismos.
+     */
     private static final String DIR_MECANISMOS = "src/centroexposicoes/model/mecanismos/";
 
     /**
@@ -70,7 +72,7 @@ public class CentroExposicoes implements Serializable {
     /**
      * Devolve o registo de exposições.
      *
-     * @return Registo de exposições.
+     * @return Registo de exposições
      */
     public RegistoExposicoes getRegistoExposicoes() {
         return new RegistoExposicoes(registoExposicoes);
@@ -96,7 +98,6 @@ public class CentroExposicoes implements Serializable {
 
     /**
      * Modifica o registo de mecanismos.
-     *
      */
     public void setRegistoMecanismos() {
         this.registoMecanismos = new RegistoMecanismos(lerMecanismos());
@@ -120,6 +121,11 @@ public class CentroExposicoes implements Serializable {
         this.registoRepresentantes = new RegistoRepresentantes(registoRepresentantes);
     }
 
+    /**
+     * Lê os mecanismos que estão na pasta de mecanismos e instancia as mesmas.
+     *
+     * @return a lista de mecanismos
+     */
     private List<MecanismoAtribuicao> lerMecanismos() {
 
         List<MecanismoAtribuicao> listaMecanismos = new ArrayList<>();
@@ -155,7 +161,7 @@ public class CentroExposicoes implements Serializable {
     /**
      * Gera uma representação textual do centro de exposições.
      *
-     * @return representação textual do centro de exposições.
+     * @return representação textual do centro de exposições
      */
     @Override
     public String toString() {
@@ -166,7 +172,8 @@ public class CentroExposicoes implements Serializable {
      * Compara se outro objeto é igual a este centro de exposições.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais, false caso contrário.
+     *
+     * @return true se forem iguais, false caso contrário
      */
     public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {

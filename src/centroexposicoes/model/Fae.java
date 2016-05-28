@@ -91,43 +91,63 @@ public class Fae implements Ator, Serializable {
     }
 
     /**
-     * @return the contCandPorAvaliar
+     * Devolve o contador de candidaturas por avaliar.
+     *
+     * @return o contador de candidaturas por avaliar
      */
     public int getContCandPorAvaliar() {
         return contCandPorAvaliar;
     }
 
     /**
-     * @param contCandPorAvaliar the contCandPorAvaliar to set
+     * Modifica o contador de candidaturas por avaliar.
+     *
+     * @param contCandPorAvaliar o contador de candidaturas por avaliar
      */
     public void setContCandPorAvaliar(int contCandPorAvaliar) {
         this.contCandPorAvaliar = contCandPorAvaliar;
     }
 
     /**
-     * @return the contCandAvaliadas
+     * Devolve o contador de candidaturas avaliaadas.
+     *
+     * @return o contador de candidaturas avaliaadas
      */
     public int getContCandAvaliadas() {
         return contCandAvaliadas;
     }
 
     /**
-     * @param contCandAvaliadas the contCandAvaliadas to set
+     * Modifica o contador de candidaturas avaliaadas.
+     *
+     * @param contCandAvaliadas o contador de candidaturas avaliaadas
      */
     public void setContCandAvaliadas(int contCandAvaliadas) {
         this.contCandAvaliadas = contCandAvaliadas;
     }
 
+    /**
+     * Devolve o nome de utilizador do FAE (Ator).
+     *
+     * @return o nome de utilizador do FAE (Ator)
+     */
     @Override
     public String getNome() {
 
         return this.utilizadorFae.getNome();
     }
 
+    /**
+     * Aumenta o contador de candidaturas por avaliar.
+     */
     public void aumentarContCandPorAvaliar() {
         this.setContCandPorAvaliar(this.getContCandPorAvaliar() + 1);
     }
 
+    /**
+     * Reduz o contador de candidaturas por avaliar e aumenta o contador de
+     * candidaturas avaliadas.
+     */
     public void reduzirContCandPorAvaliar() {
         this.setContCandPorAvaliar(this.getContCandPorAvaliar() - 1);
         this.setContCandAvaliadas(this.getContCandAvaliadas() + 1);
@@ -140,7 +160,7 @@ public class Fae implements Ator, Serializable {
      */
     @Override
     public String toString() {
-        return String.format("Fae{utilizadorFae:%s}", utilizadorFae);
+        return "Fae{" + "utilizadorFae=" + utilizadorFae + ", contCandPorAvaliar=" + contCandPorAvaliar + ", contCandAvaliadas=" + contCandAvaliadas + '}';
     }
 
     /**

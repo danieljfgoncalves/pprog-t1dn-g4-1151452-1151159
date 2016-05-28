@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Fornece as classes utilitárias para o centro de exposições.
  */
 package centroexposicoes.utils;
 
@@ -17,11 +15,9 @@ import centroexposicoes.model.ListaCandidaturas;
 import centroexposicoes.model.ListaFaes;
 import centroexposicoes.model.ListaOrganizadores;
 import centroexposicoes.model.Local;
-import centroexposicoes.model.MecanismoAtribuicao;
 import centroexposicoes.model.Organizador;
 import centroexposicoes.model.Produto;
 import centroexposicoes.model.RegistoExposicoes;
-import centroexposicoes.model.RegistoMecanismos;
 import centroexposicoes.model.RegistoRepresentantes;
 import centroexposicoes.model.Representante;
 import centroexposicoes.model.Utilizador;
@@ -31,10 +27,16 @@ import java.util.List;
 /**
  * Metodos para criar instâncias por defeito.
  *
- * @author Daniel Goncalves <1151452@isep.ipp.pt>
+ * @author Daniel Gonçalves 1151452
+ * @author Ivo Ferro 1151159
  */
 public class InstanciadorPorDefeito {
 
+    /**
+     * Devolve um centro de exposições por defeito.
+     *
+     * @return um centro de exposições por defeito
+     */
     public static CentroExposicoes getCentroExposicoesPorDefeito() {
         List<Organizador> lo = new ArrayList<>();
         lo.add(new Organizador(new Utilizador("Eric", "email", "ivo", "pass")));
@@ -58,15 +60,11 @@ public class InstanciadorPorDefeito {
         listaProdutos.add(new Produto("bola"));
         listaProdutos.add(new Produto("guarda chuva"));
         listaProdutos.add(new Produto("raquete"));
-        
-        Candidatura sonae = new Candidatura("SONAE", "Porto", 
-                "918765432", 42.2f, 4, 
+
+        Candidatura sonae = new Candidatura("SONAE", "Porto",
+                "918765432", 42.2f, 4,
                 listaProdutos, listaDemonstracoes, new ArrayList<>());
-////        Atribuicao atribuicao = new Atribuicao(sonae, ivo);
-////        Avaliacao avaliacao = new Avaliacao(Avaliacao.TipoAvaliacao.Aprovado, atribuicao, "Dentro do contexto.");
         List<Avaliacao> listAvaliacoes = new ArrayList<>();
-////        listAvaliacoes.add(avaliacao);
-//        sonae.setListaAvaliacoes(listAvaliacoes);
 
         List<Candidatura> lc = new ArrayList<>();
         lc.add(new Candidatura(sonae));
@@ -74,7 +72,6 @@ public class InstanciadorPorDefeito {
         ListaCandidaturas listaCandidaturas = new ListaCandidaturas(lc);
 
         List<Atribuicao> la = new ArrayList<>();
-//        la.add(atribuicao);
         ListaAtribuicoes listaAtribuicoes = new ListaAtribuicoes(la);
 
         Exposicao e1 = new Exposicao("Carros", "Expôr carros",
@@ -82,7 +79,7 @@ public class InstanciadorPorDefeito {
                 new Data(2016, 6, 15), new Data(2016, 7, 15),
                 new Local("Maia"), listaFaes, listaOrganizadores,
                 listaCandidaturas, listaDemonstracoes, listaAtribuicoes);
-        
+
         lo.remove(1);
         lo.add(new Organizador(new Utilizador("Abilio", "email", "asta", "pass")));
         ListaOrganizadores listaOrganizadores2 = new ListaOrganizadores(lo);
@@ -103,7 +100,7 @@ public class InstanciadorPorDefeito {
         RegistoRepresentantes registoRepresentantes = new RegistoRepresentantes(lr);
 
         CentroExposicoes centroExposicoes = new CentroExposicoes(registoExposicoes, registoRepresentantes);
-        
+
         return centroExposicoes;
 
     }

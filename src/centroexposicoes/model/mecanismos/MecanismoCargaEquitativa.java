@@ -27,6 +27,12 @@ public class MecanismoCargaEquitativa implements MecanismoAtribuicao, Serializab
      */
     private static final String DESCRICAO_MECANISMO = "Atribuição carga equitativa";
 
+    /**
+     * Gera uma lista de atribuições.
+     *
+     * @param exposicao Exposição
+     * @return Atribuições
+     */
     @Override
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao) {
         //registo atribuições para criar as atribuições (high-cohesion)
@@ -52,6 +58,11 @@ public class MecanismoCargaEquitativa implements MecanismoAtribuicao, Serializab
         return listaAtribuicoes;
     }
 
+    /**
+     * Devolve a descrição do mecanismo.
+     *
+     * @return a descrição do mecanismo
+     */
     @Override
     public String getDescricao() {
         return DESCRICAO_MECANISMO;

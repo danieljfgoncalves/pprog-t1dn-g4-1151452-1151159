@@ -19,7 +19,7 @@ public class Atribuicao implements Serializable {
     private Candidatura candidatura;
 
     /**
-     * FAE da atribuido.
+     * FAE atribuido.
      */
     private Fae fae;
 
@@ -45,8 +45,8 @@ public class Atribuicao implements Serializable {
      * Constroi uma instância de atribuição com os valores recebidos por
      * paramêtros.
      *
-     * @param candidatura candidatura atribuida.
-     * @param fae fae atribuido.
+     * @param candidatura candidatura atribuida
+     * @param fae fae atribuido
      */
     public Atribuicao(Candidatura candidatura, Fae fae) {
         this.candidatura = candidatura;
@@ -57,7 +57,7 @@ public class Atribuicao implements Serializable {
      * Constroi uma instância de atribuição com os valores copiados por outra
      * atribuição.
      *
-     * @param outraAtribuicao atribuição que pretende copiar.
+     * @param outraAtribuicao atribuição que pretende copiar
      */
     public Atribuicao(Atribuicao outraAtribuicao) {
         this.candidatura = outraAtribuicao.candidatura;
@@ -67,7 +67,7 @@ public class Atribuicao implements Serializable {
     /**
      * Devolve a candidatura atribuida.
      *
-     * @return a candidatura atribuida.
+     * @return a candidatura atribuida
      */
     public Candidatura getCandidatura() {
         return candidatura;
@@ -76,7 +76,7 @@ public class Atribuicao implements Serializable {
     /**
      * Modifica a candidatura atribuida.
      *
-     * @param candidatura candidatura atribuida.
+     * @param candidatura candidatura atribuida
      */
     public void setCandidatura(Candidatura candidatura) {
         this.candidatura = candidatura;
@@ -85,7 +85,7 @@ public class Atribuicao implements Serializable {
     /**
      * Devolve o fae atribuido.
      *
-     * @return o fae atribuido.
+     * @return o fae atribuido
      */
     public Fae getFae() {
         return fae;
@@ -94,7 +94,7 @@ public class Atribuicao implements Serializable {
     /**
      * Modifica o fae atribuido.
      *
-     * @param fae fae atribuido.
+     * @param fae fae atribuido
      */
     public void setFae(Fae fae) {
         this.fae = fae;
@@ -103,7 +103,7 @@ public class Atribuicao implements Serializable {
     /**
      * Devolve a descrição textual de todos os atributos de um representante.
      *
-     * @return caraterísticas da candidatura.
+     * @return caraterísticas da candidatura
      */
     @Override
     public String toString() {
@@ -117,7 +117,8 @@ public class Atribuicao implements Serializable {
      * Compara se outro objeto é igual a esta atribuição.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário.
+     *
+     * @return true se forem iguais. False caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {

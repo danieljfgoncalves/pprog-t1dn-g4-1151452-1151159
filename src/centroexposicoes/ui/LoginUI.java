@@ -25,6 +25,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -387,8 +388,7 @@ public class LoginUI extends GlobalJFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Representante rep = listaRepresentantes.get(jListAtores.getSelectedIndex());
-                new RegistarCandidaturaUI(centroExposicoes, rep);
+                new RegistarCandidaturaUI(centroExposicoes);
             }
         });
 

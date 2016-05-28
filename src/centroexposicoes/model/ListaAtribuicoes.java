@@ -67,7 +67,7 @@ public class ListaAtribuicoes implements Serializable {
     }
 
     /**
-     * Cria ma nova atribuição.
+     * Cria uma nova atribuição.
      *
      * @param candidatura candidatura a ser avaliada.
      * @param fae FAE a avaliar
@@ -79,7 +79,7 @@ public class ListaAtribuicoes implements Serializable {
     }
 
     /**
-     * Valida se uma atribuicao é válida.
+     * Verifica se uma atribuicao é válida.
      *
      * @param atribuicao atribuição a ser verificada
      * @return true se for válida, false caso contrário

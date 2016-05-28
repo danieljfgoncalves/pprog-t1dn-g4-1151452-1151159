@@ -16,14 +16,14 @@ public class Demonstracao implements Serializable {
     /**
      * Código único para a demonstração.
      */
-    private String codigoUnico;
+    private final String codigoUnico;
     /**
      * Designação da demonstração.
      */
     private String designacao;
 
     /**
-     * Número de instâncias de demonstrações criadas;
+     * Número de instâncias de demonstrações criadas.
      */
     private static int contagemDemonstracao = 0;
 

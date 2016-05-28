@@ -65,9 +65,9 @@ public class Avaliacao implements Serializable {
      * Constroi uma instância de avaliação com os valores recebidos por
      * paramêtros.
      *
-     * @param decisao decisao de uma avaliação.
-     * @param atribuicao atribuição da avaliação.
-     * @param txtJustificativo texto justificativo da avaliação.
+     * @param decisao decisao de uma avaliação
+     * @param atribuicao atribuição da avaliação
+     * @param txtJustificativo texto justificativo da avaliação
      */
     public Avaliacao(TipoAvaliacao decisao, Atribuicao atribuicao, String txtJustificativo) {
         this.decisao = decisao;
@@ -79,7 +79,7 @@ public class Avaliacao implements Serializable {
      * Constroi uma instância de avaliação com os valores copiados por outra
      * avaliação.
      *
-     * @param outraAvaliacao avaliação que pretende copiar.
+     * @param outraAvaliacao avaliação que pretende copiar
      */
     public Avaliacao(Avaliacao outraAvaliacao) {
         this.decisao = outraAvaliacao.decisao;
@@ -90,7 +90,7 @@ public class Avaliacao implements Serializable {
     /**
      * Devolve a decisão da avaliação.
      *
-     * @return a decisão da avaliação.
+     * @return a decisão da avaliação
      */
     public TipoAvaliacao getDecisao() {
         return decisao;
@@ -99,7 +99,7 @@ public class Avaliacao implements Serializable {
     /**
      * Modifica a decisão da avaliação.
      *
-     * @param decisao decisão da avaliação.
+     * @param decisao decisão da avaliação
      */
     public void setDecisao(TipoAvaliacao decisao) {
         this.decisao = decisao;
@@ -108,7 +108,7 @@ public class Avaliacao implements Serializable {
     /**
      * Devolve a atribuição da avaliação.
      *
-     * @return a atribuição da avaliação.
+     * @return a atribuição da avaliação
      */
     public Atribuicao getAtribuicao() {
         return atribuicao;
@@ -117,7 +117,7 @@ public class Avaliacao implements Serializable {
     /**
      * Modifica a atribuição da avaliação.
      *
-     * @param atribuicao atribuição da avaliação.
+     * @param atribuicao atribuição da avaliação
      */
     public void setAtribuicao(Atribuicao atribuicao) {
         this.atribuicao = atribuicao;
@@ -126,7 +126,7 @@ public class Avaliacao implements Serializable {
     /**
      * Devolve o texto justificativo da avaliação.
      *
-     * @return o texto justificativo da avaliação.
+     * @return o texto justificativo da avaliação
      */
     public String getTxtJustificativo() {
         return txtJustificativo;
@@ -135,26 +135,25 @@ public class Avaliacao implements Serializable {
     /**
      * Modifica o texto justificativo da avaliação.
      *
-     * @param txtJustificativo texto justificativo da avaliação.
+     * @param txtJustificativo texto justificativo da avaliação
      */
     public void setTxtJustificativo(String txtJustificativo) {
         this.txtJustificativo = txtJustificativo;
     }
 
     /**
-     * Valida a avaliação
-     * 
+     * Valida a avaliação.
+     *
      * @return true se for válida, false caso contrário
      */
-    public boolean validar()
-    {
+    public boolean validar() {
         return Validar.validaString(this.txtJustificativo) && atribuicao != null;
     }
-    
+
     /**
      * Devolve a descrição textual de todos os atributos de um representante.
      *
-     * @return caraterísticas da candidatura.
+     * @return caraterísticas da candidatura
      */
     @Override
     public String toString() {
@@ -165,7 +164,7 @@ public class Avaliacao implements Serializable {
      * Compara se outro objeto é igual a esta avaliação.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário.
+     * @return true se forem iguais. False caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {
