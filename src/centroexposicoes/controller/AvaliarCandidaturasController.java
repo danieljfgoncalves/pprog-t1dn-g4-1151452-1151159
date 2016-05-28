@@ -53,13 +53,17 @@ public class AvaliarCandidaturasController {
     }
 
     public boolean registaAvaliacao() {
-        
-        boolean registarAvaliacao = candidatura.adicionarAvaliacao(avaliacao); 
-        
+
+        boolean registarAvaliacao = candidatura.adicionarAvaliacao(avaliacao);
+
         if (registarAvaliacao) {
             fae.reduzirContCandPorAvaliar();
         }
-        
+
         return registarAvaliacao;
+    }
+
+    public boolean removerAtribuicao(Atribuicao atribuicao) {
+        return exposicao.removerAtribuicao(atribuicao);
     }
 }

@@ -78,10 +78,11 @@ public class DialogVerCandidatura extends JDialog {
      * Cria os componentes do diálogo.
      */
     private void criarComponentes() {
-        setLayout(new GridLayout(2, 1));
-
-        add(criarPainelCampos());
-        add(CriarPainelTabelasBotoes());
+        JPanel panelComponents = new JPanel(new GridLayout(2, 1, 0, 10));
+        panelComponents.add(criarPainelCampos());
+        panelComponents.add(CriarPainelTabelasBotoes());
+        panelComponents.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        add(panelComponents);
     }
 
     /**
@@ -123,7 +124,7 @@ public class DialogVerCandidatura extends JDialog {
      * @return painel com as tabelas e botões
      */
     private JPanel CriarPainelTabelasBotoes() {
-        JPanel painelTabelasBotoes = new JPanel(new BorderLayout());
+        JPanel painelTabelasBotoes = new JPanel(new BorderLayout(0, 10));
 
         painelTabelasBotoes.add(criarPainelTabelas(), BorderLayout.CENTER);
         painelTabelasBotoes.add(criarBotãoRegressar(), BorderLayout.SOUTH);
@@ -132,7 +133,7 @@ public class DialogVerCandidatura extends JDialog {
     }
 
     private JPanel criarPainelTabelas() {
-        JPanel painelTabelas = new JPanel(new GridLayout(1, 2));
+        JPanel painelTabelas = new JPanel(new GridLayout(1, 2, 10, 0));
 
         painelTabelas.add(criarPainelTabelaProdutos());
         painelTabelas.add(criarPainelTabelaDemonstracoes());
@@ -154,7 +155,7 @@ public class DialogVerCandidatura extends JDialog {
     }
 
     private JPanel criarPainelTabelaProdutos() {
-        JPanel painelProdutos = new JPanel(new BorderLayout());
+        JPanel painelProdutos = new JPanel(new BorderLayout(0, 5));
 
         JLabel labelTitulo = new JLabel("Produtos:", SwingConstants.CENTER);
         jListaProdutos = new JList();
@@ -170,7 +171,7 @@ public class DialogVerCandidatura extends JDialog {
     }
 
     private JPanel criarPainelTabelaDemonstracoes() {
-        JPanel painelDemonstracoes = new JPanel(new BorderLayout());
+        JPanel painelDemonstracoes = new JPanel(new BorderLayout(0, 5));
 
         JLabel labelTitulo = new JLabel("Demonstrações:", SwingConstants.CENTER);
         jListaDemonstracoes = new JList();

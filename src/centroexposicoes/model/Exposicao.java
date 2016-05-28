@@ -75,7 +75,7 @@ public class Exposicao implements Serializable {
      * Lista das atribuições.
      */
     private ListaAtribuicoes listaAtribuicoes;
-    
+
     /**
      * Titulo da exposição por omissão.
      */
@@ -386,7 +386,7 @@ public class Exposicao implements Serializable {
 
     /**
      * Devolve a lista de Atribuições.
-     * 
+     *
      * @return listra de atribuições
      */
     public ListaAtribuicoes getListaAtribuicoes() {
@@ -395,30 +395,29 @@ public class Exposicao implements Serializable {
 
     /**
      * Modifica a lista de Atribuições.
-     * 
+     *
      * @param listaAtribuicoes lista de atribuições
      */
     public void setListaAtribuicoes(ListaAtribuicoes listaAtribuicoes) {
         this.listaAtribuicoes = new ListaAtribuicoes(listaAtribuicoes);
     }
-    
+
     /**
      * Devolve a listra de atribuições por avaliar do fae especificado.
-     * 
+     *
      * @param fae funcionário de apoio à exposição
      * @return listra de atribuições por avaliar do fae especificado
      */
-    public List<Atribuicao> getListaAtribuicoesPorAvaliar(Fae fae)
-    {
+    public List<Atribuicao> getListaAtribuicoesPorAvaliar(Fae fae) {
         List<Atribuicao> listaAtribuicoesPorAvaliar = new ArrayList<>();
         List<Atribuicao> la = this.listaAtribuicoes.getListaAtribuicoes();
-        
+
         for (Atribuicao atribuicao : la) {
             if (atribuicao.getFae().equals(fae)) {
                 listaAtribuicoesPorAvaliar.add(atribuicao);
             }
         }
-        
+
         return listaAtribuicoesPorAvaliar;
     }
 
@@ -439,6 +438,16 @@ public class Exposicao implements Serializable {
      */
     public boolean adicionarCandidatura(Candidatura candidatura) {
         return getListaCandidaturas().adicionarCandidatura(candidatura);
+    }
+
+    /**
+     * Remove uma atribuição da lista.
+     *
+     * @param atribuicao atribuição a ser removida
+     * @return true se for removido com sucesso
+     */
+    public boolean removerAtribuicao(Atribuicao atribuicao) {
+        return listaAtribuicoes.removerAtribuicao(atribuicao);
     }
 
     /**

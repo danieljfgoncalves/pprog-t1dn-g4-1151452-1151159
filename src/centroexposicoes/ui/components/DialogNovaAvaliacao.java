@@ -5,10 +5,13 @@ package centroexposicoes.ui.components;
 
 import centroexposicoes.model.Avaliacao;
 import centroexposicoes.ui.AvaliarCandidaturaUI;
+import centroexposicoes.utils.Validar;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -17,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 /**
  * Interface gráfica de um diálogo para avaliar uma candidatura.
@@ -35,17 +39,17 @@ public class DialogNovaAvaliacao extends JDialog {
      * RadioButtom aceitar.
      */
     private JRadioButton botaoRadioAceitar;
-    
+
     /**
      * RadioButtom recursar.
      */
     private JRadioButton botaoRadioRecusar;
-    
+
     /**
      * Texto justificativo.
      */
     private JTextArea txtJustificacao;
-    
+
     /**
      * Título do diálogo.
      */
@@ -73,9 +77,12 @@ public class DialogNovaAvaliacao extends JDialog {
      * Cria os componentes do diálogo.
      */
     private void criarComponentes() {
-        add(criarPainelDecisao(), BorderLayout.NORTH);
-        add(criarPainelJustificacao(), BorderLayout.CENTER);
-        add(criarPainelBotoes(), BorderLayout.SOUTH);
+        JPanel panelComponents = new JPanel(new BorderLayout(0, 10));
+        panelComponents.add(criarPainelDecisao(), BorderLayout.NORTH);
+        panelComponents.add(criarPainelJustificacao(), BorderLayout.CENTER);
+        panelComponents.add(criarPainelBotoes(), BorderLayout.SOUTH);
+        panelComponents.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        add(panelComponents);
     }
 
     /**
@@ -84,7 +91,7 @@ public class DialogNovaAvaliacao extends JDialog {
      * @return painel de decisão
      */
     private JPanel criarPainelDecisao() {
-        JPanel painelDecisao = new JPanel(new GridLayout(1, 2));
+        JPanel painelDecisao = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 10));
 
         botaoRadioAceitar = new JRadioButton("Aceitar");
         botaoRadioRecusar = new JRadioButton("Recusar");
@@ -104,9 +111,9 @@ public class DialogNovaAvaliacao extends JDialog {
      * @return painel de justificação
      */
     private JPanel criarPainelJustificacao() {
-        JPanel painelJustificao = new JPanel(new BorderLayout());
+        JPanel painelJustificao = new JPanel(new BorderLayout(0, 10));
 
-        JLabel labelJustificao = new JLabel("Justificação:");
+        JLabel labelJustificao = new JLabel("Justificação:", SwingConstants.CENTER);
         txtJustificacao = new JTextArea(6, 50);
 
         painelJustificao.add(labelJustificao, BorderLayout.NORTH);
@@ -121,7 +128,7 @@ public class DialogNovaAvaliacao extends JDialog {
      * @return painel de botões
      */
     private JPanel criarPainelBotoes() {
-        JPanel painelBotoes = new JPanel(new GridLayout(1, 2));
+        JPanel painelBotoes = new JPanel(new GridLayout(1, 2, 10, 0));
 
         painelBotoes.add(criarBotaoSubmeterAvaliacao());
         painelBotoes.add(criarBotaoCancelar());
@@ -140,18 +147,16 @@ public class DialogNovaAvaliacao extends JDialog {
         botaoSubmeterAvaliacao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO adicionar avaliação
-                if (botaoRadioAceitar.isSelected() || botaoRadioRecusar.isSelected()) {
-                    boolean registaAvaliacao = framePai.registaAvaliacao(botaoRadioAceitar.isSelected() ? Avaliacao.TipoAvaliacao.Aprovado : Avaliacao.TipoAvaliacao.Rejeitado, txtJustificacao.getText());
-                    if (registaAvaliacao) {
-                        dispose();
-                        JOptionPane.showMessageDialog(rootPane, "Candidatura avaliada com sucesso!", 
-                                TITULO, JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "Avaliação inválida!", 
-                                TITULO, JOptionPane.WARNING_MESSAGE);
+                try {
+                    if (!(botaoRadioAceitar.isSelected() || botaoRadioRecusar.isSelected()) || !Validar.validaString(txtJustificacao.getText()))
+                    {
+                        throw new IllegalArgumentException();
                     }
-                    
+                    framePai.registaAvaliacao(botaoRadioAceitar.isSelected() ? Avaliacao.TipoAvaliacao.Aprovado : Avaliacao.TipoAvaliacao.Rejeitado, txtJustificacao.getText());
+                    dispose();
+                } catch (IllegalArgumentException ex) {
+                        JOptionPane.showMessageDialog(rootPane, "Avaliação inválida! Insira todos os dados necessários.",
+                                TITULO, JOptionPane.WARNING_MESSAGE);
                 }
             }
         });

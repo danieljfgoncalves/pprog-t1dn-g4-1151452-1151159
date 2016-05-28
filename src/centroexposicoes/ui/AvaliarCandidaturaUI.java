@@ -16,10 +16,13 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -66,12 +69,15 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
     }
 
     private void criarComponentes() {
-        add(criarPainelListas(), BorderLayout.CENTER);
-        add(criarPainelBotoes(), BorderLayout.SOUTH);
+        JPanel panelComponents = new JPanel(new BorderLayout(10, 10));
+        panelComponents.add(criarPainelListas(), BorderLayout.CENTER);
+        panelComponents.add(criarPainelBotoes(), BorderLayout.SOUTH);
+        panelComponents.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        add(panelComponents);
     }
 
     private JPanel criarPainelListas() {
-        JPanel painelListas = new JPanel(new GridLayout(1, 2));
+        JPanel painelListas = new JPanel(new GridLayout(1, 2, 10, 0));
 
         painelListas.add(criarPainelExposicoes());
         painelListas.add(criarPainelAtribuicoes());
@@ -80,7 +86,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
     }
 
     private JPanel criarPainelExposicoes() {
-        JPanel painelExposicoes = new JPanel(new BorderLayout());
+        JPanel painelExposicoes = new JPanel(new BorderLayout(10, 10));
 
         JLabel labelTitulo = new JLabel("Selecione uma exposição:", SwingConstants.CENTER);
         jListaExposicoes = new JList();
@@ -91,8 +97,13 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                listaAtribuicoes = controller.getListaAtribuicoesPorAvaliar(listaExposicoes.get(jListaExposicoes.getSelectedIndex()));
-                jListaAtribuicoes.setModel(new ModelListAtribuicoes(listaAtribuicoes));
+                if (jListaExposicoes.getSelectedIndex() >= 0) {
+                    listaAtribuicoes = controller.getListaAtribuicoesPorAvaliar(listaExposicoes.get(jListaExposicoes.getSelectedIndex()));
+                    jListaAtribuicoes.setModel(new ModelListAtribuicoes(listaAtribuicoes));
+                } else {
+                    listaAtribuicoes = new ArrayList<>();
+                    jListaAtribuicoes.setModel(new ModelListAtribuicoes(listaAtribuicoes));
+                }
             }
         });
 
@@ -105,7 +116,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
     }
 
     private JPanel criarPainelAtribuicoes() {
-        JPanel painelAtribuicoes = new JPanel(new BorderLayout());
+        JPanel painelAtribuicoes = new JPanel(new BorderLayout(10, 10));
 
         JLabel labelTitulo = new JLabel("Selecione uma atribuição:", SwingConstants.CENTER);
         jListaAtribuicoes = new JList();
@@ -128,7 +139,7 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
     }
 
     private JPanel criarPainelBotoes() {
-        JPanel painelBotoes = new JPanel(new GridLayout(1, 3));
+        JPanel painelBotoes = new JPanel(new GridLayout(1, 3, 10, 0));
 
         painelBotoes.add(criarBotaoVerCandidatura());
         painelBotoes.add(criarBotaoAvaliarCandidatura());
@@ -184,6 +195,16 @@ public class AvaliarCandidaturaUI extends GlobalJFrame {
 
     public boolean registaAvaliacao(Avaliacao.TipoAvaliacao avaliacao, String textoJustificativo) {
         controller.setAvaliacao(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()), avaliacao, textoJustificativo);
-        return controller.registaAvaliacao();
+        boolean registadaComSucesso = controller.registaAvaliacao();
+        if (registadaComSucesso) {
+            boolean removidoComSucesso = controller.removerAtribuicao(listaAtribuicoes.get(jListaAtribuicoes.getSelectedIndex()));
+            listaAtribuicoes = controller.getListaAtribuicoesPorAvaliar(listaExposicoes.get(jListaExposicoes.getSelectedIndex()));
+            jListaAtribuicoes.setModel(new ModelListAtribuicoes(listaAtribuicoes));
+            if (removidoComSucesso) {
+                JOptionPane.showMessageDialog(rootPane, "Candidatura avaliada com sucesso!",
+                                "Avaliação concluída", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        return registadaComSucesso;
     }
 }

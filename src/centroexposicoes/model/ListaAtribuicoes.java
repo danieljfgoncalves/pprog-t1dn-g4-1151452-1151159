@@ -65,15 +65,38 @@ public class ListaAtribuicoes implements Serializable {
     public void setListaAtribuicoes(List<Atribuicao> listaAtribuicoes) {
         this.listaAtribuicoes = listaAtribuicoes;
     }
-    
+
+    /**
+     * Cria ma nova atribuição.
+     *
+     * @param candidatura candidatura a ser avaliada.
+     * @param fae FAE a avaliar
+     * @return atribuição criada
+     */
     public Atribuicao novaAtribuicao(Candidatura candidatura, Fae fae) {
-        
+
         return new Atribuicao(candidatura, fae);
     }
-    
+
+    /**
+     * Valida se uma atribuicao é válida.
+     *
+     * @param atribuicao atribuição a ser verificada
+     * @return true se for válida, false caso contrário
+     */
     public boolean validarAtribuicoes(Atribuicao atribuicao) {
-        
+
         return (!this.listaAtribuicoes.contains(atribuicao));
+    }
+
+    /**
+     * Remove uma atribuição da lista.
+     *
+     * @param atribuicao atribuição a ser removida
+     * @return true se for removido com sucesso
+     */
+    public boolean removerAtribuicao(Atribuicao atribuicao) {
+        return listaAtribuicoes.remove(atribuicao);
     }
 
     /**
