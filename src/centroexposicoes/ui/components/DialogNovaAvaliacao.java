@@ -86,7 +86,7 @@ public class DialogNovaAvaliacao extends JDialog {
     }
 
     /**
-     * Cria o painel com os botões da decisão
+     * Cria o painel com os botões da decisão.
      *
      * @return painel de decisão
      */
@@ -137,7 +137,7 @@ public class DialogNovaAvaliacao extends JDialog {
     }
 
     /**
-     * Cria o botão de submeter avaliação
+     * Cria o botão de submeter avaliação.
      *
      * @return botão de submeter avaliação
      */
@@ -148,15 +148,14 @@ public class DialogNovaAvaliacao extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (!(botaoRadioAceitar.isSelected() || botaoRadioRecusar.isSelected()) || !Validar.validaString(txtJustificacao.getText()))
-                    {
+                    if (!(botaoRadioAceitar.isSelected() || botaoRadioRecusar.isSelected()) || !Validar.validaString(txtJustificacao.getText())) {
                         throw new IllegalArgumentException();
                     }
                     framePai.registaAvaliacao(botaoRadioAceitar.isSelected() ? Avaliacao.TipoAvaliacao.Aprovado : Avaliacao.TipoAvaliacao.Rejeitado, txtJustificacao.getText());
                     dispose();
                 } catch (IllegalArgumentException ex) {
-                        JOptionPane.showMessageDialog(rootPane, "Avaliação inválida! Insira todos os dados necessários.",
-                                TITULO, JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "Avaliação inválida! Insira todos os dados necessários.",
+                            TITULO, JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -165,7 +164,7 @@ public class DialogNovaAvaliacao extends JDialog {
     }
 
     /**
-     * Cria o botão cancelar
+     * Cria o botão cancelar.
      *
      * @return botão cancelar
      */

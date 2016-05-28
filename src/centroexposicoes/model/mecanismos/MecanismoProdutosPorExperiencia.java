@@ -30,6 +30,12 @@ public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao, Ser
      */
     private static final String DESCRICAO_MECANISMO = "Atribuição quantidade produtos por experiência";
 
+    /**
+     * Gera uma lista de atribuições.
+     *
+     * @param exposicao exposição
+     * @return atribuições
+     */
     @Override
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao) {
 
@@ -38,22 +44,22 @@ public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao, Ser
 
         List<Candidatura> listaCandidaturas = getListaCandidaturasOrdenadaPorQuantidadeProdutos(exposicao);
         List<Fae> listaFaes = getListaFaesOrdenadaPorExperienciaCarga(exposicao);
-        
+
         List<Atribuicao> listaAtribuicoes = new ArrayList<>();
 
         int countAtribuidos = 0;
         for (Candidatura candidatura : listaCandidaturas) {
-            
+
             for (int i = 0; i < 2; i++) {
                 if (countAtribuidos > listaFaes.size() - 1) {
                     countAtribuidos = 0;
                 }
                 Atribuicao atribuicao = registoAtribuicoes.novaAtribuicao(candidatura, listaFaes.get(countAtribuidos));
                 countAtribuidos++;
-                
+
                 listaAtribuicoes.add(atribuicao);
             }
-            
+
         }
 
         return listaAtribuicoes;
@@ -84,7 +90,7 @@ public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao, Ser
 
     /**
      * Devolve a lista de candidaturas ordenada por quantidade de produtos.
-     * 
+     *
      * @param exposicao exposição
      * @return lista de candidaturas
      */
@@ -103,6 +109,11 @@ public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao, Ser
         return listaCandidaturas;
     }
 
+    /**
+     * Devolve uma curta descrição do mecanismo.
+     *
+     * @return descrição do mecanismo
+     */
     @Override
     public String getDescricao() {
         return DESCRICAO_MECANISMO;

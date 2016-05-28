@@ -5,7 +5,6 @@ package centroexposicoes.model;
 
 import centroexposicoes.utils.Validar;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Representa um produto.
@@ -95,7 +94,7 @@ public class Produto implements Serializable {
      * Compara se outro objeto é igual a este Produto.
      *
      * @param outroObjeto objeto a comparar
-     * @return true se forem iguais. False caso contrário
+     * @return true se forem iguais, false caso contrário
      */
     @Override
     public boolean equals(Object outroObjeto) {

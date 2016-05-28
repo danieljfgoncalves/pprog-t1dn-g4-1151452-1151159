@@ -1,10 +1,10 @@
+/*
+ * Fornece as classes que contém o modelo logístico de um centro de exposições.
+ */
 package centroexposicoes.model;
 
 import java.io.Serializable;
 
-/*
- * Fornece as classes que contém o modelo logístico de um centro de exposições.
- */
 /**
  * Representa uma Localidade onde se realiza uma exposição.
  *

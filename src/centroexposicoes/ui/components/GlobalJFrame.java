@@ -29,8 +29,13 @@ public class GlobalJFrame extends JFrame {
     /**
      * Centro de Exposições.
      */
-    private CentroExposicoes centroExposicoes;
+    private final CentroExposicoes centroExposicoes;
 
+    /**
+     * Constrói uma instância de global JFrame recebendo o centro de exposições.
+     *
+     * @param centroExposicoes centro de exposições
+     */
     public GlobalJFrame(CentroExposicoes centroExposicoes) {
         super(APPLICATION_WINDOW_TITLE);
 
@@ -48,6 +53,11 @@ public class GlobalJFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
+    /**
+     * Cria o menu bar.
+     *
+     * @return menu bar
+     */
     private JMenuBar criarGlobalJMenuBar() {
         GlobalJMenuBar menuBar = new GlobalJMenuBar();
         menuBar.getMenuItemSair().addActionListener(new ActionListener() {
@@ -65,11 +75,17 @@ public class GlobalJFrame extends JFrame {
         return menuBar;
     }
 
+    /**
+     * Fecha a aplicação e guarda os dados em ficheiro binário.
+     */
     private void sair() {
         dispose();
         FicheiroCentroExposicoes.guardar(FicheiroCentroExposicoes.NOME, centroExposicoes);
     }
 
+    /**
+     * Volta ao login.
+     */
     private void terminarSessao() {
         dispose();
         new LoginUI(centroExposicoes);

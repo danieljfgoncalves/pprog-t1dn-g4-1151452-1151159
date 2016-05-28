@@ -32,16 +32,19 @@ import javax.swing.event.ListSelectionListener;
  */
 public class DialogSelecionarExposicao<T extends GlobalJFrame & ExposicaoSelecionavel> extends JDialog {
 
-    private CentroExposicoes centroExposicoes;
+    /**
+     * Centro de exposições.
+     */
+    private final CentroExposicoes centroExposicoes;
 
     /**
      * Janela que instância o diálogo.
      */
-    private T framePai;
+    private final T framePai;
     /**
      * Lista com as exposições.
      */
-    private List<Exposicao> listaExposicoes;
+    private final List<Exposicao> listaExposicoes;
     /**
      * Tabela cmo as exposições.
      */

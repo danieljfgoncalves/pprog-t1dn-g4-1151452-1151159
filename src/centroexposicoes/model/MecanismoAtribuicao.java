@@ -11,20 +11,19 @@ import java.util.List;
  * @author Daniel Gonçalves 1151452
  * @author Ivo Ferro 1151159
  */
-public interface MecanismoAtribuicao
-{
+public interface MecanismoAtribuicao {
 
     /**
      * Gera uma lista de atribuições.
      *
-     * @param exposicao Exposição
-     * @return Atribuições
+     * @param exposicao exposição
+     * @return atribuições
      */
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao);
-    
+
     /**
      * Devolve a descrição do mecanismo.
-     * 
+     *
      * @return a descrição do mecanismo
      */
     public String getDescricao();
