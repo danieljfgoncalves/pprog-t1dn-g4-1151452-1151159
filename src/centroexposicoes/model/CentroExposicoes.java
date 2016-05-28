@@ -3,10 +3,10 @@
  */
 package centroexposicoes.model;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,37 +125,31 @@ public class CentroExposicoes implements Serializable {
 
         List<MecanismoAtribuicao> listaMecanismos = new ArrayList<>();
 
-        try {
-            Files.walk(Paths.get(DIR_MECANISMOS)).forEach(filePath -> {
+        File folder = new File(DIR_MECANISMOS);
+        for (File file : folder.listFiles()) {
+            if (file.isFile()) {
+                Path filePath = file.toPath();
+                System.out.println(filePath);
 
-                if (Files.isRegularFile(filePath)) {
-                    System.out.println(filePath);
+                String extension = filePath.toString().substring(filePath.toString().indexOf('.'));
+                if (extension.equals(".java")) {
+                    String caminhoSemExtensao = filePath.toString().substring(
+                            filePath.toString().indexOf('/') + 1, filePath.toString().indexOf('.'));
 
-                    String extension = filePath.toString().substring(filePath.toString().indexOf('.'));
-
-                    if (extension.equals(".java")) {
-                        String caminhoSemExtensao = filePath.toString().substring(
-                                filePath.toString().indexOf('/') + 1, filePath.toString().indexOf('.'));
-
-                        String caminho = caminhoSemExtensao.replace('/', '.');
-
-                        try {
-
-                            Class cls = Class.forName(caminho);
-                            Object objeto = (Object) cls.newInstance();
-                            listaMecanismos.add((MecanismoAtribuicao) objeto);
-
-                        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                            // TODO
-                            System.out.println(ex.getMessage());
-                        }
+                    String caminho = caminhoSemExtensao.replaceAll("\\/|\\\\", ".");
+                    try {
+                        Class cls = Class.forName(caminho);
+                        Object objeto = (Object) cls.newInstance();
+                        listaMecanismos.add((MecanismoAtribuicao) objeto);
+                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                        // TODO
+                        System.out.println(ex.getMessage());
                     }
                 }
-            });
-        } catch (IOException ex) {
-            // TODO
-            System.out.println(ex.getMessage());
+
+            }
         }
+
         return listaMecanismos;
     }
 
