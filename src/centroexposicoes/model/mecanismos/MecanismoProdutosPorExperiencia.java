@@ -71,10 +71,10 @@ public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao, Ser
 
         Comparator<Fae> comparatorFaeExperiência = (Fae fae1, Fae fae2) -> {
             return fae1.getContCandAvaliadas() > fae2.getContCandAvaliadas()
-                    ? 1 : fae1.getContCandAvaliadas() < fae2.getContCandAvaliadas()
-                            ? -1 : fae1.getContCandPorAvaliar() > fae2.getContCandPorAvaliar()
-                                    ? 1 : fae1.getContCandPorAvaliar() < fae2.getContCandPorAvaliar()
-                                            ? -1 : 0;
+                    ? -1 : fae1.getContCandAvaliadas() < fae2.getContCandAvaliadas()
+                            ? 1 : fae1.getContCandPorAvaliar() > fae2.getContCandPorAvaliar()
+                                    ? -1 : fae1.getContCandPorAvaliar() < fae2.getContCandPorAvaliar()
+                                            ? 1 : 0;
         };
 
         Collections.sort(listaFaes, comparatorFaeExperiência);
@@ -93,8 +93,8 @@ public class MecanismoProdutosPorExperiencia implements MecanismoAtribuicao, Ser
 
         Comparator<Candidatura> comparatorNumeroProdutos = (Candidatura candidatura1, Candidatura candidatura2) -> {
             return candidatura1.getListaProdutos().size() > candidatura2.getListaProdutos().size()
-                    ? 1 : candidatura1.getListaProdutos().size() < candidatura2.getListaProdutos().size()
-                            ? -1 : 0;
+                    ? -1 : candidatura1.getListaProdutos().size() < candidatura2.getListaProdutos().size()
+                            ? 1 : 0;
         };
         Collections.sort(listaCandidaturas, comparatorNumeroProdutos);
 

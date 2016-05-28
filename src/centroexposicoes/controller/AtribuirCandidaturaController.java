@@ -53,11 +53,11 @@ public class AtribuirCandidaturaController {
         this.centroExposicoes = centroExposicoes;
     }
 
-    public List<Exposicao> getListaExposicoes(Organizador organizador) {
+    public List<Exposicao> getListaExposicoes() {
 
         RegistoExposicoes registoExposicoes = this.centroExposicoes.getRegistoExposicoes();
 
-        return registoExposicoes.getListaExposicoesPorOrganizador(organizador);
+        return registoExposicoes.getListaExposicoesPorOrganizador(this.organizador);
     }
 
     public void setExposicao(Exposicao exposicao) {

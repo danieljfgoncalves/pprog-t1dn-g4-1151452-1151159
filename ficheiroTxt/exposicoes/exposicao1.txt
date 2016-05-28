@@ -7,7 +7,7 @@ SubInicio:2016/6/01,
 SubFim:2016/8/15,
 Porto;
 
-listaFaes=u1,u3,u5,u7,u9,u13,u20;
+listaFaes=u1>3,u3>0,u5>7,u7>32,u9>0,u13>122,u20>3;
 listaOrganizadores=u2,u18;
 listaDemos=Ferraris Vermelhos,Austin Martin’s Antigos,Porsches 911,Rolls Royce;
 listaCandidaturas=
@@ -30,4 +30,214 @@ Porsche 9113
 Porsche 918 Spyder#
 Porsche Carrera 4S#
 Austin Martin DB11#
-Austin Martin Rapide;
+Austin Martin Rapide
+&
+StandVirtual,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Alves,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Ricos,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Carros e companhia,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Ferreira,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Luxo,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Albertino,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand ISEP,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Lisboa,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Porto,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+AugusCar,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Povoa,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Maia,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Brilho Cars,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Carros Altamente,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Ferraris,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Porsche,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Algarve,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+&
+Stand Leiria,
+Rua Alberto Paiva 89,
+913456555,
+30,
+450,
+Demos:1#2,
+Produtos:
+Ferrari California#
+Rolls Royce Phantom#
+Bentley Continental GT
+;
