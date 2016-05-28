@@ -63,7 +63,7 @@ public class AtribuirCandidaturaUI extends GlobalJFrame implements ExposicaoSele
         this.centroExposicoes = centroExposicoes;
         this.controller = new AtribuirCandidaturaController(centroExposicoes, organizador);
 
-        List<Exposicao> listaExposicoes = this.controller.getListaExposicoes(organizador);
+        List<Exposicao> listaExposicoes = this.controller.getListaExposicoes();
         new DialogSelecionarExposicao<>(this, listaExposicoes, centroExposicoes);
         if (this.exposicaoSelecionada == null) {
             dispose();
