@@ -36,11 +36,6 @@ public class AtribuirCandidaturaController {
     private Exposicao exposicao;
 
     /**
-     * Lista de Atribuições;
-     */
-    private ListaAtribuicoes registoAtribuicoes;
-
-    /**
      * Mecanismo selecionado pelo Organizador.
      */
     private MecanismoAtribuicao mecanismoSelecionado;
@@ -68,7 +63,6 @@ public class AtribuirCandidaturaController {
     public void setExposicao(Exposicao exposicao) {
 
         this.exposicao = exposicao;
-        this.registoAtribuicoes = exposicao.getListaAtribuicoes();
     }
 
     public List<MecanismoAtribuicao> getListaMecanismos() {
@@ -87,6 +81,6 @@ public class AtribuirCandidaturaController {
     }
 
     public void registarAtribuicoes(List<Atribuicao> listaAtribuicoes) {
-        this.registoAtribuicoes.setListaAtribuicoes(listaAtribuicoes);
+        this.exposicao.setListaAtribuicoes(new ListaAtribuicoes(listaAtribuicoes));
     }
 }

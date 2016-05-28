@@ -62,11 +62,11 @@ public class InstanciadorPorDefeito {
         Candidatura sonae = new Candidatura("SONAE", "Porto", 
                 "918765432", 42.2f, 4, 
                 listaProdutos, listaDemonstracoes, new ArrayList<>());
-        Atribuicao atribuicao = new Atribuicao(sonae, ivo);
-        Avaliacao avaliacao = new Avaliacao(Avaliacao.TipoAvaliacao.Aprovado, atribuicao, "Dentro do contexto.");
+////        Atribuicao atribuicao = new Atribuicao(sonae, ivo);
+////        Avaliacao avaliacao = new Avaliacao(Avaliacao.TipoAvaliacao.Aprovado, atribuicao, "Dentro do contexto.");
         List<Avaliacao> listAvaliacoes = new ArrayList<>();
-        listAvaliacoes.add(avaliacao);
-        sonae.setListaAvaliacoes(listAvaliacoes);
+////        listAvaliacoes.add(avaliacao);
+//        sonae.setListaAvaliacoes(listAvaliacoes);
 
         List<Candidatura> lc = new ArrayList<>();
         lc.add(new Candidatura(sonae));
@@ -74,7 +74,7 @@ public class InstanciadorPorDefeito {
         ListaCandidaturas listaCandidaturas = new ListaCandidaturas(lc);
 
         List<Atribuicao> la = new ArrayList<>();
-        la.add(atribuicao);
+//        la.add(atribuicao);
         ListaAtribuicoes listaAtribuicoes = new ListaAtribuicoes(la);
 
         Exposicao e1 = new Exposicao("Carros", "Expôr carros",

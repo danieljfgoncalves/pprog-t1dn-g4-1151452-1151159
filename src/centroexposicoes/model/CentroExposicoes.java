@@ -137,8 +137,6 @@ public class CentroExposicoes implements Serializable {
                     caminho = caminho.replace("src.", "");
                     caminho = caminho.replace(".java", "");
                     
-                    
-                    
                     try {
                         Class cls = Class.forName(caminho.trim());
                         Object objeto = (Object) cls.newInstance();
